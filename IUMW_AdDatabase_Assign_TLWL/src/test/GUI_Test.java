@@ -19,7 +19,7 @@ public class GUI_Test implements ActionListener {
 	private JPanel panel;
 	
 	public GUI_Test() {
-		// Create JFrame Object
+		// Create JFrame Object (i.e. The Window)
 		frame = new JFrame();
 		
 		// Clickable Buttons
@@ -28,7 +28,7 @@ public class GUI_Test implements ActionListener {
 		// Panel (i.e. text)
 		label = new JLabel("Number of clicks: 0");
 		
-		// Create Panel (i.e. Window)
+		// Create Panel (i.e. A Section of the Window, Properties/Components)
 		panel = new JPanel();
 		panel.setBorder(BorderFactory.createEmptyBorder(100, 150, 100, 150));
 		panel.setLayout(new GridLayout(0, 1));
