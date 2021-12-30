@@ -25,16 +25,72 @@ public class JavaMySQLTest {
 			// Query to be sent
 			String sql;
 			
-			sql = "SELECT name FROM employees WHERE store_number = '0'";
+			// Columns Names
+			sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'uptown_books' AND TABLE_NAME = 'book_ctlg'";
 			test = query.executeQuery(sql);
 			List<String> myList = new ArrayList<String>();
+			while(test.next()) {
+				myList.add(test.getString(1));
+			}
+			System.out.println(myList);
+			// Row Names
+			sql = "SELECT * FROM book_ctlg";
+			test = query.executeQuery(sql);
+			List<List<String>> my2DList = new ArrayList<List<String>>();
+			List<String> tempList = new ArrayList<String>();
+			while(test.next()) {
+				for(int i=0; i<myList.size(); i++) {
+					tempList.add(test.getString(myList.get(i)));
+					//System.out.println(myList.get(i) + ": " + test.getString(myList.get(i)));
+				}
+				//System.out.println(tempList);
+				my2DList.add(tempList);
+				tempList = new ArrayList<String>();
+			}
+			System.out.println(my2DList);
+			// Turn List to Array
+			System.out.println("Array ColNames -");
+			String[] colNames = myList.toArray(new String[0]);
+			for(String i : colNames) {
+				System.out.println(i);
+			}
+			System.out.println("Array RowNames -");
+			//String[][] rowNames = my2DList.toArray(new String[0][0]);
+			String[][] rowNames = my2DList.stream().map(l -> l.stream().toArray(String[]::new)).toArray(String[][]::new);
+			for(int i=0; i<rowNames.length; i++) {
+				for(int j=0; j<rowNames[i].length; j++) {
+					System.out.println(rowNames[i][j]);
+				}
+			}
+			
+			/*
+			sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'uptown_books' AND TABLE_NAME = 'offices'";
+			test = query.executeQuery(sql);
+			List<String> myList = new ArrayList<String>();
+			//System.out.println(test);
 			
 			while(test.next()) {
 				myList.add(test.getString(1));
 			}
+			
 			for(String i : myList) {
-				System.out.println(myList);
+				System.out.println(i);
 			}
+			*/
+			
+			/*
+			sql = "SELECT * FROM offices";
+			test = query.executeQuery(sql);
+			List<String> myList = new ArrayList<String>();
+			
+			while(test.next()) {
+				myList.add(test.getString("City"));
+			}
+			
+			for(String i : myList) {
+				System.out.println(i);
+			}
+			*/
 			
 			/*
 			sql = "SELECT count(*) FROM employees";

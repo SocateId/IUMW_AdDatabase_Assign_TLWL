@@ -44,7 +44,7 @@ public class UptownBooks_Server extends UnicastRemoteObject implements Interface
 		try {
 			Statement query = connect.createStatement();
 			ResultSet queryResult = query.executeQuery(sql);
-			System.out.println("!Query Successful! " + queryResult);
+			System.out.println("!Select Query Successful! " + queryResult);
 			
 			List<String> result = new ArrayList<String>();
 			while(queryResult.next()) {
@@ -54,10 +54,41 @@ public class UptownBooks_Server extends UnicastRemoteObject implements Interface
 			return result;
 			
 		} catch(SQLException e) {
-			System.out.println("!Search Query Error!");
+			System.out.println("!Select Query Error!");
 			e.printStackTrace();
 			return null;
 		}	
+	}
+	
+	@Override
+	public List<List<String>> selectQuery_allRows(String table) throws RemoteException {
+		try {
+			// Column Names
+			List<String> colNames = selectQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'uptown_books' AND TABLE_NAME = '" + table + "'");
+			
+			// Execute Query
+			Statement query = connect.createStatement();
+			ResultSet queryResult = query.executeQuery("SELECT * FROM " + table);
+			System.out.println("!Select All Rows Query Successful! " + queryResult);
+			
+			// Row Values
+			List<List<String>> rowValues = new ArrayList<List<String>>();
+			List<String> tempList = new ArrayList<String>();
+			while(queryResult.next()) {
+				for(int i=0; i<colNames.size(); i++) {
+					tempList.add(queryResult.getString(colNames.get(i)));
+				}
+				rowValues.add(tempList);
+				tempList = new ArrayList<String>();
+			}
+			return rowValues;
+			
+		} catch(SQLException e) {
+			System.out.println("!Select All Rows Query Error!");
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 	
 	@Override
