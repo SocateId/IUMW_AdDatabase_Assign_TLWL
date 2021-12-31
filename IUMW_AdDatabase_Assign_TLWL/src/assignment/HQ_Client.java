@@ -262,8 +262,12 @@ public class HQ_Client {
 							txtEnt_bookCtlg_inner2_author.setText("");
 							//tableModel_bookCtlg.getValueAt(String.valueOf(ISBN), "ISBN");
 							// Update Table Here
-							tableModel_bookCtlg.addRow(new String[]{String.valueOf(ISBN), Name, Author});
-							scrollPane_bookCtlg.setViewportView(new JTable(tableModel_bookCtlg));
+							tableModel_bookCtlg.setRowCount(0);													// Resets Table First
+							String[][] table_bookCtlg_rowData = getTable_RowData(table_bookCtlg_tableName);		// Gets New Data from Database
+							// Inserts New Data from Database
+							for(int i=0; i<table_bookCtlg_rowData.length; i++) {
+								tableModel_bookCtlg.addRow(table_bookCtlg_rowData[i]);
+							}
 							
 							txt_bookCtlg_inner2_addErrTxt.setText("New Input Succesfull");
 						} else {
@@ -304,11 +308,90 @@ public class HQ_Client {
 		panel_bookStock_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_bookStock.add(panel_bookStock_inner2);
 		panel_bookStock_inner2.setLayout(null);
+		/* Labels and Text Fields */
+		// Header
+		JLabel txt_bookStock_inner2 = new JLabel("Change Book Stock");
 		
-//		JPanel panel_bookCtlg_inner2 = new JPanel();
-//		panel_bookCtlg_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		panel_bookCtlg.add(panel_bookCtlg_inner2);
-//		panel_bookCtlg_inner2.setLayout(null);
+
+//		txt_bookCtlg_inner2.setBounds(20, 20, 100, 25);
+//		panel_bookCtlg_inner2.add(txt_bookCtlg_inner2);
+//		// ISBN Label
+//		JLabel txt_bookCtlg_inner2_ISBN = new JLabel("ISBN");
+//		txt_bookCtlg_inner2_ISBN.setBounds(20, 50, 80, 20);
+//		panel_bookCtlg_inner2.add(txt_bookCtlg_inner2_ISBN);
+//		// ISBN Text Field
+//		JTextField txtEnt_bookCtlg_inner2_ISBN = new JTextField();
+//		txtEnt_bookCtlg_inner2_ISBN.setColumns(13);
+//		txtEnt_bookCtlg_inner2_ISBN.setBounds(100, 50, 200, 20);
+//		panel_bookCtlg_inner2.add(txtEnt_bookCtlg_inner2_ISBN);
+//		// Name Label
+//		JLabel txt_bookCtlg_inner2_name = new JLabel("Name");
+//		txt_bookCtlg_inner2_name.setBounds(20, 80, 80, 20);
+//		panel_bookCtlg_inner2.add(txt_bookCtlg_inner2_name);
+//		// Name Text Field
+//		JTextField txtEnt_bookCtlg_inner2_name = new JTextField();
+//		txtEnt_bookCtlg_inner2_name.setColumns(36);
+//		txtEnt_bookCtlg_inner2_name.setBounds(100, 80, 200, 20);
+//		panel_bookCtlg_inner2.add(txtEnt_bookCtlg_inner2_name);
+//		// Author Label
+//		JLabel txt_bookCtlg_inner2_author = new JLabel("Author");
+//		txt_bookCtlg_inner2_author.setBounds(20, 110, 80, 20);
+//		panel_bookCtlg_inner2.add(txt_bookCtlg_inner2_author);
+//		// Author Text Field
+//		JTextField txtEnt_bookCtlg_inner2_author = new JTextField();
+//		txtEnt_bookCtlg_inner2_author.setColumns(36);
+//		txtEnt_bookCtlg_inner2_author.setBounds(100, 110, 200, 20);
+//		panel_bookCtlg_inner2.add(txtEnt_bookCtlg_inner2_author);
+//		/* Buttons */
+//		// Error in Inputs
+//		JLabel txt_bookCtlg_inner2_addErrTxt = new JLabel();
+//		txt_bookCtlg_inner2_addErrTxt.setForeground(Color.RED);
+//		txt_bookCtlg_inner2_addErrTxt.setBounds(20, 190, 200, 20);
+//		panel_bookCtlg_inner2.add(txt_bookCtlg_inner2_addErrTxt);
+//		// Button Add Book
+//		JButton btn_bookCtlg_inner2_add = new JButton("Add Book");
+//		btn_bookCtlg_inner2_add.setBounds(20, 160, 90, 25);
+//		panel_bookCtlg_inner2.add(btn_bookCtlg_inner2_add);
+//		btn_bookCtlg_inner2_add.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				try {
+//					if(txtEnt_bookCtlg_inner2_ISBN.getText().equals("") || txtEnt_bookCtlg_inner2_name.getText().equals("") || txtEnt_bookCtlg_inner2_author.getText().equals("")) {
+//						txt_bookCtlg_inner2_addErrTxt.setText("Invalid Inputs in Text Fields");
+//					} else {
+//						long ISBN = Long.parseLong(txtEnt_bookCtlg_inner2_ISBN.getText());
+//						String Name = txtEnt_bookCtlg_inner2_name.getText();
+//						String Author = txtEnt_bookCtlg_inner2_author.getText();
+//						
+//						if((String.valueOf(ISBN)).chars().count() == 13 && checkTable_Entry(tableModel_bookCtlg, String.valueOf(ISBN), 0) < 0) {
+//							// Runs Insert Query
+//							RMI_Server.updateQuery("INSERT INTO book_ctlg (ISBN, Name, Author) VALUES ('" + ISBN + "', '" + Name + "', '" + Author + "')");
+//							
+//							// Clears Text Fields
+//							txtEnt_bookCtlg_inner2_ISBN.setText("");
+//							txtEnt_bookCtlg_inner2_name.setText("");
+//							txtEnt_bookCtlg_inner2_author.setText("");
+//							//tableModel_bookCtlg.getValueAt(String.valueOf(ISBN), "ISBN");
+//							// Update Table Here
+//							tableModel_bookCtlg.addRow(new String[]{String.valueOf(ISBN), Name, Author});
+//							scrollPane_bookCtlg.setViewportView(new JTable(tableModel_bookCtlg));
+//							
+//							txt_bookCtlg_inner2_addErrTxt.setText("New Input Succesfull");
+//						} else {
+//							txt_bookCtlg_inner2_addErrTxt.setText("Invalid Inputs in Text Fields");
+//						}
+//					}
+//				} catch(Exception error) {
+//					txt_bookCtlg_inner2_addErrTxt.setText("Invalid Inputs in Text Fields");
+//					System.out.println(error);
+//				}
+//			}
+//		});
+//		/* Book Catalogue, Inner Panel 2 End */
+		
+		
+		
+		
+		
 		
 		// Display Window
 		frame.pack();											// Combine Window Elements, and Resize Them if Window Too Small

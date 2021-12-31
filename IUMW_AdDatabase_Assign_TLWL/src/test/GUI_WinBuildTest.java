@@ -32,9 +32,9 @@ public class GUI_WinBuildTest {
 	private JTextField textField_table1_ISBN;
 	private JTextField textField_table1_Name;
 	private JTextField textField_table1_Author;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField textField_table2_ISBN;
+	private JTextField textField_table2_storeNum;
+	private JTextField textField_table2_stock;
 	private JTable table2;
 
 	/**
@@ -161,55 +161,66 @@ public class GUI_WinBuildTest {
 		table2 = new JTable();
 		table2.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
+				{"9780134601533", "0", "50", "0.0"},
+				{"9780199734825", "0", "50", "0.0"},
+				{"9780764507526", "0", "50", "0.0"},
+				{"9781119056072", "0", "50", "0.0"},
+				{"9781292263359", "0", "50", "0.0"},
+				{"9780134601533", "1", "15", "43.99"},
+				{"9780764507526", "1", "0", "40.99"},
+				{"9781292263359", "1", "2", "73.99"},
 			},
 			new String[] {
 				"ISBN", "Store_Number", "Stock", "Price"
 			}
 		));
+		table2.getColumnModel().getColumn(0).setPreferredWidth(112);
+		table2.getColumnModel().getColumn(1).setPreferredWidth(166);
+		table2.getColumnModel().getColumn(2).setPreferredWidth(144);
+		table2.getColumnModel().getColumn(3).setPreferredWidth(145);
 		scrollPane_table2.setViewportView(table2);
 		
 		JPanel panel2_inner2 = new JPanel();
 		panel_2.add(panel2_inner2);
 		panel2_inner2.setLayout(null);
 		
-		JLabel txt_panel2_inner2 = new JLabel("Increase/Decrease Book Stock");
-		txt_panel2_inner2.setBounds(70, 9, 146, 14);
+		JLabel txt_panel2_inner2 = new JLabel("Change Book Stock");
+		txt_panel2_inner2.setBounds(20, 20, 200, 25);
 		panel2_inner2.add(txt_panel2_inner2);
 		
-		JLabel txt_table1_ISBN_1 = new JLabel("ISBN");
-		txt_table1_ISBN_1.setBounds(221, 9, 23, 14);
-		panel2_inner2.add(txt_table1_ISBN_1);
+		JLabel txt_table2_ISBN = new JLabel("ISBN");
+		txt_table2_ISBN.setBounds(20, 50, 80, 20);
+		panel2_inner2.add(txt_table2_ISBN);
 		
-		textField = new JTextField();
-		textField.setBounds(249, 6, 110, 20);
-		textField.setColumns(13);
-		panel2_inner2.add(textField);
+		textField_table2_ISBN = new JTextField();
+		textField_table2_ISBN.setBounds(100, 50, 200, 20);
+		textField_table2_ISBN.setColumns(13);
+		panel2_inner2.add(textField_table2_ISBN);
 		
-		JLabel txt_table1_Name_1 = new JLabel("Name");
-		txt_table1_Name_1.setBounds(364, 9, 27, 14);
-		panel2_inner2.add(txt_table1_Name_1);
+		JLabel txt_table2_storeNum = new JLabel("Store Number");
+		txt_table2_storeNum.setBounds(20, 80, 80, 20);
+		panel2_inner2.add(txt_table2_storeNum);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(396, 6, 294, 20);
-		textField_1.setColumns(36);
-		panel2_inner2.add(textField_1);
+		textField_table2_storeNum = new JTextField();
+		textField_table2_storeNum.setBounds(100, 80, 200, 20);
+		textField_table2_storeNum.setColumns(36);
+		panel2_inner2.add(textField_table2_storeNum);
 		
-		JLabel txt_table1_Author_1 = new JLabel("Author");
-		txt_table1_Author_1.setBounds(695, 9, 33, 14);
-		panel2_inner2.add(txt_table1_Author_1);
+		JLabel txt_table2_stock = new JLabel("Stock");
+		txt_table2_stock.setBounds(20, 110, 80, 20);
+		panel2_inner2.add(txt_table2_stock);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(733, 6, 294, 20);
-		textField_2.setColumns(36);
-		panel2_inner2.add(textField_2);
+		textField_table2_stock = new JTextField();
+		textField_table2_stock.setBounds(100, 110, 200, 20);
+		textField_table2_stock.setColumns(36);
+		panel2_inner2.add(textField_table2_stock);
 		
-		JButton btnNewButton_1 = new JButton("Add Book");
-		btnNewButton_1.setBounds(1032, 5, 77, 23);
-		panel2_inner2.add(btnNewButton_1);
+		JButton btn_table2_changeStock = new JButton("Change Stock");
+		btn_table2_changeStock.setBounds(20, 160, 100, 25);
+		panel2_inner2.add(btn_table2_changeStock);
 		
 		JLabel lblNewLabel_1 = new JLabel("Invalid Inputs in Text Fields");
-		lblNewLabel_1.setBounds(523, 33, 132, 14);
+		lblNewLabel_1.setBounds(20, 190, 200, 20);
 		lblNewLabel_1.setForeground(Color.RED);
 		panel2_inner2.add(lblNewLabel_1);
 	}
