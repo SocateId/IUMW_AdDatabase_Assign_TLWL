@@ -96,6 +96,8 @@ public class UptownBooks_Server extends UnicastRemoteObject implements Interface
 		try {
 			Statement query = connect.createStatement();
 			int queryResult = query.executeUpdate(sql);
+			System.out.println("!Update Query Successful! " + queryResult);
+			
 			return queryResult;
 			
 		} catch(SQLException e) {

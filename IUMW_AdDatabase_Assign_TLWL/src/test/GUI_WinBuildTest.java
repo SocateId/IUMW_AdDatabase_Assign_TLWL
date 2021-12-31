@@ -38,6 +38,7 @@ public class GUI_WinBuildTest {
 	private JTextField textField_table2_storeNum;
 	private JTextField textField_table2_stock;
 	private JTable table2;
+	private JTable table3;
 
 	/**
 	 * Launch the application.
@@ -247,11 +248,37 @@ public class GUI_WinBuildTest {
 		
 		JLabel txt_table2_drpDownErrSucc = new JLabel("Add Succesfull");
 		txt_table2_drpDownErrSucc.setForeground(Color.RED);
-		txt_table2_drpDownErrSucc.setBounds(400, 190, 200, 20);
+		txt_table2_drpDownErrSucc.setBounds(400, 190, 300, 20);
 		panel2_inner2.add(txt_table2_drpDownErrSucc);
 		
 		JLabel txt_panel2_inner2_dropDownISBN_1 = new JLabel("Remove, Input ISBN from Table Book Stock");
 		txt_panel2_inner2_dropDownISBN_1.setBounds(400, 80, 250, 20);
 		panel2_inner2.add(txt_panel2_inner2_dropDownISBN_1);
+		
+		JPanel panel_3 = new JPanel();
+		tabbedPane.addTab("Tab 3", null, panel_3, null);
+		panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
+		
+		JPanel panel3_inner1 = new JPanel();
+		panel3_inner1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_3.add(panel3_inner1);
+		panel3_inner1.setLayout(null);
+		
+		JLabel txt_table3 = new JLabel("Table 3");
+		txt_table3.setBounds(20, 20, 100, 25);
+		panel3_inner1.add(txt_table3);
+		
+		JScrollPane scrollPane_table3 = new JScrollPane();
+		scrollPane_table3.setBounds(20, 50, 1130, 190);
+		panel3_inner1.add(scrollPane_table3);
+		
+		table3 = new JTable();
+		table3.setEnabled(false);
+		scrollPane_table3.setViewportView(table3);
+		
+		JPanel panel3_inner2 = new JPanel();
+		panel3_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel3_inner2.setLayout(null);
+		panel_3.add(panel3_inner2);
 	}
 }

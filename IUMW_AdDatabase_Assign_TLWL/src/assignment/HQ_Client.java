@@ -256,22 +256,15 @@ public class HQ_Client {
 						String Author = txtEnt_bookCtlg_inner2_author.getText();
 						
 						if((String.valueOf(ISBN)).chars().count() == 13 && checkTable_Entry(tableModel_bookCtlg, String.valueOf(ISBN), 0) < 0) {
+							String sql = "INSERT INTO book_ctlg (ISBN, Name, Author) VALUES ('" + ISBN + "', '" + Name + "', '" + Author + "')";
+							
 							// Runs Insert Query into Table Book_Ctlg
-							RMI_Server.updateQuery("INSERT INTO book_ctlg (ISBN, Name, Author) VALUES ('" + ISBN + "', '" + Name + "', '" + Author + "')");
-							// Runs Insert Query into 
+							updateTable(sql, table_bookCtlg_tableName, tableModel_bookCtlg);
 							
 							// Clears Text Fields
 							txtEnt_bookCtlg_inner2_ISBN.setText("");
 							txtEnt_bookCtlg_inner2_name.setText("");
 							txtEnt_bookCtlg_inner2_author.setText("");
-							//tableModel_bookCtlg.getValueAt(String.valueOf(ISBN), "ISBN");
-							// Update Table Here
-							tableModel_bookCtlg.setRowCount(0);													// Resets Table First
-							String[][] table_bookCtlg_rowData = getTable_RowData(table_bookCtlg_tableName);		// Gets New Data from Database
-							// Inserts New Data from Database
-							for(int i=0; i<table_bookCtlg_rowData.length; i++) {
-								tableModel_bookCtlg.addRow(table_bookCtlg_rowData[i]);
-							}
 							
 							txt_bookCtlg_inner2_addErrTxt.setText("New Input Successful");
 						} else {
@@ -289,9 +282,9 @@ public class HQ_Client {
 		// Panel Book Stock 
 		// Panel
 		JPanel panel_bookStock = new JPanel();
-		String panel_bookStock_name = "Book Stock";
-		tabbedPane.addTab(panel_bookStock_name, null, panel_bookStock, null);						// Add to Tabs
-		panel_bookStock.setLayout(new BoxLayout(panel_bookStock, BoxLayout.Y_AXIS));	// Sets Panel Layout
+		String panel_bookStock_name = "Book Stock";											// Panel Name
+		tabbedPane.addTab(panel_bookStock_name, null, panel_bookStock, null);				// Add to Tabs
+		panel_bookStock.setLayout(new BoxLayout(panel_bookStock, BoxLayout.Y_AXIS));		// Sets Panel Layout
 		/* Book Catalogue, Inner Panel 1 Start */
 		/* Inner Panel Object */
 		JPanel panel_bookStock_inner1 = new JPanel();
@@ -300,7 +293,7 @@ public class HQ_Client {
 		/* Scroll Pane */
 		JScrollPane scrollPane_bookStock = new JScrollPane();
 		/* Table Start */
-		String table_bookStock_tableName = "book_stock";
+		String table_bookStock_tableName = "book_stock";									// Table Name
 		// The Table Object
 		DefaultTableModel tableModel_bookStock = new DefaultTableModel();
 		JTable table_bookStock = new JTable();
@@ -373,7 +366,7 @@ public class HQ_Client {
 		panel_bookStock_inner2.add(txt_bookStock_inner2_changeErrTxt);
 		JLabel txt_bookStock_inner2_addRemErrTxt = new JLabel();				// Label Add/Remove Book from Stock Table Success/Error
 		txt_bookStock_inner2_addRemErrTxt.setForeground(Color.RED);
-		txt_bookStock_inner2_addRemErrTxt.setBounds(400, 190, 200, 20);
+		txt_bookStock_inner2_addRemErrTxt.setBounds(400, 190, 300, 20);
 		panel_bookStock_inner2.add(txt_bookStock_inner2_addRemErrTxt);
 		// Buttons and Actions
 		JButton btn_bookStock_inner2_change = new JButton("Change Stock");		// Change Stock Button
@@ -390,9 +383,20 @@ public class HQ_Client {
 						txt_bookStock_inner2_changeErrTxt.setText("Invalid Inputs in Text Fields");
 					} else {
 						if(String.valueOf(ISBN).chars().count() == 13 && checkTable_compEntry(tableModel_bookStock, String.valueOf(ISBN), String.valueOf(storeNumber), 0, 1)) {
-							txt_bookStock_inner2_changeErrTxt.setText("Inputs Valid");
+							//txt_bookStock_inner2_changeErrTxt.setText("Inputs Valid");
+							String sql = "UPDATE " + table_bookStock_tableName + " SET stock = " + stock + " WHERE (ISBN = " + ISBN + " AND store_number = " + storeNumber + ")";
 							
-							//txt_bookStock_inner2_changeErrTxt.setText("Change Successful");
+							updateTable(sql, table_bookStock_tableName, tableModel_bookStock);
+							
+							// Clear Text Fields
+							txtEnt_bookStock_inner2_ISBN.setText("");
+							txtEnt_bookStock_inner2_storeNum.setText("");
+							txtEnt_bookStock_inner2_stock.setText("");
+							
+							// Testing
+							System.out.println(sql);
+							
+							txt_bookStock_inner2_changeErrTxt.setText("Change Successful");
 						} else {
 							txt_bookStock_inner2_changeErrTxt.setText("Invalid Inputs in Text Fields");
 						}
@@ -405,47 +409,76 @@ public class HQ_Client {
 				}
 			}
 		});
+		JButton btn_bookStock_inner2_addToTable = new JButton("Add");					// Add to Table Button
+		btn_bookStock_inner2_addToTable.setBounds(400, 160, 80, 25);
+		panel_bookStock_inner2.add(btn_bookStock_inner2_addToTable);
+		btn_bookStock_inner2_addToTable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
+					
+					if(String.valueOf(ISBN).equals("") || String.valueOf(ISBN).chars().count() != 13 || checkTable_Entry(tableModel_bookCtlg, String.valueOf(ISBN), 0) < 0 || checkTable_Entry(tableModel_bookStock, String.valueOf(ISBN), 0) >= 0) {	
+						txt_bookStock_inner2_addRemErrTxt.setText("Add Unsuccessful, Invalid Input in ISBN");
+					} else {
+						String sql = "INSERT INTO " + table_bookStock_tableName + " (ISBN, Store_Number, Stock, Price) VALUES (" + ISBN + ", 0, 0, 0)";
+						
+						// Runs INSERT Query
+						updateTable(sql, table_bookStock_tableName, tableModel_bookStock);
+						
+						// Clear Text Fields
+						txtEnt_bookStock_inner2_ISBN.setText("");
+						txtEnt_bookStock_inner2_storeNum.setText("");
+						txtEnt_bookStock_inner2_stock.setText("");
+						
+						// Testing
+						System.out.println(sql);
+						
+						txt_bookStock_inner2_addRemErrTxt.setText("Add Successful");
+					}
+				} catch(Exception error) {
+					txt_bookStock_inner2_addRemErrTxt.setText("Add Unsuccessful, Invalid Input in ISBN");
+					System.out.println(error);
+				}
+			}
+		});
+		// Remove from Table Button
+		JButton btn_bookStock_inner2_remFromTable = new JButton("Remove");				// Add to Table Button
+		btn_bookStock_inner2_remFromTable.setBounds(500, 160, 80, 25);
+		panel_bookStock_inner2.add(btn_bookStock_inner2_remFromTable);
+		btn_bookStock_inner2_remFromTable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
+					
+					if(String.valueOf(ISBN).equals("") || String.valueOf(ISBN).chars().count() != 13 || checkTable_Entry(tableModel_bookStock, String.valueOf(ISBN), 0) < 0) {
+						txt_bookStock_inner2_addRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
+					} else {
+						String sql = "DELETE FROM " + table_bookStock_tableName + " WHERE ISBN = " + ISBN;
+						
+						// Runs DELETE Query
+						updateTable(sql, table_bookStock_tableName, tableModel_bookStock);
+						
+						// Clear Text Fields
+						txtEnt_bookStock_inner2_ISBN.setText("");
+						txtEnt_bookStock_inner2_storeNum.setText("");
+						txtEnt_bookStock_inner2_stock.setText("");
+						
+						// Testing
+						System.out.println(sql);
+						System.out.println("ISBN Pos: " + checkTable_Entry(tableModel_bookStock, String.valueOf(ISBN), 0));
+						
+						txt_bookStock_inner2_addRemErrTxt.setText("Remove Successful");
+					}
+					
+				} catch(Exception error) {
+					txt_bookStock_inner2_addRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
+					System.out.println(error);
+				}
+			}
+		});
 		
-		
-//		btn_bookCtlg_inner2_add.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				try {
-//					if(txtEnt_bookCtlg_inner2_ISBN.getText().equals("") || txtEnt_bookCtlg_inner2_name.getText().equals("") || txtEnt_bookCtlg_inner2_author.getText().equals("")) {
-//						txt_bookCtlg_inner2_addErrTxt.setText("Invalid Inputs in Text Fields");
-//					} else {
-//						long ISBN = Long.parseLong(txtEnt_bookCtlg_inner2_ISBN.getText());
-//						String Name = txtEnt_bookCtlg_inner2_name.getText();
-//						String Author = txtEnt_bookCtlg_inner2_author.getText();
-//						
-//						if((String.valueOf(ISBN)).chars().count() == 13 && checkTable_Entry(tableModel_bookCtlg, String.valueOf(ISBN), 0) < 0) {
-//							// Runs Insert Query
-//							RMI_Server.updateQuery("INSERT INTO book_ctlg (ISBN, Name, Author) VALUES ('" + ISBN + "', '" + Name + "', '" + Author + "')");
-//							
-//							// Clears Text Fields
-//							txtEnt_bookCtlg_inner2_ISBN.setText("");
-//							txtEnt_bookCtlg_inner2_name.setText("");
-//							txtEnt_bookCtlg_inner2_author.setText("");
-//							//tableModel_bookCtlg.getValueAt(String.valueOf(ISBN), "ISBN");
-//							// Update Table Here
-//							tableModel_bookCtlg.addRow(new String[]{String.valueOf(ISBN), Name, Author});
-//							scrollPane_bookCtlg.setViewportView(new JTable(tableModel_bookCtlg));
-//							
-//							txt_bookCtlg_inner2_addErrTxt.setText("New Input Successful");
-//						} else {
-//							txt_bookCtlg_inner2_addErrTxt.setText("Invalid Inputs in Text Fields");
-//						}
-//					}
-//				} catch(Exception error) {
-//					txt_bookCtlg_inner2_addErrTxt.setText("Invalid Inputs in Text Fields");
-//					System.out.println(error);
-//				}
-//			}
-//		});
-//		/* Book Catalogue, Inner Panel 2 End */
-		
-		
-		
-		
+		// Panel Book Stock 
+		// Panel
 		
 		
 		// Display Window
@@ -468,6 +501,7 @@ public class HQ_Client {
 	public static int checkTable_Entry(DefaultTableModel table, String entry, int col) {
 		for(int i=0; i<table.getRowCount(); i++) {
 			if(table.getValueAt(i, col).equals(entry)) {
+				System.out.print(i);
 				return i;
 			}
 		}
@@ -521,7 +555,28 @@ public class HQ_Client {
 		}
 	}
 	
-	// Create Table Function
+	// Updates Table
+	public static void updateTable(String sql, String tableName, DefaultTableModel table) {
+		try {
+			// Runs Query Change/Affect Table
+			RMI_Server.updateQuery(sql);
+			
+			// Gets New Data from Database
+			String[][] table_rowData = getTable_RowData(tableName);
+			
+			// Reset Table Value
+			table.setRowCount(0);
+			// Inserts New Data from Database
+			for(int i=0; i<table_rowData.length; i++) {
+				table.addRow(table_rowData[i]);
+			}
+			
+		} catch(Exception error) {
+			System.out.println(error);
+		}
+	}
+	
+	// Create Table Panel Function
 	public static void Make_tablePanel(JFrame frame, JPanel panel, JPanel panel_inner, JLabel label, String panelName, String tableName, JScrollPane scrollPane, DefaultTableModel tableModel, JTable table) {
 		try {
 			// The Inner Panel, Table Panel

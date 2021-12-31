@@ -26,9 +26,12 @@ public class JavaMySQLTest {
 			// Query to be sent
 			String sql;
 			
+			sql = "";
+			
+			
 			/*
 			// Updates stock of ISBN = 9780134601533 and Store_number = 0, from Table Book_stock
-			sql = "UPDATE book_stock SET stock = 50 WHERE (ISBN = 9780134601533 AND store_number = 0)";
+			sql = "UPDATE book_stock SET stock = 69 WHERE (ISBN = 9780134601533 AND store_number = 0)";
 			updateTest = query.executeUpdate(sql);
 			System.out.println(updateTest);
 			*/
