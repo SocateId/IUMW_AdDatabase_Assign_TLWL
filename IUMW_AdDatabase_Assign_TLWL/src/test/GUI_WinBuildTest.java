@@ -41,7 +41,7 @@ public class GUI_WinBuildTest {
 	private JTable table3;
 	private JTextField textField_table3_inner2_name;
 	private JTextField textField_table3_inner2_pwd;
-	private JComboBox comboBox_table4_inner2_state;
+	private JTextField textField_table4_inner2_state;
 	private JTextField textField_table4_inner2_postcode;
 	private JTable table4;
 
@@ -393,7 +393,7 @@ public class GUI_WinBuildTest {
 		panel_4.add(pane4_inner2);
 		
 		JLabel txt_table4_inner2_headAdd = new JLabel("Add New Store");
-		txt_table4_inner2_headAdd.setBounds(20, 20, 350, 25);
+		txt_table4_inner2_headAdd.setBounds(20, 20, 300, 25);
 		pane4_inner2.add(txt_table4_inner2_headAdd);
 		
 		JLabel txt_table4_inner2_city = new JLabel("City");
@@ -408,19 +408,19 @@ public class GUI_WinBuildTest {
 		txt_table4_inner2_postcode.setBounds(20, 110, 80, 20);
 		pane4_inner2.add(txt_table4_inner2_postcode);
 		
-		JComboBox comboBox_table4_inner2_city = new JComboBox();
-		comboBox_table4_inner2_city.setModel(new DefaultComboBoxModel(new String[] {"Iskandar Puteri", "Johor Bahru"}));
-		comboBox_table4_inner2_city.setBounds(100, 50, 150, 20);
-		pane4_inner2.add(comboBox_table4_inner2_city);
+		JTextField textField_table4_inner2_city = new JTextField();
+		textField_table4_inner2_city.setColumns(36);
+		textField_table4_inner2_city.setBounds(100, 50, 200, 20);
+		pane4_inner2.add(textField_table4_inner2_city);
 		
-		comboBox_table4_inner2_state = new JComboBox();
-		comboBox_table4_inner2_state.setModel(new DefaultComboBoxModel(new String[] {"Johor", "Penang", "Perak", "Sabah", "Sarawak", "Selangor"}));
-		comboBox_table4_inner2_state.setBounds(100, 80, 150, 20);
-		pane4_inner2.add(comboBox_table4_inner2_state);
+		textField_table4_inner2_state = new JTextField();
+		textField_table4_inner2_state.setColumns(36);
+		textField_table4_inner2_state.setBounds(100, 80, 200, 20);
+		pane4_inner2.add(textField_table4_inner2_state);
 		
 		textField_table4_inner2_postcode = new JTextField();
 		textField_table4_inner2_postcode.setColumns(5);
-		textField_table4_inner2_postcode.setBounds(100, 110, 150, 20);
+		textField_table4_inner2_postcode.setBounds(100, 110, 200, 20);
 		pane4_inner2.add(textField_table4_inner2_postcode);
 		
 		JButton btn_table4_inner2_addStore = new JButton("Add");

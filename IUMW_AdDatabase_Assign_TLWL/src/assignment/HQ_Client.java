@@ -52,7 +52,7 @@ public class HQ_Client {
 		//frame = new JFrame();									// The JFrame Object
 		JFrame frame = new JFrame();							// The JFrame Object
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	// When Window closed, program exited
-		frame.setTitle("Uptown Books Database");				// Window Title
+		frame.setTitle("Uptown Books Database HQ");				// Window Title
 		frame.setMinimumSize(new Dimension(350, 200));			// Minimum Window Size
 		
 		// The JPanel Objects
@@ -511,6 +511,7 @@ public class HQ_Client {
 		panel_employees_inner2.add(txt_employess_inner2_changeOrRemoveEmpl);
 		JLabel txt_employees_inner2_addNewEmpl = new JLabel("Add New Employee to HQ");										// Add New Employee
 		txt_employees_inner2_addNewEmpl.setBounds(400, 20, 250, 25);
+		panel_employees_inner2.add(txt_employees_inner2_addNewEmpl);
 		// ID Label
 		JLabel txt_employees_inner2_ID = new JLabel("ID");
 		txt_employees_inner2_ID.setBounds(20, 50, 80, 20);
@@ -662,9 +663,95 @@ public class HQ_Client {
 		});
 		/* Employees, Inner Panel 2 End */
 		
+		
 		// Panel Offices
 		// Panel
-		JPanel testPnal;
+		JPanel panel_offices = new JPanel();
+		String panel_offices_name = "Offices";												// Panel Name
+		tabbedPane.addTab(panel_offices_name, null, panel_offices, null);					// Add to Tabs
+		panel_offices.setLayout(new BoxLayout(panel_offices, BoxLayout.Y_AXIS));			// Sets Panel Layout
+		/* Offices, Inner Panel 1 Start */
+		/* Inner Panel Object */
+		JPanel panel_offices_inner1 = new JPanel();
+		/* Label */
+		JLabel txt_offices_inner1 = new JLabel();
+		/* Scroll Pane */
+		JScrollPane scrollPane_offices = new JScrollPane();
+		/* Table Start */
+		String table_offices_tableName = "offices";											// Table Name
+		// The Table Object
+		DefaultTableModel tableModel_offices = new DefaultTableModel();
+		JTable table_offices = new JTable();
+		/* Table End */
+		// Runs Function to Design and Render it
+		Make_tablePanel(frame, panel_offices, panel_offices_inner1, txt_offices_inner1, panel_offices_name, table_offices_tableName, scrollPane_offices, tableModel_offices, table_offices);
+		/* Offices, Inner Panel 1 End */
+		/* Offices, Inner Panel 2 Start */
+		JPanel panel_offices_inner2 = new JPanel();
+		panel_offices_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_offices.add(panel_offices_inner2);
+		panel_offices_inner2.setLayout(null);
+		/* Labels and Text Fields */
+		// Headers
+		JLabel txt_offices_inner2_headAdd = new JLabel("Add New Store to Table");		// Add New Stores to the Table Offices
+		txt_offices_inner2_headAdd.setBounds(20, 20, 300, 25);
+		panel_offices_inner2.add(txt_offices_inner2_headAdd);
+		// City Label
+		JLabel txt_offices_inner2_city = new JLabel("City");
+		txt_offices_inner2_city.setBounds(20, 50, 80, 20);
+		panel_offices_inner2.add(txt_offices_inner2_city);
+		// City Text Fields
+		JTextField txtEnt_offices_inner2_city = new JTextField();
+		txtEnt_offices_inner2_city.setColumns(36);
+		txtEnt_offices_inner2_city.setBounds(100, 50, 200, 20);
+		panel_offices_inner2.add(txtEnt_offices_inner2_city);
+		// State Label
+		JLabel txt_offices_inner2_state = new JLabel("State");
+		txt_offices_inner2_state.setBounds(20, 80, 80, 20);
+		panel_offices_inner2.add(txt_offices_inner2_state);
+		// State Text Fields
+		JTextField txtEnt_offices_inner2_state = new JTextField();
+		txtEnt_offices_inner2_state.setColumns(36);
+		txtEnt_offices_inner2_state.setBounds(100, 80, 200, 20);
+		panel_offices_inner2.add(txtEnt_offices_inner2_state);
+		// Postcode Label
+		JLabel txt_offices_inner2_postcode = new JLabel("Postcode");
+		txt_offices_inner2_postcode.setBounds(20, 110, 80, 20);
+		panel_offices_inner2.add(txt_offices_inner2_postcode);
+		// Postcode Text Fields
+		JTextField txtEnt_offices_inner2_postcode = new JTextField();
+		txtEnt_offices_inner2_postcode.setColumns(36);
+		txtEnt_offices_inner2_postcode.setBounds(100, 110, 200, 20);
+		panel_offices_inner2.add(txtEnt_offices_inner2_postcode);
+		/* Buttons */
+		// Error/Success in Inputs
+		JLabel txt_offices_inner2_headAddErrTxt = new JLabel("");			// Label Add Success/Error
+		txt_offices_inner2_headAddErrTxt.setForeground(Color.RED);
+		txt_offices_inner2_headAddErrTxt.setBounds(20, 190, 300, 20);
+		panel_offices_inner2.add(txt_offices_inner2_headAddErrTxt);
+		// Buttons and Actions
+		JButton btn_offices_inner2_add = new JButton("Add");				// Add New Office to Offices Table
+		btn_offices_inner2_add.setBounds(20, 160, 80, 25);
+		panel_offices_inner2.add(btn_offices_inner2_add);
+		btn_offices_inner2_add.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					
+				} catch(Exception error) {
+					txt_offices_inner2_headAddErrTxt.setText("Add Unsuccessful, Invalid Inputs in Text Fields");
+					System.out.println(error);
+				}
+			}
+		});
+		/* Offices, Inner Panel 2 End */
+		
+		// Sales Panels
+		// Panels
+		JPanel panel_sales = new JPanel();
+		String panel_sales_name = "Sales";													// Panel Name
+		tabbedPane.addTab(panel_sales_name, null, panel_sales, null);						// Add to Tabs
+		panel_sales.setLayout(new BoxLayout(panel_sales, BoxLayout.Y_AXIS));				// Sets Panel Layout
+		
 		
 		// Display Window
 		frame.pack();											// Combine Window Elements, and Resize Them if Window Too Small
