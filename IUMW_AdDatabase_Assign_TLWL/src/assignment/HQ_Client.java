@@ -22,7 +22,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JViewport;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class HQ_Client {
 	// Connect to RMI Server
@@ -147,74 +150,184 @@ public class HQ_Client {
 		// Panel Book Catalogue 
 		// Panel
 		JPanel panel_bookCtlg = new JPanel();
-		tabbedPane.addTab("Book_Ctlg", null, panel_bookCtlg, null);						// Add to Tabs
-		panel_bookCtlg.setLayout(new BoxLayout(panel_bookCtlg, BoxLayout.Y_AXIS));		// Panel is Box Layout										// Sets Panel Layout
-		panel_bookCtlg.setBorder(BorderFactory.createLineBorder(Color.black));
+		String panel_bookCtlg_name = "Book Catalogue";
+		tabbedPane.addTab(panel_bookCtlg_name, null, panel_bookCtlg, null);						// Add to Tabs
+		panel_bookCtlg.setLayout(new BoxLayout(panel_bookCtlg, BoxLayout.Y_AXIS));		// Sets Panel Layout
+		//panel_bookCtlg.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		// Old Code
+//		/* Book Catalogue, Inner Panel 1 Start */
+//		JPanel panel_bookCtlg_inner1 = new JPanel();
+//		panel_bookCtlg_inner1.setBorder(new LineBorder(new Color(0, 0, 0)));
+//		panel_bookCtlg.add(panel_bookCtlg_inner1);
+//		panel_bookCtlg_inner1.setLayout(null);
+//		/* Label */
+//		JLabel txt_bookCtlg_inner1 = new JLabel("Book Catalogue");
+//		//txt_bookCtlg.setHorizontalAlignment(SwingConstants.CENTER);
+//		txt_bookCtlg_inner1.setLabelFor(frame);
+//		txt_bookCtlg_inner1.setBounds(10, 20, 100, 25);
+//		panel_bookCtlg_inner1.add(txt_bookCtlg_inner1);
+//		/* Table Start */
+//		//int table_bookCtlg_rowCount = getTable_RowCount("book_ctlg");
+//		String[] table_bookCtlg_colNames = getTable_ColNames("book_ctlg");
+//		String[][] table_bookCtlg_rowData = getTable_RowData("book_ctlg");
+//		// Scroll Pane
+//		JScrollPane scrollPane_bookCtlg = new JScrollPane();
+//		scrollPane_bookCtlg.setBounds(20, 50, 1130, 190);
+//		panel_bookCtlg_inner1.add(scrollPane_bookCtlg);
+//		// The Table Object
+//		DefaultTableModel tableModel_bookCtlg = new DefaultTableModel(table_bookCtlg_rowData, table_bookCtlg_colNames);
+//		scrollPane_bookCtlg.setViewportView(new JTable(tableModel_bookCtlg));
+//		/* Table End */
+		
 		/* Book Catalogue, Inner Panel 1 Start */
+		/* Inner Panel Object */
 		JPanel panel_bookCtlg_inner1 = new JPanel();
-		panel_bookCtlg.add(panel_bookCtlg_inner1);
-		panel_bookCtlg_inner1.setLayout(null);
 		/* Label */
-		JLabel txt_bookCtlg = new JLabel("Book Catalogue");
-		//txt_bookCtlg.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_bookCtlg.setLabelFor(frame);
-		txt_bookCtlg.setBounds(10, 20, 100, 25);
-		panel_bookCtlg_inner1.add(txt_bookCtlg);
-		/* Table Start */
-		int table_bookCtlg_rowCount = getTable_RowCount("book_ctlg");
-		String[] table_bookCtlg_colNames = getTable_ColNames("book_ctlg");
-		String[][] table_bookCtlg_rowData = getTable_RowData("book_ctlg");
-		// Scroll Pane
+		JLabel txt_bookCtlg_inner1 = new JLabel();
+		/* Scroll Pane */
 		JScrollPane scrollPane_bookCtlg = new JScrollPane();
-		scrollPane_bookCtlg.setBounds(20, 50, 1130, 18+(17*table_bookCtlg_rowCount));
-		panel_bookCtlg_inner1.add(scrollPane_bookCtlg);
+		/* Table Start */
+		String table_bookCtlg_tableName = "book_ctlg";
 		// The Table Object
-		JTable table_bookCtlg = new JTable(table_bookCtlg_rowData, table_bookCtlg_colNames);
-		scrollPane_bookCtlg.setViewportView(table_bookCtlg);
+		DefaultTableModel tableModel_bookCtlg = new DefaultTableModel();
 		/* Table End */
-		
+		// Runs Function to Design and Render it
+		Make_tablePanel(frame, panel_bookCtlg, panel_bookCtlg_inner1, txt_bookCtlg_inner1, panel_bookCtlg_name, table_bookCtlg_tableName, scrollPane_bookCtlg, tableModel_bookCtlg);	
 		/* Book Catalogue, Inner Panel 1 End */
+		/* Book Catalogue, Inner Panel 2 Start */
+		JPanel panel_bookCtlg_inner2 = new JPanel();
+		panel_bookCtlg_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_bookCtlg.add(panel_bookCtlg_inner2);
+		panel_bookCtlg_inner2.setLayout(null);
+		/* Labels and Text Fields */
+		// Header
+		JLabel txt_bookCtlg_inner2 = new JLabel("Add New Book");
+		txt_bookCtlg_inner2.setBounds(20, 20, 100, 25);
+		panel_bookCtlg_inner2.add(txt_bookCtlg_inner2);
+		// ISBN Label
+		JLabel txt_bookCtlg_inner2_ISBN = new JLabel("ISBN");
+		txt_bookCtlg_inner2_ISBN.setBounds(20, 50, 80, 20);
+		panel_bookCtlg_inner2.add(txt_bookCtlg_inner2_ISBN);
+		// ISBN Text Field
+		JTextField txtEnt_bookCtlg_inner2_ISBN = new JTextField();
+		txtEnt_bookCtlg_inner2_ISBN.setColumns(13);
+		txtEnt_bookCtlg_inner2_ISBN.setBounds(100, 50, 200, 20);
+		panel_bookCtlg_inner2.add(txtEnt_bookCtlg_inner2_ISBN);
+		// Name Label
+		JLabel txt_bookCtlg_inner2_name = new JLabel("Name");
+		txt_bookCtlg_inner2_name.setBounds(20, 80, 80, 20);
+		panel_bookCtlg_inner2.add(txt_bookCtlg_inner2_name);
+		// Name Text Field
+		JTextField txtEnt_bookCtlg_inner2_name = new JTextField();
+		txtEnt_bookCtlg_inner2_name.setColumns(36);
+		txtEnt_bookCtlg_inner2_name.setBounds(100, 80, 200, 20);
+		panel_bookCtlg_inner2.add(txtEnt_bookCtlg_inner2_name);
+		// Author Label
+		JLabel txt_bookCtlg_inner2_author = new JLabel("Author");
+		txt_bookCtlg_inner2_author.setBounds(20, 110, 80, 20);
+		panel_bookCtlg_inner2.add(txt_bookCtlg_inner2_author);
+		// Author Text Field
+		JTextField txtEnt_bookCtlg_inner2_author = new JTextField();
+		txtEnt_bookCtlg_inner2_author.setColumns(36);
+		txtEnt_bookCtlg_inner2_author.setBounds(100, 110, 200, 20);
+		panel_bookCtlg_inner2.add(txtEnt_bookCtlg_inner2_author);
+		/* Buttons */
+		// Error in Inputs
+		JLabel txt_bookCtlg_inner2_addErrTxt = new JLabel();
+		txt_bookCtlg_inner2_addErrTxt.setForeground(Color.RED);
+		txt_bookCtlg_inner2_addErrTxt.setBounds(20, 190, 200, 20);
+		panel_bookCtlg_inner2.add(txt_bookCtlg_inner2_addErrTxt);
+		// Button Add Book
+		JButton btn_bookCtlg_inner2_add = new JButton("Add Book");
+		btn_bookCtlg_inner2_add.setBounds(20, 160, 90, 25);
+		panel_bookCtlg_inner2.add(btn_bookCtlg_inner2_add);
+		btn_bookCtlg_inner2_add.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if(txtEnt_bookCtlg_inner2_ISBN.getText().equals("") || txtEnt_bookCtlg_inner2_name.getText().equals("") || txtEnt_bookCtlg_inner2_author.getText().equals("")) {
+						txt_bookCtlg_inner2_addErrTxt.setText("Invalid Inputs in Text Fields");
+					} else {
+						long ISBN = Long.parseLong(txtEnt_bookCtlg_inner2_ISBN.getText());
+						String Name = txtEnt_bookCtlg_inner2_name.getText();
+						String Author = txtEnt_bookCtlg_inner2_author.getText();
+						
+						if((String.valueOf(ISBN)).chars().count() == 13 && checkTable_Entry(tableModel_bookCtlg, String.valueOf(ISBN), 0) < 0) {
+							// Runs Insert Query
+							RMI_Server.updateQuery("INSERT INTO book_ctlg (ISBN, Name, Author) VALUES ('" + ISBN + "', '" + Name + "', '" + Author + "')");
+							
+							// Clears Text Fields
+							txtEnt_bookCtlg_inner2_ISBN.setText("");
+							txtEnt_bookCtlg_inner2_name.setText("");
+							txtEnt_bookCtlg_inner2_author.setText("");
+							//tableModel_bookCtlg.getValueAt(String.valueOf(ISBN), "ISBN");
+							// Update Table Here
+							tableModel_bookCtlg.addRow(new String[]{String.valueOf(ISBN), Name, Author});
+							scrollPane_bookCtlg.setViewportView(new JTable(tableModel_bookCtlg));
+							
+							txt_bookCtlg_inner2_addErrTxt.setText("New Input Succesfull");
+						} else {
+							txt_bookCtlg_inner2_addErrTxt.setText("Invalid Inputs in Text Fields");
+						}
+					}
+				} catch(Exception error) {
+					txt_bookCtlg_inner2_addErrTxt.setText("Invalid Inputs in Text Fields");
+					System.out.println(error);
+				}
+			}
+		});
+		/* Book Catalogue, Inner Panel 2 End */
 		
+		// Panel Book Stock 
+		// Panel
+		JPanel panel_bookStock = new JPanel();
+		String panel_bookStock_name = "Book Stock";
+		tabbedPane.addTab(panel_bookStock_name, null, panel_bookStock, null);						// Add to Tabs
+		panel_bookStock.setLayout(new BoxLayout(panel_bookStock, BoxLayout.Y_AXIS));	// Sets Panel Layout
+		/* Book Catalogue, Inner Panel 1 Start */
+		/* Inner Panel Object */
+		JPanel panel_bookStock_inner1 = new JPanel();
+		/* Label */
+		JLabel txt_bookStock_inner1 = new JLabel();
+		/* Scroll Pane */
+		JScrollPane scrollPane_bookStock = new JScrollPane();
+		/* Table Start */
+		String table_bookStock_tableName = "book_stock";
+		// The Table Object
+		DefaultTableModel tableModel_bookStock = new DefaultTableModel();
+		/* Table End */
+		// Runs Function to Design and Render it
+		Make_tablePanel(frame, panel_bookStock, panel_bookStock_inner1, txt_bookStock_inner1, panel_bookStock_name, table_bookStock_tableName, scrollPane_bookStock, tableModel_bookStock);
+		/* Book Catalogue, Inner Panel 1 End */
+		/* Book Catalogue, Inner Panel 2 Start */
+		JPanel panel_bookStock_inner2 = new JPanel();
+		panel_bookStock_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_bookStock.add(panel_bookStock_inner2);
+		panel_bookStock_inner2.setLayout(null);
 		
-		//Make_Table(panel_bookCtlg_inner1, "book_ctlg");
-		// Buttons
-		//JButton btn_bookCtlg = new JButton("Add Book");
-		//btn_bookCtlg.setBounds(20, 80, 150, 25);
-		//panel_bookCtlg.add(btn_bookCtlg);
-
-		/*
-		// Panel Book Stock
-		JPanel panel_bookStk = new JPanel(new BorderLayout());
-		frame.add(panel_bookStk);								// Adds Panel To Window
-		JButton btn_bookStk = new JButton("Book Stock");
-		panel_bookStk.add(btn_bookStk);
-		
-		// Panel Employees
-		JPanel panel_emply = new JPanel(new BorderLayout());
-		frame.add(panel_emply);								// Adds Panel To Window
-		JButton btn_emply = new JButton("Book Stock");
-		panel_emply.add(btn_emply);
-		
-		// Panel Offices
-		JPanel panel_offices = new JPanel(new BorderLayout());
-		frame.add(panel_offices);								// Adds Panel To Window
-		JButton btn_offices = new JButton("Book Stock");
-		panel_offices.add(btn_offices);
-		
-		// Panel Sales
-		JPanel panel_sales = new JPanel(new BorderLayout());
-		frame.add(panel_sales);								// Adds Panel To Window
-		JButton btn_sales = new JButton("Book Stock");
-		panel_sales.add(btn_sales);
-		*/
+//		JPanel panel_bookCtlg_inner2 = new JPanel();
+//		panel_bookCtlg_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
+//		panel_bookCtlg.add(panel_bookCtlg_inner2);
+//		panel_bookCtlg_inner2.setLayout(null);
 		
 		// Display Window
 		frame.pack();											// Combine Window Elements, and Resize Them if Window Too Small
 		frame.setVisible(true);									// Renders Window
 	}
 	
+	// Check Table Entry Exist
+	public static int checkTable_Entry(DefaultTableModel table, String entry, int col) {
+		for(int i=0; i<table.getRowCount(); i++) {
+			if(table.getValueAt(i, col).equals(entry)) {
+				return i;
+			}
+		}
+		
+		return -1;
+	}
+	
 	// Get Table Rows
-	public static int getTable_RowCount(String tableName) {
+	public int getTable_RowCount(String tableName) {
 		try {
 			// Number of Rows of the Table
 			List<String> tableRowNums = RMI_Server.selectQuery("SELECT count(*) FROM " + tableName);
@@ -260,39 +373,66 @@ public class HQ_Client {
 	}
 	
 	// Create Table Function
-	public static void Make_Table(JPanel panel, String tableName) {
+	public static void Make_tablePanel(JFrame frame, JPanel panel, JPanel panel_inner, JLabel label, String panelName, String tableName, JScrollPane scrollPane, DefaultTableModel tableModel) {
 		try {
-			// Number of Rows of the Table
-			List<String> tableRowNums = RMI_Server.selectQuery("SELECT count(*) FROM " + tableName);
-			int rowNums = Integer.parseInt(tableRowNums.get(0));
-			// Column Names of the Table
-			List<String> tableCols = RMI_Server.selectQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'uptown_books' AND TABLE_NAME = '" + tableName + "'");
-			// Row Values of the Table
-			List<List<String>> tableRows = RMI_Server.selectQuery_allRows(tableName);
+			// The Inner Panel, Table Panel
+			panel_inner.setBorder(new LineBorder(new Color(0, 0, 0)));
+			panel.add(panel_inner);
+			panel_inner.setLayout(null);
 			
-			//System.out.print(tableCols);
-			//System.out.print(tableRows);
+			// Inner Panel Label
+			label.setText(panelName);
+			label.setLabelFor(frame);
+			label.setBounds(10, 20, 100, 25);
+			panel_inner.add(label);
 			
-			// Convert List to Array
-			String[] columns = tableCols.toArray(new String[0]);
-			String[][] rows = tableRows.stream().map(l -> l.stream().toArray(String[]::new)).toArray(String[][]::new);
+			// Scroll Pane
+			scrollPane.setBounds(20, 50, 1130, 190);
+			panel_inner.add(scrollPane);
 			
-			// The JTable Object
-			JTable table = new JTable(rows, columns);
-			//table.setBounds(20, 50, 1000, 30+(30*rowNums));
-			//table.getTableHeader().setBounds(20, 50, 1200, 15);
-			table.setBounds(20, 60, 1200, 15*rowNums);
-			//panel.add(table.getTableHeader());
-			panel.add(table);
-			/*
-			JScrollPane scrollPane = new JScrollPane(table);
-			table.setFillsViewportHeight(true);
-			scrollPane.setSize(1200, 30+(30*rowNums));
-			panel.add(scrollPane);
-			//panel.add(table.getTableHeader(), BorderLayout.PAGE_START);		// Add to JPanel
-			//panel.add(table, BorderLayout.CENTER);
-			*/
-			
+			// Table Column Names & Row Data
+			String[] table_colNames = getTable_ColNames(tableName);
+			String[][] table_rowData = getTable_RowData(tableName);
+			// The Table
+			//tableModel = new DefaultTableModel(table_rowData, table_colNames);
+			for(int i=0; i<table_colNames.length; i++) {
+				tableModel.addColumn(table_colNames[i]);
+			}
+			for(int i=0; i<table_rowData.length; i++) {
+				tableModel.addRow(table_rowData[i]);
+			}
+			scrollPane.setViewportView(new JTable(tableModel));
+
+//			// Number of Rows of the Table
+//			List<String> tableRowNums = RMI_Server.selectQuery("SELECT count(*) FROM " + tableName);
+//			int rowNums = Integer.parseInt(tableRowNums.get(0));
+//			// Column Names of the Table
+//			List<String> tableCols = RMI_Server.selectQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'uptown_books' AND TABLE_NAME = '" + tableName + "'");
+//			// Row Values of the Table
+//			List<List<String>> tableRows = RMI_Server.selectQuery_allRows(tableName);
+//			
+//			//System.out.print(tableCols);
+//			//System.out.print(tableRows);
+//			
+//			// Convert List to Array
+//			String[] columns = tableCols.toArray(new String[0]);
+//			String[][] rows = tableRows.stream().map(l -> l.stream().toArray(String[]::new)).toArray(String[][]::new);
+//			
+//			// The JTable Object
+//			JTable table = new JTable(rows, columns);
+//			//table.setBounds(20, 50, 1000, 30+(30*rowNums));
+//			//table.getTableHeader().setBounds(20, 50, 1200, 15);
+//			table.setBounds(20, 60, 1200, 15*rowNums);
+//			//panel.add(table.getTableHeader());
+//			panel.add(table);
+//			/*
+//			JScrollPane scrollPane = new JScrollPane(table);
+//			table.setFillsViewportHeight(true);
+//			scrollPane.setSize(1200, 30+(30*rowNums));
+//			panel.add(scrollPane);
+//			//panel.add(table.getTableHeader(), BorderLayout.PAGE_START);		// Add to JPanel
+//			//panel.add(table, BorderLayout.CENTER);
+//			*/
 		} catch(Exception error) {
 			System.out.println(error);
 		}
