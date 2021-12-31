@@ -22,9 +22,28 @@ public class JavaMySQLTest {
 			// Query Object
 			Statement query = connection.createStatement();
 			ResultSet test;
+			int updateTest;
 			// Query to be sent
 			String sql;
 			
+			/*
+			// Updates stock of ISBN = 9780134601533 and Store_number = 0, from Table Book_stock
+			sql = "UPDATE book_stock SET stock = 50 WHERE (ISBN = 9780134601533 AND store_number = 0)";
+			updateTest = query.executeUpdate(sql);
+			System.out.println(updateTest);
+			*/
+			
+			/*
+			sql = "SELECT ISBN FROM book_ctlg WHERE ISBN NOT IN (SELECT ISBN FROM book_stock)";
+			test = query.executeQuery(sql);
+			List<String> myList = new ArrayList<String>();
+			while(test.next()) {
+				myList.add(test.getString(1));
+			}
+			System.out.println(myList);
+			*/
+			
+			/*
 			// Columns Names
 			sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'uptown_books' AND TABLE_NAME = 'book_ctlg'";
 			test = query.executeQuery(sql);
@@ -62,6 +81,7 @@ public class JavaMySQLTest {
 					System.out.println(rowNames[i][j]);
 				}
 			}
+			*/
 			
 			/*
 			sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'uptown_books' AND TABLE_NAME = 'offices'";

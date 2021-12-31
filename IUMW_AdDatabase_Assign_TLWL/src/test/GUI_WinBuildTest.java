@@ -24,6 +24,8 @@ import javax.swing.JButton;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class GUI_WinBuildTest {
 
@@ -94,6 +96,7 @@ public class GUI_WinBuildTest {
 		String[][] rows = {{"9780134601533", "Database Concepts", "David Kroenke"}, {"9780199734825", "Biology of Spiders", "Rainer Foelix"}, {"9780764507526", "Database Development For Dummies", "Allen G. Taylor"}, {"9781119056072", "Coding with JavaScript For Dummies", "Chris Minnick"}, {"9781292263359", "Modern Database Management", "Global Edition", "Jeff Hoffer"}};
 		
 		table1 = new JTable(rows, cols);
+		table1.setEnabled(false);
 		table1.setBackground(Color.WHITE);
 		scrollPane_table1.setViewportView(table1);
 		
@@ -147,6 +150,7 @@ public class GUI_WinBuildTest {
 		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.Y_AXIS));
 		
 		JPanel panel2_inner1 = new JPanel();
+		panel2_inner1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_2.add(panel2_inner1);
 		panel2_inner1.setLayout(null);
 		
@@ -181,6 +185,7 @@ public class GUI_WinBuildTest {
 		scrollPane_table2.setViewportView(table2);
 		
 		JPanel panel2_inner2 = new JPanel();
+		panel2_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_2.add(panel2_inner2);
 		panel2_inner2.setLayout(null);
 		
@@ -193,7 +198,7 @@ public class GUI_WinBuildTest {
 		panel2_inner2.add(txt_table2_ISBN);
 		
 		textField_table2_ISBN = new JTextField();
-		textField_table2_ISBN.setBounds(100, 50, 200, 20);
+		textField_table2_ISBN.setBounds(110, 50, 200, 20);
 		textField_table2_ISBN.setColumns(13);
 		panel2_inner2.add(textField_table2_ISBN);
 		
@@ -202,7 +207,7 @@ public class GUI_WinBuildTest {
 		panel2_inner2.add(txt_table2_storeNum);
 		
 		textField_table2_storeNum = new JTextField();
-		textField_table2_storeNum.setBounds(100, 80, 200, 20);
+		textField_table2_storeNum.setBounds(110, 80, 200, 20);
 		textField_table2_storeNum.setColumns(36);
 		panel2_inner2.add(textField_table2_storeNum);
 		
@@ -211,7 +216,7 @@ public class GUI_WinBuildTest {
 		panel2_inner2.add(txt_table2_stock);
 		
 		textField_table2_stock = new JTextField();
-		textField_table2_stock.setBounds(100, 110, 200, 20);
+		textField_table2_stock.setBounds(110, 110, 200, 20);
 		textField_table2_stock.setColumns(36);
 		panel2_inner2.add(textField_table2_stock);
 		
@@ -223,5 +228,30 @@ public class GUI_WinBuildTest {
 		lblNewLabel_1.setBounds(20, 190, 200, 20);
 		lblNewLabel_1.setForeground(Color.RED);
 		panel2_inner2.add(lblNewLabel_1);
+		
+		JLabel txt_panel2_inner2_addRemToHQ = new JLabel("Add/Remove data to/from Table of HQ");
+		txt_panel2_inner2_addRemToHQ.setBounds(400, 20, 250, 25);
+		panel2_inner2.add(txt_panel2_inner2_addRemToHQ);
+		
+		JLabel txt_panel2_inner2_dropDownISBN = new JLabel("Add, Input ISBN from Table Book Catalogue");
+		txt_panel2_inner2_dropDownISBN.setBounds(400, 50, 250, 20);
+		panel2_inner2.add(txt_panel2_inner2_dropDownISBN);
+		
+		JButton btn_table2_addBookStock = new JButton("Add");
+		btn_table2_addBookStock.setBounds(400, 160, 80, 25);
+		panel2_inner2.add(btn_table2_addBookStock);
+		
+		JButton btn_table2_remBookStock = new JButton("Remove");
+		btn_table2_remBookStock.setBounds(500, 160, 80, 25);
+		panel2_inner2.add(btn_table2_remBookStock);
+		
+		JLabel txt_table2_drpDownErrSucc = new JLabel("Add Succesfull");
+		txt_table2_drpDownErrSucc.setForeground(Color.RED);
+		txt_table2_drpDownErrSucc.setBounds(400, 190, 200, 20);
+		panel2_inner2.add(txt_table2_drpDownErrSucc);
+		
+		JLabel txt_panel2_inner2_dropDownISBN_1 = new JLabel("Remove, Input ISBN from Table Book Stock");
+		txt_panel2_inner2_dropDownISBN_1.setBounds(400, 80, 250, 20);
+		panel2_inner2.add(txt_panel2_inner2_dropDownISBN_1);
 	}
 }
