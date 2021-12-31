@@ -26,8 +26,13 @@ public class JavaMySQLTest {
 			// Query to be sent
 			String sql;
 			
-			sql = "";
-			
+			sql = "SELECT ID FROM employees";
+			test = query.executeQuery(sql);
+			List<String> myList = new ArrayList<String>();
+			while(test.next()) {
+				myList.add(test.getString(1));
+			}
+			System.out.println(myList);
 			
 			/*
 			// Updates stock of ISBN = 9780134601533 and Store_number = 0, from Table Book_stock

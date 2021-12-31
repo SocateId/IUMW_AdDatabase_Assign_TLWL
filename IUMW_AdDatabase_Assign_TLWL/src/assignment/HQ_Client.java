@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.rmi.Naming;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -94,7 +95,7 @@ public class HQ_Client {
 					List<String> emplyRows = RMI_Server.selectQuery("SELECT count(*) FROM employees");
 					int tableRows = Integer.parseInt(emplyRows.get(0));
 					// Database, the Usernames and Passwords of Employees
-					List<String> DB_Usernames = RMI_Server.selectQuery("SELECT name FROM employees WHERE store_number = '0'");
+					List<String> DB_Usernames = RMI_Server.selectQuery("SELECT ID FROM employees WHERE store_number = '0'");
 					//System.out.println(DB_Usernames);
 					List<String> DB_Passwords = RMI_Server.selectQuery("SELECT password FROM employees WHERE store_number = '0'");
 					//System.out.println(DB_Passwords);
@@ -349,7 +350,6 @@ public class HQ_Client {
 		JLabel txt_bookStock_inner2_remFromTable = new JLabel("Remove, Input ISBN from Table Book Stock");
 		txt_bookStock_inner2_remFromTable.setBounds(400, 80, 250, 20);
 		panel_bookStock_inner2.add(txt_bookStock_inner2_remFromTable);
-		
 		/*
 		// ISBN Drop Down Menu
 		String[] bookStock_ISBN_whereNotInBookCtlg = selectQuery("SELECT ISBN FROM book_ctlg WHERE ISBN NOT IN (SELECT ISBN FROM book_stock)");
@@ -477,9 +477,194 @@ public class HQ_Client {
 			}
 		});
 		
-		// Panel Book Stock 
+		// Panel Employees
 		// Panel
+		JPanel panel_employees = new JPanel();
+		String panel_employees_name = "Employees";											// Panel Name
+		tabbedPane.addTab(panel_employees_name, null, panel_employees, null);				// Add to Tabs
+		panel_employees.setLayout(new BoxLayout(panel_employees, BoxLayout.Y_AXIS));		// Sets Panel Layout
+		/* Employees, Inner Panel 1 Start */
+		/* Inner Panel Object */
+		JPanel panel_employees_inner1 = new JPanel();
+		/* Label */
+		JLabel txt_employees_inner1 = new JLabel();
+		/* Scroll Pane */
+		JScrollPane scrollPane_employees = new JScrollPane();
+		/* Table Start */
+		String table_employees_tableName = "employees";										// Table Name
+		// The Table Object
+		DefaultTableModel tableModel_employees = new DefaultTableModel();
+		JTable table_employees = new JTable();
+		/* Table End */
+		// Runs Function to Design and Render it
+		Make_tablePanel(frame, panel_employees, panel_employees_inner1, txt_employees_inner1, panel_employees_name, table_employees_tableName, scrollPane_employees, tableModel_employees, table_employees);
+		/* Employees, Inner Panel 1 End */
+		/* Employees, Inner Panel 2 Start */
+		JPanel panel_employees_inner2 = new JPanel();
+		panel_employees_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_employees.add(panel_employees_inner2);
+		panel_employees_inner2.setLayout(null);
+		/* Labels and Text Fields */
+		// Headers
+		JLabel txt_employess_inner2_changeOrRemoveEmpl = new JLabel("Change Name and or Password, or Remove Employee");		// Change Name and or Password, or Remove Employee
+		txt_employess_inner2_changeOrRemoveEmpl.setBounds(20, 20, 350, 25);
+		panel_employees_inner2.add(txt_employess_inner2_changeOrRemoveEmpl);
+		JLabel txt_employees_inner2_addNewEmpl = new JLabel("Add New Employee to HQ");										// Add New Employee
+		txt_employees_inner2_addNewEmpl.setBounds(400, 20, 250, 25);
+		// ID Label
+		JLabel txt_employees_inner2_ID = new JLabel("ID");
+		txt_employees_inner2_ID.setBounds(20, 50, 80, 20);
+		panel_employees_inner2.add(txt_employees_inner2_ID);
+		// ID Drop Down Menu
+		String[] arrayStr_employees_emplIDs = selectQuery("SELECT ID FROM employees");
+		DefaultComboBoxModel drpMenuModel_employees_inner2_ID = new DefaultComboBoxModel(arrayStr_employees_emplIDs);
+		JComboBox drpMenu_employees_inner2_ID = new JComboBox(drpMenuModel_employees_inner2_ID);
+		drpMenu_employees_inner2_ID.setBounds(100, 50, 60, 20);
+		panel_employees_inner2.add(drpMenu_employees_inner2_ID);
+		/*
+		// ID Text Field
+		JTextField txtEnt_employees_inner2_ID = new JTextField();
+		txtEnt_employees_inner2_ID.setColumns(4);
+		txtEnt_employees_inner2_ID.setBounds(400, 50, 150, 20);
+		panel_employees_inner2.add(txtEnt_employees_inner2_ID);
+		*/
+		// Name Label
+		JLabel txt_employees_inner2_txtFieldName = new JLabel("Name");
+		txt_employees_inner2_txtFieldName.setBounds(20, 80, 80, 20);
+		panel_employees_inner2.add(txt_employees_inner2_txtFieldName);
+		// Name Text Field
+		JTextField txtEnt_employees_inner2_name = new JTextField();
+		txtEnt_employees_inner2_name.setColumns(36);
+		txtEnt_employees_inner2_name.setBounds(100, 80, 450, 20);
+		panel_employees_inner2.add(txtEnt_employees_inner2_name);
+		// Password Label
+		JLabel txt_employees_inner2_txtFieldPassword = new JLabel("Password");
+		txt_employees_inner2_txtFieldPassword.setBounds(20, 110, 80, 20);
+		panel_employees_inner2.add(txt_employees_inner2_txtFieldPassword);
+		// Password Text Field
+		JTextField txtEnt_employees_inner2_password = new JTextField();
+		txtEnt_employees_inner2_password.setColumns(36);
+		txtEnt_employees_inner2_password.setBounds(100, 110, 450, 20);
+		panel_employees_inner2.add(txtEnt_employees_inner2_password);
+		/* Buttons */
+		// Error/Success in Inputs
+		JLabel txt_employees_inner2_changeOrRemoveEmplErrTxt = new JLabel();			// Label Change/Remove Success/Error
+		txt_employees_inner2_changeOrRemoveEmplErrTxt.setForeground(Color.RED);
+		txt_employees_inner2_changeOrRemoveEmplErrTxt.setBounds(20, 190, 300, 20);
+		panel_employees_inner2.add(txt_employees_inner2_changeOrRemoveEmplErrTxt);
+		JLabel txt_employees_inner2_addNewEmplErrTxt = new JLabel();					// Label Add Employee Success/Error
+		txt_employees_inner2_addNewEmplErrTxt.setForeground(Color.RED);
+		txt_employees_inner2_addNewEmplErrTxt.setBounds(400, 190, 300, 20);
+		panel_employees_inner2.add(txt_employees_inner2_addNewEmplErrTxt);
+		// Buttons and Actions
+		JButton btn_employees_inner2_change = new JButton("Change");					// Change Name and or Password in Employee Table Unsuccessful
+		btn_employees_inner2_change.setBounds(20, 160, 90, 25);
+		panel_employees_inner2.add(btn_employees_inner2_change);
+		btn_employees_inner2_change.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int ID = Integer.parseInt((String) drpMenuModel_employees_inner2_ID.getSelectedItem());
+					String Name = txtEnt_employees_inner2_name.getText();
+					String Password = txtEnt_employees_inner2_password.getText();
+					
+					if(String.valueOf(ID).equals("") || (Name.equals("") && Password.equals(""))) {
+						txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Unsuccessful, Invalid Inputs in Text Fields");
+					} else {
+						String sql = "";
+						Boolean flag = false;
+						if(!(Name.contentEquals("")) && !(Password.equals(""))) {
+							sql = "UPDATE " + table_employees_tableName + " SET name = '" + Name + "', password = '" + Password + "' WHERE ID = " + ID;
+							flag = true;
+						} else if(!(Name.contentEquals(""))) {
+							sql = "UPDATE " + table_employees_tableName + " SET name = '" + Name + "' WHERE ID = " + ID;
+							flag = true;
+						} else if(!(Password.equals(""))) {
+							sql = "UPDATE " + table_employees_tableName + " SET password = '" + Password + "' WHERE ID = " + ID;
+							flag = true;
+						}
+						
+						if(flag) {
+							updateTable(sql, table_employees_tableName, tableModel_employees);
+						} else {
+							txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Unsuccessful, Invalid Inputs in Text Fields");
+						}
+						
+						// Clear Text Fields
+						txtEnt_employees_inner2_name.setText("");
+						txtEnt_employees_inner2_password.setText("");
+						
+						txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Successful");
+					}
+				} catch(Exception error) {
+					txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Unsuccessful, Invalid Inputs in Text Fields");
+					System.out.println(error);
+				}
+			}
+		});
+		JButton btn_employees_inner2_remove = new JButton("Remove");					// Remove Employee Data in Employee Table
+		btn_employees_inner2_remove.setBounds(130, 160, 90, 25);
+		panel_employees_inner2.add(btn_employees_inner2_remove);
+		btn_employees_inner2_remove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int ID = Integer.parseInt((String) drpMenuModel_employees_inner2_ID.getSelectedItem());
+					
+					if(String.valueOf(ID).equals("") || checkTable_Entry(tableModel_employees, String.valueOf(ID), 0) < 0) {
+						txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Remove Unsuccessful, Invalid Selection in ID Drop Menu");
+					} else {
+						String sql = "DELETE FROM " + table_employees_tableName + " WHERE ID = " + ID;
+						
+						// Runs DELETE Query
+						updateTable(sql, table_employees_tableName, tableModel_employees);
+						// Updates Drop Down Menu
+						updateDropMenu(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID);
+						
+						txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Remove Successful");
+					}
+					
+				} catch(Exception error) {
+					txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Remove Unsuccessful, Invalid Selection in ID Drop Menu");
+					System.out.println(error);
+				}
+			}
+		});
+		JButton btn_employees_inner2_add = new JButton("Add");					// Remove Employee Data in Employee Table
+		btn_employees_inner2_add.setBounds(400, 160, 80, 25);
+		panel_employees_inner2.add(btn_employees_inner2_add);
+		btn_employees_inner2_add.addActionListener(new ActionListener() {
+			public void  actionPerformed(ActionEvent e) {
+				try {
+					String Name = txtEnt_employees_inner2_name.getText();
+					String Password = txtEnt_employees_inner2_password.getText();
+					
+					if(Name.equals("") || Password.contentEquals("")) {
+						txt_employees_inner2_addNewEmplErrTxt.setText("Add Unsuccesfull, Invalid Inputs in Fields");
+					} else {
+						String sql = "INSERT INTO " + table_employees_tableName + "(store_number, name, password) VALUES (0, '" + Name + "', '" + Password + "')";
+						//INSERT INTO `employees` (`ID`, `Store_Number`, `Name`, `Password`) VALUES (NULL, '1', 'Test Man', '44');
+						
+						// Runs INSERT Query
+						updateTable(sql, table_employees_tableName, tableModel_employees);
+						// Updates Drop Down Menu
+						updateDropMenu(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID);
+						
+						// Clear Text Fields
+						txtEnt_employees_inner2_name.setText("");
+						txtEnt_employees_inner2_password.setText("");
+						
+						txt_employees_inner2_addNewEmplErrTxt.setText("Add Succesfull");
+					}
+				} catch(Exception error) {
+					txt_employees_inner2_addNewEmplErrTxt.setText("Add Unsuccesfull, Invalid Inputs in Fields");
+					System.out.println(error);
+				}
+			}
+		});
+		/* Employees, Inner Panel 2 End */
 		
+		// Panel Offices
+		// Panel
+		JPanel testPnal;
 		
 		// Display Window
 		frame.pack();											// Combine Window Elements, and Resize Them if Window Too Small
@@ -552,6 +737,17 @@ public class HQ_Client {
 		} catch(Exception error) {
 			System.out.println(error);
 			return null;
+		}
+	}
+	
+	// Update Drop Down Menu
+	public static void updateDropMenu(String tableName, String column, DefaultComboBoxModel dropMenuModel) {
+		String[] table_rowData = selectQuery("SELECT " + column + " FROM " + tableName);
+		
+		dropMenuModel.removeAllElements();
+		
+		for(String i : table_rowData) {
+			dropMenuModel.addElement(i);;
 		}
 	}
 	

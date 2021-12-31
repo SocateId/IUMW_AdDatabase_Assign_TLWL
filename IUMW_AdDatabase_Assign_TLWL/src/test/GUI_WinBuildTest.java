@@ -39,6 +39,8 @@ public class GUI_WinBuildTest {
 	private JTextField textField_table2_stock;
 	private JTable table2;
 	private JTable table3;
+	private JTextField textField_table3_inner2_name;
+	private JTextField textField_table3_inner2_pwd;
 
 	/**
 	 * Launch the application.
@@ -273,6 +275,18 @@ public class GUI_WinBuildTest {
 		panel3_inner1.add(scrollPane_table3);
 		
 		table3 = new JTable();
+		table3.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"1000", "0", "Timothy", "123"},
+				{"1001", "1", "Jeff", "1234"},
+				{"1002", "1", "Bob", "12345"},
+			},
+			new String[] {
+				"ID", "Store_Number", "Name", "Password"
+			}
+		));
+		table3.getColumnModel().getColumn(1).setPreferredWidth(136);
+		table3.getColumnModel().getColumn(2).setPreferredWidth(144);
 		table3.setEnabled(false);
 		scrollPane_table3.setViewportView(table3);
 		
@@ -280,5 +294,62 @@ public class GUI_WinBuildTest {
 		panel3_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel3_inner2.setLayout(null);
 		panel_3.add(panel3_inner2);
+		
+		JLabel txt_table3_inner2_chgNamePass = new JLabel("Change Name and or Password, or Remove Employee");
+		txt_table3_inner2_chgNamePass.setBounds(20, 20, 350, 25);
+		panel3_inner2.add(txt_table3_inner2_chgNamePass);
+		
+		JLabel txt_table3_inner2_IDDrpDown = new JLabel("ID");
+		txt_table3_inner2_IDDrpDown.setBounds(20, 50, 80, 20);
+		panel3_inner2.add(txt_table3_inner2_IDDrpDown);
+		
+		JLabel txt_table3_inner2_name = new JLabel("Name");
+		txt_table3_inner2_name.setBounds(20, 80, 80, 20);
+		panel3_inner2.add(txt_table3_inner2_name);
+		
+		JLabel txt_table3_inner2_password = new JLabel("Password");
+		txt_table3_inner2_password.setBounds(20, 110, 80, 20);
+		panel3_inner2.add(txt_table3_inner2_password);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1000", "1001", "1002"}));
+		comboBox.setBounds(100, 50, 60, 20);
+		panel3_inner2.add(comboBox);
+		
+		textField_table3_inner2_name = new JTextField();
+		textField_table3_inner2_name.setColumns(36);
+		textField_table3_inner2_name.setBounds(100, 80, 450, 20);
+		panel3_inner2.add(textField_table3_inner2_name);
+		
+		textField_table3_inner2_pwd = new JTextField();
+		textField_table3_inner2_pwd.setColumns(36);
+		textField_table3_inner2_pwd.setBounds(100, 110, 450, 20);
+		panel3_inner2.add(textField_table3_inner2_pwd);
+		
+		JButton btn_table3_inner2_changeNmPwd = new JButton("Change");
+		btn_table3_inner2_changeNmPwd.setBounds(20, 160, 90, 25);
+		panel3_inner2.add(btn_table3_inner2_changeNmPwd);
+		
+		JLabel txt_table3_inner2_addEmply = new JLabel("Add New Employee to HQ");
+		txt_table3_inner2_addEmply.setBounds(400, 20, 250, 25);
+		panel3_inner2.add(txt_table3_inner2_addEmply);
+		
+		JButton btn_table2_addBookStock_1 = new JButton("Add");
+		btn_table2_addBookStock_1.setBounds(400, 160, 80, 25);
+		panel3_inner2.add(btn_table2_addBookStock_1);
+		
+		JButton btn_table2_remBookStock_1 = new JButton("Remove");
+		btn_table2_remBookStock_1.setBounds(130, 160, 90, 25);
+		panel3_inner2.add(btn_table2_remBookStock_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Invalid Inputs in Text Fields");
+		lblNewLabel_1_1.setForeground(Color.RED);
+		lblNewLabel_1_1.setBounds(20, 190, 300, 20);
+		panel3_inner2.add(lblNewLabel_1_1);
+		
+		JLabel txt_table2_drpDownErrSucc_1 = new JLabel("Add Unsuccesfull, Invalid Inputs in Fields");
+		txt_table2_drpDownErrSucc_1.setForeground(Color.RED);
+		txt_table2_drpDownErrSucc_1.setBounds(400, 190, 300, 20);
+		panel3_inner2.add(txt_table2_drpDownErrSucc_1);
 	}
 }
