@@ -41,6 +41,9 @@ public class GUI_WinBuildTest {
 	private JTable table3;
 	private JTextField textField_table3_inner2_name;
 	private JTextField textField_table3_inner2_pwd;
+	private JComboBox comboBox_table4_inner2_state;
+	private JTextField textField_table4_inner2_postcode;
+	private JTable table4;
 
 	/**
 	 * Launch the application.
@@ -351,5 +354,82 @@ public class GUI_WinBuildTest {
 		txt_table2_drpDownErrSucc_1.setForeground(Color.RED);
 		txt_table2_drpDownErrSucc_1.setBounds(400, 190, 300, 20);
 		panel3_inner2.add(txt_table2_drpDownErrSucc_1);
+		
+		JPanel panel_4 = new JPanel();
+		tabbedPane.addTab("Tab 4", null, panel_4, null);
+		panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.Y_AXIS));
+		
+		JPanel panel4_inner1 = new JPanel();
+		panel4_inner1.setLayout(null);
+		panel4_inner1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_4.add(panel4_inner1);
+		
+		JLabel txt_table4 = new JLabel("Table 4");
+		txt_table4.setBounds(20, 20, 100, 25);
+		panel4_inner1.add(txt_table4);
+		
+		JScrollPane scrollPane_table4 = new JScrollPane();
+		scrollPane_table4.setBounds(20, 50, 1130, 190);
+		panel4_inner1.add(scrollPane_table4);
+		
+		table4 = new JTable();
+		table4.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"0", "Kuala Lumpur", "Selangor", "43200"},
+				{"1", "Subang Jaya", "Selangor", "40150"},
+			},
+			new String[] {
+				"Store_Number", "City", "State", "Postcode"
+			}
+		));
+		table4.getColumnModel().getColumn(0).setPreferredWidth(104);
+		table4.getColumnModel().getColumn(1).setPreferredWidth(104);
+		table4.getColumnModel().getColumn(2).setPreferredWidth(100);
+		scrollPane_table4.setViewportView(table4);
+		
+		JPanel pane4_inner2 = new JPanel();
+		pane4_inner2.setLayout(null);
+		pane4_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_4.add(pane4_inner2);
+		
+		JLabel txt_table4_inner2_headAdd = new JLabel("Add New Store");
+		txt_table4_inner2_headAdd.setBounds(20, 20, 350, 25);
+		pane4_inner2.add(txt_table4_inner2_headAdd);
+		
+		JLabel txt_table4_inner2_city = new JLabel("City");
+		txt_table4_inner2_city.setBounds(20, 50, 80, 20);
+		pane4_inner2.add(txt_table4_inner2_city);
+		
+		JLabel txt_table4_inner2_state = new JLabel("State");
+		txt_table4_inner2_state.setBounds(20, 80, 80, 20);
+		pane4_inner2.add(txt_table4_inner2_state);
+		
+		JLabel txt_table4_inner2_postcode = new JLabel("Postcode");
+		txt_table4_inner2_postcode.setBounds(20, 110, 80, 20);
+		pane4_inner2.add(txt_table4_inner2_postcode);
+		
+		JComboBox comboBox_table4_inner2_city = new JComboBox();
+		comboBox_table4_inner2_city.setModel(new DefaultComboBoxModel(new String[] {"Iskandar Puteri", "Johor Bahru"}));
+		comboBox_table4_inner2_city.setBounds(100, 50, 150, 20);
+		pane4_inner2.add(comboBox_table4_inner2_city);
+		
+		comboBox_table4_inner2_state = new JComboBox();
+		comboBox_table4_inner2_state.setModel(new DefaultComboBoxModel(new String[] {"Johor", "Penang", "Perak", "Sabah", "Sarawak", "Selangor"}));
+		comboBox_table4_inner2_state.setBounds(100, 80, 150, 20);
+		pane4_inner2.add(comboBox_table4_inner2_state);
+		
+		textField_table4_inner2_postcode = new JTextField();
+		textField_table4_inner2_postcode.setColumns(5);
+		textField_table4_inner2_postcode.setBounds(100, 110, 150, 20);
+		pane4_inner2.add(textField_table4_inner2_postcode);
+		
+		JButton btn_table4_inner2_addStore = new JButton("Add");
+		btn_table4_inner2_addStore.setBounds(20, 160, 80, 25);
+		pane4_inner2.add(btn_table4_inner2_addStore);
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel("Add Unsuccessful, Invalid Inputs in Text Fields");
+		lblNewLabel_1_1_1.setForeground(Color.RED);
+		lblNewLabel_1_1_1.setBounds(20, 190, 300, 20);
+		pane4_inner2.add(lblNewLabel_1_1_1);
 	}
 }
