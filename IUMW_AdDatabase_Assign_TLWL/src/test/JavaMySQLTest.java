@@ -26,6 +26,32 @@ public class JavaMySQLTest {
 			// Query to be sent
 			String sql;
 			
+			/*
+			sql = "SELECT DISTINCT Store_Number FROM sales";
+			test = query.executeQuery(sql);
+			List<String> myList = new ArrayList<String>();
+			while(test.next()) {
+				myList.add(test.getString(1));
+			}
+			System.out.println(myList);
+			*/
+			
+			
+			sql = "SELECT Amount FROM sales WHERE Store_Number = '1'";
+			test = query.executeQuery(sql);
+			List<String> myList = new ArrayList<String>();
+			while(test.next()) {
+				myList.add(test.getString(1));
+			}
+			System.out.println(myList);
+			double total = 0;
+			for(int i=0; i<myList.size(); i++) {
+				total += Double.parseDouble(myList.get(i));
+			}
+			System.out.println("Total = " + total);
+			
+			
+			/*
 			sql = "SELECT ID FROM employees";
 			test = query.executeQuery(sql);
 			List<String> myList = new ArrayList<String>();
@@ -33,6 +59,7 @@ public class JavaMySQLTest {
 				myList.add(test.getString(1));
 			}
 			System.out.println(myList);
+			*/
 			
 			/*
 			// Updates stock of ISBN = 9780134601533 and Store_number = 0, from Table Book_stock

@@ -30,7 +30,13 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 public class HQ_Client {
 	// Connect to RMI Server
@@ -797,10 +803,35 @@ public class HQ_Client {
 		txt_sales_inner2_headBarChart.setBounds(20, 20, 300, 25);
 		panel_sales_inner2.add(txt_sales_inner2_headBarChart);
 		/* Bar Chart */
-		//DefaultCategoryDataset dataset_sales_inner2 = new DefaultCategoryDataset();
-		JFreeChart chart_sales_inner2;
-		
+		// The Bar Chart Data Set Container
+		DefaultCategoryDataset dataSet_sales_inner2 = new DefaultCategoryDataset();
+		// Bar Chart Values
+		String[] distCols_sales_StoreNum = selectQuery("SELECT DISTINCT store_number FROM sales");
+		String[] dataValues;
+		Double totalAmount_sales = 0.0;
+		// Sets the Dataset Container with the Total Amount (Total Profits) Made From Each Store in Sales
+		for(int i=0; i<distCols_sales_StoreNum.length; i++) {
+			dataValues = selectQuery("SELECT Amount FROM sales WHERE Store_Number = '" + distCols_sales_StoreNum[i] + "'");
+			for(String j : dataValues) {
+				totalAmount_sales += Double.parseDouble(j);
+			}
+			dataSet_sales_inner2.setValue(totalAmount_sales, "Total Amount", "Store " + distCols_sales_StoreNum[i]);
+			totalAmount_sales = 0.0;
+		}
+		// The Bar Chart Object
+		JFreeChart chart_sales_inner2 = ChartFactory.createBarChart("Profits from Stores", "Stores", "Profits", dataSet_sales_inner2, PlotOrientation.VERTICAL, false, true, false);
+		chart_sales_inner2.getCategoryPlot().setRangeGridlinePaint(Color.BLACK);		// Set Gridlines of Graph to Black Colour
+		// The Panel for the Chart, i.e. Contains the Chart Window in it
+		ChartPanel panelChart_sales_inner2 = new ChartPanel(chart_sales_inner2);
+		panelChart_sales_inner2.setBounds(20, 50, 283*distCols_sales_StoreNum.length, 210);
+		panel_sales_inner2.add(panelChart_sales_inner2);
 		/* Sales, Inner Panel 2 End */
+		
+		/* Button Actions, Start */
+		
+		// Refresh Buttons
+		
+		/* Button Actions, End */
 		
 		// Display Window
 		frame.pack();											// Combine Window Elements, and Resize Them if Window Too Small
@@ -847,7 +878,7 @@ public class HQ_Client {
 		
 	}
 	
-	// Get Table Coulmns Names
+	// Get Table Columns Names
 	public static String[] getTable_ColNames(String tableName) {
 		try {
 			// Column Names of the Table
@@ -908,10 +939,16 @@ public class HQ_Client {
 			System.out.println(error);
 		}
 	}
-	
+	//Column
 	// Make Bar Chart
-	public static void Make_barChart() {
-		// Code Here
+	public static void Make_barChart(String tableName, String column, String distCol, DefaultCategoryDataset dataSet, JFreeChart chart, ChartPanel panelChart, JPanel panel) {
+		try {
+			
+			
+			
+		} catch(Exception error) {
+			System.out.println(error);
+		}
 	}
 	
 	// Create Table Panel Function
@@ -983,6 +1020,19 @@ public class HQ_Client {
 		}
 	}
 	
+	// Runs a SQL Query and Returns a List Array
+	public static List<String> selectQuery_RetList(String sql) {
+		try {
+			List<String> queryResult_list = RMI_Server.selectQuery(sql);
+			
+			return queryResult_list;
+			
+		} catch(Exception error) {
+			System.out.println(error);
+			return null;
+		}
+	}
+		
 	// Runs a SQL Query and Returns a String Array
 	public static String[] selectQuery(String sql) {
 		try {
