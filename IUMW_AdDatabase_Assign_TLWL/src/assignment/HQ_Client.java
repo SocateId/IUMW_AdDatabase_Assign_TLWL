@@ -258,30 +258,52 @@ public class HQ_Client {
 		panel_bookStock_inner2.setLayout(null);
 		/* Labels and Text Fields */
 		// Headers
-		JLabel txt_bookStock_inner2 = new JLabel("Change Book Stock");									// Change Book Stock Header
+		JLabel txt_bookStock_inner2 = new JLabel("Change/Remove Book Stock");									// Change/Remove Book Stock Header
 		txt_bookStock_inner2.setBounds(20, 20, 200, 25);
 		panel_bookStock_inner2.add(txt_bookStock_inner2);
-		JLabel txt_bookStock_inner2_addRemToHQ = new JLabel("Add/Remove data to/from Table of HQ");		// Add/Remove Books from Stock of HQ
-		txt_bookStock_inner2_addRemToHQ.setBounds(400, 20, 250, 25);
+		JLabel txt_bookStock_inner2_addRemToHQ = new JLabel("Add Books from Book Catalogue to Stock of HQ");	// Add Books from Book Catalogue to Stock of HQ Header
+		txt_bookStock_inner2_addRemToHQ.setBounds(400, 20, 300, 25);
 		panel_bookStock_inner2.add(txt_bookStock_inner2_addRemToHQ);
 		// ISBN Label
-		JLabel txt_bookStock_inner2_txtFieldISBN = new JLabel("ISBN");
-		txt_bookStock_inner2_txtFieldISBN.setBounds(20, 50, 80, 20);
-		panel_bookStock_inner2.add(txt_bookStock_inner2_txtFieldISBN);
-		// ISBN Text Field
-		JTextField txtEnt_bookStock_inner2_ISBN = new JTextField();
-		txtEnt_bookStock_inner2_ISBN.setColumns(13);
-		txtEnt_bookStock_inner2_ISBN.setBounds(110, 50, 200, 20);
-		panel_bookStock_inner2.add(txtEnt_bookStock_inner2_ISBN);
+		JLabel txt_bookStock_inner2_ISBN = new JLabel("ISBN");
+		txt_bookStock_inner2_ISBN.setBounds(20, 50, 80, 20);
+		panel_bookStock_inner2.add(txt_bookStock_inner2_ISBN);
+//		// ISBN Text Field
+//		JTextField txtEnt_bookStock_inner2_ISBN = new JTextField();
+//		txtEnt_bookStock_inner2_ISBN.setColumns(13);
+//		txtEnt_bookStock_inner2_ISBN.setBounds(110, 50, 200, 20);
+//		panel_bookStock_inner2.add(txtEnt_bookStock_inner2_ISBN);
+		
+		// ISBN Drop Menu
+		String[] arrayStr_bookStock_bookStockISBN = selectQuery("SELECT ISBN FROM book_stock");
+		DefaultComboBoxModel drpMenuModel_bookStock_inner2_bookStockISBN = new DefaultComboBoxModel(arrayStr_bookStock_bookStockISBN);
+		JComboBox drpMenu_bookStock_inner2_bookStockISBN = new JComboBox(drpMenuModel_bookStock_inner2_bookStockISBN);
+		drpMenu_bookStock_inner2_bookStockISBN.setBounds(100, 50, 200, 20);
+		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_bookStockISBN);
+		
+//		String[] arrayStr_employees_emplIDs = selectQuery("SELECT ID FROM employees");
+//		DefaultComboBoxModel drpMenuModel_employees_inner2_ID = new DefaultComboBoxModel(arrayStr_employees_emplIDs);
+//		JComboBox drpMenu_employees_inner2_ID = new JComboBox(drpMenuModel_employees_inner2_ID);
+//		drpMenu_employees_inner2_ID.setBounds(100, 50, 60, 20);
+//		panel_employees_inner2.add(drpMenu_employees_inner2_ID);
+		
 		// Store Number Label
 		JLabel txt_bookStock_inner2_txtFieldStoreNum = new JLabel("Store Number");
 		txt_bookStock_inner2_txtFieldStoreNum.setBounds(20, 80, 80, 20);
 		panel_bookStock_inner2.add(txt_bookStock_inner2_txtFieldStoreNum);
-		// Store Number Text Field
-		JTextField txtEnt_bookStock_inner2_storeNum = new JTextField();
-		txtEnt_bookStock_inner2_storeNum.setColumns(36);
-		txtEnt_bookStock_inner2_storeNum.setBounds(110, 80, 200, 20);
-		panel_bookStock_inner2.add(txtEnt_bookStock_inner2_storeNum);
+//		// Store Number Text Field
+//		JTextField txtEnt_bookStock_inner2_storeNum = new JTextField();
+//		txtEnt_bookStock_inner2_storeNum.setColumns(36);
+//		txtEnt_bookStock_inner2_storeNum.setBounds(110, 80, 200, 20);
+//		panel_bookStock_inner2.add(txtEnt_bookStock_inner2_storeNum);
+		
+		// Store Number Drop Menu
+		String[] arrayStr_bookStock_bookStockStoreNum = selectQuery("SELECT store_number FROM book_stock");
+		DefaultComboBoxModel drpMenuModel_bookStock_inner2_bookStockStoreNum = new DefaultComboBoxModel(arrayStr_bookStock_bookStockStoreNum);
+		JComboBox drpMenu_bookStock_inner2_bookStockStoreNum = new JComboBox(drpMenuModel_bookStock_inner2_bookStockStoreNum);
+		drpMenu_bookStock_inner2_bookStockStoreNum.setBounds(110, 80, 200, 20);
+		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_bookStockStoreNum);
+		
 		// Stock Label
 		JLabel txt_bookStock_inner2_textFieldStock = new JLabel("Stock");
 		txt_bookStock_inner2_textFieldStock.setBounds(20, 110, 80, 20);
@@ -291,22 +313,28 @@ public class HQ_Client {
 		txtEnt_bookStock_inner2_stock.setColumns(36);
 		txtEnt_bookStock_inner2_stock.setBounds(110, 110, 200, 20);
 		panel_bookStock_inner2.add(txtEnt_bookStock_inner2_stock);
-		// Add to Table Instructions Label
-		JLabel txt_bookStock_inner2_addToTable = new JLabel("Add, Input ISBN from Table Book Catalogue");
-		txt_bookStock_inner2_addToTable.setBounds(400, 50, 250, 20);
+		// ISBN from Book Catalogue Label
+		JLabel txt_bookStock_inner2_addToTable = new JLabel("Book Ctlg, ISBN");
+		txt_bookStock_inner2_addToTable.setBounds(400, 50, 100, 20);
 		panel_bookStock_inner2.add(txt_bookStock_inner2_addToTable);
-		// Remove from Table Instructions Label
-		JLabel txt_bookStock_inner2_remFromTable = new JLabel("Remove, Input ISBN from Table Book Stock");
-		txt_bookStock_inner2_remFromTable.setBounds(400, 80, 250, 20);
+		// ISBN from Book Catalogue Drop Menu
+		String[] arrayStr_bookStock_bookCtlgISBN = selectQuery("SELECT ISBN FROM book_ctlg");
+		DefaultComboBoxModel drpMenuModel_bookStock_inner2_bookCtlgISBN = new DefaultComboBoxModel(arrayStr_bookStock_bookCtlgISBN);
+		JComboBox drpMenu_bookStock_inner2_bookCtlgISBN = new JComboBox(drpMenuModel_bookStock_inner2_bookCtlgISBN);
+		drpMenu_bookStock_inner2_bookCtlgISBN.setBounds(500, 50, 200, 20);
+		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_bookCtlgISBN);
+		
+		// Store Number from Offices Label
+		JLabel txt_bookStock_inner2_remFromTable = new JLabel("Offices, Store #");
+		txt_bookStock_inner2_remFromTable.setBounds(400, 80, 100, 20);
 		panel_bookStock_inner2.add(txt_bookStock_inner2_remFromTable);
-		/*
-		// ISBN Drop Down Menu
-		String[] bookStock_ISBN_whereNotInBookCtlg = selectQuery("SELECT ISBN FROM book_ctlg WHERE ISBN NOT IN (SELECT ISBN FROM book_stock)");
-		DefaultComboBoxModel drpMenuModel_bookStock_inner2_ISBN = new DefaultComboBoxModel(bookStock_ISBN_whereNotInBookCtlg);
-		JComboBox drpMenu_bookStock_inner2_ISBN = new JComboBox(drpMenuModel_bookStock_inner2_ISBN);
-		drpMenu_bookStock_inner2_ISBN.setBounds(480, 50, 125, 20);
-		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_ISBN);
-		*/
+		// Store Number from Offices Drop Menu
+		String[] arrayStr_bookStock_officesStoreNum = selectQuery("SELECT store_number FROM offices");
+		DefaultComboBoxModel drpMenuModel_bookStock_inner2_officesStoreNum = new DefaultComboBoxModel(arrayStr_bookStock_officesStoreNum);
+		JComboBox drpMenu_bookStock_inner2_officesStoreNum = new JComboBox(drpMenuModel_bookStock_inner2_officesStoreNum);
+		drpMenu_bookStock_inner2_officesStoreNum.setBounds(500, 80, 200, 20);
+		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_officesStoreNum);
+		
 		/* Buttons */
 		// Error/Success in Inputs
 		JLabel txt_bookStock_inner2_changeErrTxt = new JLabel();				// Label Change Stock Success/Error
@@ -602,8 +630,10 @@ public class HQ_Client {
 		btn_bookStock_inner2_change.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
-					int storeNumber = Integer.parseInt(txtEnt_bookStock_inner2_storeNum.getText());
+					//long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
+					long ISBN = (long) drpMenuModel_bookStock_inner2_bookStockISBN.getSelectedItem();
+					//int storeNumber = Integer.parseInt(txtEnt_bookStock_inner2_storeNum.getText());
+					int storeNumber = (int) drpMenuModel_bookStock_inner2_bookStockStoreNum.getSelectedItem();
 					int stock = Integer.parseInt(txtEnt_bookStock_inner2_stock.getText());
 					
 					if(String.valueOf(ISBN).equals("") || String.valueOf(storeNumber).equals("") || String.valueOf(stock).equals("")) {
@@ -613,11 +643,10 @@ public class HQ_Client {
 							//txt_bookStock_inner2_changeErrTxt.setText("Inputs Valid");
 							String sql = "UPDATE " + table_bookStock_tableName + " SET stock = " + stock + " WHERE (ISBN = " + ISBN + " AND store_number = " + storeNumber + ")";
 							
+							// Runs UPDATE Query and Updates Book Stock Table
 							updateTable(sql, table_bookStock_tableName, tableModel_bookStock);
 							
 							// Clear Text Fields
-							txtEnt_bookStock_inner2_ISBN.setText("");
-							txtEnt_bookStock_inner2_storeNum.setText("");
 							txtEnt_bookStock_inner2_stock.setText("");
 							
 							// Testing
@@ -632,6 +661,41 @@ public class HQ_Client {
 					
 				} catch(Exception error) {
 					txt_bookStock_inner2_changeErrTxt.setText("Invalid Inputs in Text Fields");
+					System.out.println(error);
+				}
+			}
+		});
+		// Book Stock, Remove a Row from Table
+		btn_bookStock_inner2_remFromTable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					//long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
+					long ISBN = (long) drpMenuModel_bookStock_inner2_bookStockISBN.getSelectedItem();
+					int storeNumber = (int) drpMenuModel_bookStock_inner2_bookStockStoreNum.getSelectedItem();
+					
+					if(String.valueOf(ISBN).equals("") || String.valueOf(storeNumber).equals("")) {
+						txt_bookStock_inner2_addRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
+					} else {
+						String sql = "DELETE FROM " + table_bookStock_tableName + " WHERE ISBN = " + ISBN;
+						
+						// Runs DELETE Query and Updates Table
+						updateTable(sql, table_bookStock_tableName, tableModel_bookStock);
+						// Updates Drop Down Menus
+						updateDropMenu(table_bookStock_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookStockISBN);
+						updateDropMenu(table_bookStock_tableName, "store_number", drpMenuModel_bookStock_inner2_bookStockStoreNum);
+						
+						// Clear Text Fields
+						txtEnt_bookStock_inner2_stock.setText("");
+						
+						// Testing
+						System.out.println(sql);
+						System.out.println("ISBN Pos: " + checkTable_Entry(tableModel_bookStock, String.valueOf(ISBN), 0));
+						
+						txt_bookStock_inner2_addRemErrTxt.setText("Remove Successful");
+					}
+					
+				} catch(Exception error) {
+					txt_bookStock_inner2_addRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
 					System.out.println(error);
 				}
 			}
@@ -662,38 +726,6 @@ public class HQ_Client {
 					}
 				} catch(Exception error) {
 					txt_bookStock_inner2_addRemErrTxt.setText("Add Unsuccessful, Invalid Input in ISBN");
-					System.out.println(error);
-				}
-			}
-		});
-		// Book Stock, Remove a Row from Table
-		btn_bookStock_inner2_remFromTable.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
-					
-					if(String.valueOf(ISBN).equals("") || String.valueOf(ISBN).chars().count() != 13 || checkTable_Entry(tableModel_bookStock, String.valueOf(ISBN), 0) < 0) {
-						txt_bookStock_inner2_addRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
-					} else {
-						String sql = "DELETE FROM " + table_bookStock_tableName + " WHERE ISBN = " + ISBN;
-						
-						// Runs DELETE Query
-						updateTable(sql, table_bookStock_tableName, tableModel_bookStock);
-						
-						// Clear Text Fields
-						txtEnt_bookStock_inner2_ISBN.setText("");
-						txtEnt_bookStock_inner2_storeNum.setText("");
-						txtEnt_bookStock_inner2_stock.setText("");
-						
-						// Testing
-						System.out.println(sql);
-						System.out.println("ISBN Pos: " + checkTable_Entry(tableModel_bookStock, String.valueOf(ISBN), 0));
-						
-						txt_bookStock_inner2_addRemErrTxt.setText("Remove Successful");
-					}
-					
-				} catch(Exception error) {
-					txt_bookStock_inner2_addRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
 					System.out.println(error);
 				}
 			}

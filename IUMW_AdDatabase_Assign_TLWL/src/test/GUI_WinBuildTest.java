@@ -34,8 +34,8 @@ public class GUI_WinBuildTest {
 	private JTextField textField_table1_ISBN;
 	private JTextField textField_table1_Name;
 	private JTextField textField_table1_Author;
-	private JTextField textField_table2_ISBN;
-	private JTextField textField_table2_storeNum;
+	private JComboBox comboBox_table2_ISBN;
+	private JComboBox comboBox_table2_storeNum;
 	private JTextField textField_table2_stock;
 	private JTable table2;
 	private JTable table3;
@@ -204,19 +204,17 @@ public class GUI_WinBuildTest {
 		txt_table2_ISBN.setBounds(20, 50, 80, 20);
 		panel2_inner2.add(txt_table2_ISBN);
 		
-		textField_table2_ISBN = new JTextField();
-		textField_table2_ISBN.setBounds(110, 50, 200, 20);
-		textField_table2_ISBN.setColumns(13);
-		panel2_inner2.add(textField_table2_ISBN);
+		comboBox_table2_ISBN = new JComboBox();
+		comboBox_table2_ISBN.setBounds(110, 50, 200, 20);
+		panel2_inner2.add(comboBox_table2_ISBN);
 		
 		JLabel txt_table2_storeNum = new JLabel("Store Number");
 		txt_table2_storeNum.setBounds(20, 80, 80, 20);
 		panel2_inner2.add(txt_table2_storeNum);
 		
-		textField_table2_storeNum = new JTextField();
-		textField_table2_storeNum.setBounds(110, 80, 200, 20);
-		textField_table2_storeNum.setColumns(36);
-		panel2_inner2.add(textField_table2_storeNum);
+		comboBox_table2_storeNum = new JComboBox();
+		comboBox_table2_storeNum.setBounds(110, 80, 200, 20);
+		panel2_inner2.add(comboBox_table2_storeNum);
 		
 		JLabel txt_table2_stock = new JLabel("Stock");
 		txt_table2_stock.setBounds(20, 110, 80, 20);
@@ -236,12 +234,12 @@ public class GUI_WinBuildTest {
 		lblNewLabel_1.setForeground(Color.RED);
 		panel2_inner2.add(lblNewLabel_1);
 		
-		JLabel txt_panel2_inner2_addRemToHQ = new JLabel("Add/Remove data to/from Table of HQ");
+		JLabel txt_panel2_inner2_addRemToHQ = new JLabel("Add to Table");
 		txt_panel2_inner2_addRemToHQ.setBounds(400, 20, 250, 25);
 		panel2_inner2.add(txt_panel2_inner2_addRemToHQ);
 		
-		JLabel txt_panel2_inner2_dropDownISBN = new JLabel("Add, Input ISBN from Table Book Catalogue");
-		txt_panel2_inner2_dropDownISBN.setBounds(400, 50, 250, 20);
+		JLabel txt_panel2_inner2_dropDownISBN = new JLabel("Book Ctlg, ISBN");
+		txt_panel2_inner2_dropDownISBN.setBounds(400, 50, 100, 20);
 		panel2_inner2.add(txt_panel2_inner2_dropDownISBN);
 		
 		JButton btn_table2_addBookStock = new JButton("Add");
@@ -249,7 +247,7 @@ public class GUI_WinBuildTest {
 		panel2_inner2.add(btn_table2_addBookStock);
 		
 		JButton btn_table2_remBookStock = new JButton("Remove");
-		btn_table2_remBookStock.setBounds(500, 160, 80, 25);
+		btn_table2_remBookStock.setBounds(140, 160, 100, 25);
 		panel2_inner2.add(btn_table2_remBookStock);
 		
 		JLabel txt_table2_drpDownErrSucc = new JLabel("Add Succesfull");
@@ -257,9 +255,17 @@ public class GUI_WinBuildTest {
 		txt_table2_drpDownErrSucc.setBounds(400, 190, 300, 20);
 		panel2_inner2.add(txt_table2_drpDownErrSucc);
 		
-		JLabel txt_panel2_inner2_dropDownISBN_1 = new JLabel("Remove, Input ISBN from Table Book Stock");
-		txt_panel2_inner2_dropDownISBN_1.setBounds(400, 80, 250, 20);
+		JLabel txt_panel2_inner2_dropDownISBN_1 = new JLabel("Offices, Store #");
+		txt_panel2_inner2_dropDownISBN_1.setBounds(400, 80, 100, 20);
 		panel2_inner2.add(txt_panel2_inner2_dropDownISBN_1);
+		
+		JComboBox comboBox_table2_bookCtlgISBN = new JComboBox();
+		comboBox_table2_bookCtlgISBN.setBounds(500, 50, 200, 20);
+		panel2_inner2.add(comboBox_table2_bookCtlgISBN);
+		
+		JComboBox comboBox_table2_bookCtlgISBN_1 = new JComboBox();
+		comboBox_table2_bookCtlgISBN_1.setBounds(500, 80, 200, 20);
+		panel2_inner2.add(comboBox_table2_bookCtlgISBN_1);
 		
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Tab 3", null, panel_3, null);
