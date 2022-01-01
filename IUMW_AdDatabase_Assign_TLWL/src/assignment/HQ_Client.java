@@ -30,6 +30,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import org.jfree.chart.JFreeChart;
+
 public class HQ_Client {
 	// Connect to RMI Server
 	static Interface_Remote RMI_Server;
@@ -142,7 +144,7 @@ public class HQ_Client {
 		// Create JFrame Object
 		JFrame frame = new JFrame();							// The JFrame Object
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	// When Window closed, program exited
-		frame.setTitle("Uptown Books Database");				// Window Title
+		frame.setTitle("Uptown Books Database HQ");				// Window Title
 		frame.setMinimumSize(new Dimension(1200, 600));			// Minimum Window Size
 		//frame.setLayout(new GridLayout(5, 1));
 
@@ -784,13 +786,27 @@ public class HQ_Client {
 		// Runs Function to Design and Render it
 		Make_tablePanel(frame, panel_sales, panel_sales_inner1, txt_sales_inner1, panel_sales_name, table_sales_tableName, scrollPane_sales, tableModel_sales, table_sales);
 		/* Sales, Inner Panel 1 End */
+		/* Sales, Inner Panel 2 Start */
+		JPanel panel_sales_inner2 = new JPanel();
+		panel_sales_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_sales.add(panel_sales_inner2);
+		panel_sales_inner2.setLayout(null);
+		/* Labels and Text Fields */
+		// Headers
+		JLabel txt_sales_inner2_headBarChart = new JLabel("Bar Chart Profits to Store");	// Bar Chart of The Profits Compared to Each Store
+		txt_sales_inner2_headBarChart.setBounds(20, 20, 300, 25);
+		panel_sales_inner2.add(txt_sales_inner2_headBarChart);
+		/* Bar Chart */
+		//DefaultCategoryDataset dataset_sales_inner2 = new DefaultCategoryDataset();
+		JFreeChart chart_sales_inner2;
 		
-		
+		/* Sales, Inner Panel 2 End */
 		
 		// Display Window
 		frame.pack();											// Combine Window Elements, and Resize Them if Window Too Small
 		frame.setVisible(true);									// Renders Window
 	}
+	
 	
 	// Check Table Composite Entry
 	public static boolean checkTable_compEntry(DefaultTableModel table, String entry_one, String entry_two, int col_one, int col_two) {
@@ -891,6 +907,11 @@ public class HQ_Client {
 		} catch(Exception error) {
 			System.out.println(error);
 		}
+	}
+	
+	// Make Bar Chart
+	public static void Make_barChart() {
+		// Code Here
 	}
 	
 	// Create Table Panel Function

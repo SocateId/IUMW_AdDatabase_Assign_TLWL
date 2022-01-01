@@ -44,6 +44,7 @@ public class GUI_WinBuildTest {
 	private JTextField textField_table4_inner2_state;
 	private JTextField textField_table4_inner2_postcode;
 	private JTable table4;
+	private JTable table5;
 
 	/**
 	 * Launch the application.
@@ -432,7 +433,45 @@ public class GUI_WinBuildTest {
 		lblNewLabel_1_1_1.setBounds(20, 190, 300, 20);
 		pane4_inner2.add(lblNewLabel_1_1_1);
 		
-		JPanel panel = new JPanel();
-		frmUptownBooksDatabase.getContentPane().add(panel, BorderLayout.NORTH);
+		JPanel panel_5 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_5, null);
+		panel_5.setLayout(new BoxLayout(panel_5, BoxLayout.Y_AXIS));
+		
+		JPanel panel5_inner1 = new JPanel();
+		panel5_inner1.setLayout(null);
+		panel5_inner1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_5.add(panel5_inner1);
+		
+		JLabel txt_table5 = new JLabel("Table 5");
+		txt_table5.setBounds(20, 20, 100, 25);
+		panel5_inner1.add(txt_table5);
+		
+		JScrollPane scrollPane_table5 = new JScrollPane();
+		scrollPane_table5.setBounds(20, 50, 1130, 190);
+		panel5_inner1.add(scrollPane_table5);
+		
+		table5 = new JTable();
+		table5.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"1", "1", "2", "12", "2021", "739.90"},
+				{"2", "1", "2", "12", "2021", "659.85"},
+				{"3", "1", "4", "12", "2021", "81.98"},
+			},
+			new String[] {
+				"Sales_ID", "Store_Number", "Date", "Month", "Year", "Amount"
+			}
+		));
+		table5.getColumnModel().getColumn(1).setPreferredWidth(97);
+		table5.setEnabled(false);
+		scrollPane_table5.setViewportView(table5);
+		
+		JPanel panel5_inner2_1 = new JPanel();
+		panel5_inner2_1.setLayout(null);
+		panel5_inner2_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_5.add(panel5_inner2_1);
+		
+		JLabel txt_table5_inner2_barChart = new JLabel("Bar Chart, Profits to Store");
+		txt_table5_inner2_barChart.setBounds(20, 20, 300, 25);
+		panel5_inner2_1.add(txt_table5_inner2_barChart);
 	}
 }
