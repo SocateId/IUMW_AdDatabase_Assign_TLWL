@@ -431,5 +431,8 @@ public class GUI_WinBuildTest {
 		lblNewLabel_1_1_1.setForeground(Color.RED);
 		lblNewLabel_1_1_1.setBounds(20, 190, 300, 20);
 		pane4_inner2.add(lblNewLabel_1_1_1);
+		
+		JPanel panel = new JPanel();
+		frmUptownBooksDatabase.getContentPane().add(panel, BorderLayout.NORTH);
 	}
 }

@@ -642,7 +642,6 @@ public class HQ_Client {
 						txt_employees_inner2_addNewEmplErrTxt.setText("Add Unsuccesfull, Invalid Inputs in Fields");
 					} else {
 						String sql = "INSERT INTO " + table_employees_tableName + "(store_number, name, password) VALUES (0, '" + Name + "', '" + Password + "')";
-						//INSERT INTO `employees` (`ID`, `Store_Number`, `Name`, `Password`) VALUES (NULL, '1', 'Test Man', '44');
 						
 						// Runs INSERT Query
 						updateTable(sql, table_employees_tableName, tableModel_employees);
@@ -736,7 +735,25 @@ public class HQ_Client {
 		btn_offices_inner2_add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					String City = txtEnt_offices_inner2_city.getText();
+					String State = txtEnt_offices_inner2_state.getText();
+					String Postcode = txtEnt_offices_inner2_postcode.getText();
 					
+					if(City.equals("") || State.equals("") || Postcode.equals("") || !(Postcode.chars().count() == 5) || checkTable_Entry(tableModel_offices, Postcode, 3) >= 0) {
+						txt_offices_inner2_headAddErrTxt.setText("Add Unsuccessful, Invalid Inputs in Text Fields");
+					} else {
+						String sql = "INSERT INTO " + table_offices_tableName + "(City, State, Postcode) VALUES ('" + City + "', '" + State + "', '" + Postcode + "')";
+						
+						// Runs INSERT Query
+						updateTable(sql, table_offices_tableName, tableModel_offices);
+						
+						// Clears Text Fields
+						txtEnt_offices_inner2_city.setText("");
+						txtEnt_offices_inner2_state.setText("");
+						txtEnt_offices_inner2_postcode.setText("");
+						
+						txt_offices_inner2_headAddErrTxt.setText("Add Successful");
+					}
 				} catch(Exception error) {
 					txt_offices_inner2_headAddErrTxt.setText("Add Unsuccessful, Invalid Inputs in Text Fields");
 					System.out.println(error);
@@ -751,6 +768,23 @@ public class HQ_Client {
 		String panel_sales_name = "Sales";													// Panel Name
 		tabbedPane.addTab(panel_sales_name, null, panel_sales, null);						// Add to Tabs
 		panel_sales.setLayout(new BoxLayout(panel_sales, BoxLayout.Y_AXIS));				// Sets Panel Layout
+		/* Sales, Inner Panel 1 Start */
+		/* Inner Panel Object */
+		JPanel panel_sales_inner1 = new JPanel();
+		/* Label */
+		JLabel txt_sales_inner1 = new JLabel();
+		/* Scroll Pane */
+		JScrollPane scrollPane_sales = new JScrollPane();
+		/* Table Start */
+		String table_sales_tableName = "sales";												// Table Name
+		// The Table Object
+		DefaultTableModel tableModel_sales = new  DefaultTableModel();
+		JTable table_sales = new JTable();
+		/* Table End */
+		// Runs Function to Design and Render it
+		Make_tablePanel(frame, panel_sales, panel_sales_inner1, txt_sales_inner1, panel_sales_name, table_sales_tableName, scrollPane_sales, tableModel_sales, table_sales);
+		/* Sales, Inner Panel 1 End */
+		
 		
 		
 		// Display Window
@@ -773,7 +807,7 @@ public class HQ_Client {
 	public static int checkTable_Entry(DefaultTableModel table, String entry, int col) {
 		for(int i=0; i<table.getRowCount(); i++) {
 			if(table.getValueAt(i, col).equals(entry)) {
-				System.out.print(i);
+				System.out.println(i);
 				return i;
 			}
 		}
