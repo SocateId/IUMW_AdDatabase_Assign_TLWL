@@ -107,6 +107,10 @@ public class GUI_WinBuildTest {
 		table1.setBackground(Color.WHITE);
 		scrollPane_table1.setViewportView(table1);
 		
+		JButton table1_refreshPg = new JButton("Refresh");
+		table1_refreshPg.setBounds(120, 20, 90, 25);
+		panel_1_innerPanel_1.add(table1_refreshPg);
+		
 		JPanel panel_1_innerPanel_2 = new JPanel();
 		panel_1_innerPanel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.add(panel_1_innerPanel_2);
@@ -328,12 +332,12 @@ public class GUI_WinBuildTest {
 		
 		textField_table3_inner2_name = new JTextField();
 		textField_table3_inner2_name.setColumns(36);
-		textField_table3_inner2_name.setBounds(100, 80, 450, 20);
+		textField_table3_inner2_name.setBounds(100, 80, 460, 20);
 		panel3_inner2.add(textField_table3_inner2_name);
 		
 		textField_table3_inner2_pwd = new JTextField();
 		textField_table3_inner2_pwd.setColumns(36);
-		textField_table3_inner2_pwd.setBounds(100, 110, 450, 20);
+		textField_table3_inner2_pwd.setBounds(100, 110, 460, 20);
 		panel3_inner2.add(textField_table3_inner2_pwd);
 		
 		JButton btn_table3_inner2_changeNmPwd = new JButton("Change");
@@ -361,6 +365,14 @@ public class GUI_WinBuildTest {
 		txt_table2_drpDownErrSucc_1.setForeground(Color.RED);
 		txt_table2_drpDownErrSucc_1.setBounds(400, 190, 300, 20);
 		panel3_inner2.add(txt_table2_drpDownErrSucc_1);
+		
+		JLabel txt_table3_inner2_IDDrpDown_1 = new JLabel("Offices, Store #");
+		txt_table3_inner2_IDDrpDown_1.setBounds(400, 50, 100, 20);
+		panel3_inner2.add(txt_table3_inner2_IDDrpDown_1);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(500, 50, 60, 20);
+		panel3_inner2.add(comboBox_1);
 		
 		JPanel panel_4 = new JPanel();
 		tabbedPane.addTab("Tab 4", null, panel_4, null);

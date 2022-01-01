@@ -169,6 +169,8 @@ public class HQ_Client {
 		JPanel panel_bookCtlg_inner1 = new JPanel();
 		/* Label */
 		JLabel txt_bookCtlg_inner1 = new JLabel();
+		/* Refresh Button */
+		JButton btn_bookCtlg_inner1_refreshPg = new JButton("Refresh");
 		/* Scroll Pane */
 		JScrollPane scrollPane_bookCtlg = new JScrollPane();
 		/* Table Start */
@@ -178,7 +180,7 @@ public class HQ_Client {
 		JTable table_bookCtlg = new JTable();
 		/* Table End */
 		// Runs Function to Design and Render it
-		Make_tablePanel(frame, panel_bookCtlg, panel_bookCtlg_inner1, txt_bookCtlg_inner1, panel_bookCtlg_name, table_bookCtlg_tableName, scrollPane_bookCtlg, tableModel_bookCtlg, table_bookCtlg);	
+		Make_tablePanel(frame, panel_bookCtlg, panel_bookCtlg_inner1, txt_bookCtlg_inner1, btn_bookCtlg_inner1_refreshPg, panel_bookCtlg_name, table_bookCtlg_tableName, scrollPane_bookCtlg, tableModel_bookCtlg, table_bookCtlg);	
 		/* Book Catalogue, Inner Panel 1 End */
 		/* Book Catalogue, Inner Panel 2 Start */
 		JPanel panel_bookCtlg_inner2 = new JPanel();
@@ -229,6 +231,8 @@ public class HQ_Client {
 		panel_bookCtlg_inner2.add(btn_bookCtlg_inner2_add);
 		/* Book Catalogue, Inner Panel 2 End */
 		
+		
+		
 		// Panel Book Stock 
 		// Panel
 		JPanel panel_bookStock = new JPanel();
@@ -240,6 +244,8 @@ public class HQ_Client {
 		JPanel panel_bookStock_inner1 = new JPanel();
 		/* Label */
 		JLabel txt_bookStock_inner1 = new JLabel();
+		/* Refresh Button */
+		JButton btn_bookStock_inner1_refreshPg = new JButton("Refresh");
 		/* Scroll Pane */
 		JScrollPane scrollPane_bookStock = new JScrollPane();
 		/* Table Start */
@@ -249,7 +255,7 @@ public class HQ_Client {
 		JTable table_bookStock = new JTable();
 		/* Table End */
 		// Runs Function to Design and Render it
-		Make_tablePanel(frame, panel_bookStock, panel_bookStock_inner1, txt_bookStock_inner1, panel_bookStock_name, table_bookStock_tableName, scrollPane_bookStock, tableModel_bookStock, table_bookStock);
+		Make_tablePanel(frame, panel_bookStock, panel_bookStock_inner1, txt_bookStock_inner1, btn_bookStock_inner1_refreshPg, panel_bookStock_name, table_bookStock_tableName, scrollPane_bookStock, tableModel_bookStock, table_bookStock);
 		/* Book Stock, Inner Panel 1 End */
 		/* Book Stock, Inner Panel 2 Start */
 		JPanel panel_bookStock_inner2 = new JPanel();
@@ -351,6 +357,8 @@ public class HQ_Client {
 		JPanel panel_employees_inner1 = new JPanel();
 		/* Label */
 		JLabel txt_employees_inner1 = new JLabel();
+		/* Refresh Button */
+		JButton btn_employees_inner1_refreshPg = new JButton("Refresh");
 		/* Scroll Pane */
 		JScrollPane scrollPane_employees = new JScrollPane();
 		/* Table Start */
@@ -360,7 +368,7 @@ public class HQ_Client {
 		JTable table_employees = new JTable();
 		/* Table End */
 		// Runs Function to Design and Render it
-		Make_tablePanel(frame, panel_employees, panel_employees_inner1, txt_employees_inner1, panel_employees_name, table_employees_tableName, scrollPane_employees, tableModel_employees, table_employees);
+		Make_tablePanel(frame, panel_employees, panel_employees_inner1, txt_employees_inner1, btn_employees_inner1_refreshPg, panel_employees_name, table_employees_tableName, scrollPane_employees, tableModel_employees, table_employees);
 		/* Employees, Inner Panel 1 End */
 		/* Employees, Inner Panel 2 Start */
 		JPanel panel_employees_inner2 = new JPanel();
@@ -385,13 +393,6 @@ public class HQ_Client {
 		JComboBox drpMenu_employees_inner2_ID = new JComboBox(drpMenuModel_employees_inner2_ID);
 		drpMenu_employees_inner2_ID.setBounds(100, 50, 60, 20);
 		panel_employees_inner2.add(drpMenu_employees_inner2_ID);
-		/*
-		// ID Text Field
-		JTextField txtEnt_employees_inner2_ID = new JTextField();
-		txtEnt_employees_inner2_ID.setColumns(4);
-		txtEnt_employees_inner2_ID.setBounds(400, 50, 150, 20);
-		panel_employees_inner2.add(txtEnt_employees_inner2_ID);
-		*/
 		// Name Label
 		JLabel txt_employees_inner2_txtFieldName = new JLabel("Name");
 		txt_employees_inner2_txtFieldName.setBounds(20, 80, 80, 20);
@@ -399,7 +400,7 @@ public class HQ_Client {
 		// Name Text Field
 		JTextField txtEnt_employees_inner2_name = new JTextField();
 		txtEnt_employees_inner2_name.setColumns(36);
-		txtEnt_employees_inner2_name.setBounds(100, 80, 450, 20);
+		txtEnt_employees_inner2_name.setBounds(100, 80, 460, 20);
 		panel_employees_inner2.add(txtEnt_employees_inner2_name);
 		// Password Label
 		JLabel txt_employees_inner2_txtFieldPassword = new JLabel("Password");
@@ -408,8 +409,18 @@ public class HQ_Client {
 		// Password Text Field
 		JTextField txtEnt_employees_inner2_password = new JTextField();
 		txtEnt_employees_inner2_password.setColumns(36);
-		txtEnt_employees_inner2_password.setBounds(100, 110, 450, 20);
+		txtEnt_employees_inner2_password.setBounds(100, 110, 460, 20);
 		panel_employees_inner2.add(txtEnt_employees_inner2_password);
+		// Store Number from Offices Label
+		JLabel txt_employees_inner2_officesStoreNum = new JLabel("Offices, Store #");
+		txt_employees_inner2_officesStoreNum.setBounds(400, 50, 100, 20);
+		panel_employees_inner2.add(txt_employees_inner2_officesStoreNum);
+		// Store Number from Offices Drop Down Menu
+		String[] arrayStr_employees_officesStoreNum = selectQuery("SELECT store_number FROM offices");
+		DefaultComboBoxModel drpMenuModel_employees_inner2_officesStoreNum = new DefaultComboBoxModel(arrayStr_employees_officesStoreNum);
+		JComboBox drpMenu_employees_inner2_officesStoreNum = new JComboBox(drpMenuModel_employees_inner2_officesStoreNum);
+		drpMenu_employees_inner2_officesStoreNum.setBounds(500, 50, 60, 20);
+		panel_employees_inner2.add(drpMenu_employees_inner2_officesStoreNum);
 		/* Buttons */
 		// Error/Success in Inputs
 		JLabel txt_employees_inner2_changeOrRemoveEmplErrTxt = new JLabel();			// Label Change/Remove Success/Error
@@ -448,6 +459,8 @@ public class HQ_Client {
 		JPanel panel_offices_inner1 = new JPanel();
 		/* Label */
 		JLabel txt_offices_inner1 = new JLabel();
+		/* Refresh Button */
+		JButton btn_offices_inner1_refreshPg = new JButton("Refresh");
 		/* Scroll Pane */
 		JScrollPane scrollPane_offices = new JScrollPane();
 		/* Table Start */
@@ -457,7 +470,7 @@ public class HQ_Client {
 		JTable table_offices = new JTable();
 		/* Table End */
 		// Runs Function to Design and Render it
-		Make_tablePanel(frame, panel_offices, panel_offices_inner1, txt_offices_inner1, panel_offices_name, table_offices_tableName, scrollPane_offices, tableModel_offices, table_offices);
+		Make_tablePanel(frame, panel_offices, panel_offices_inner1, txt_offices_inner1, btn_offices_inner1_refreshPg, panel_offices_name, table_offices_tableName, scrollPane_offices, tableModel_offices, table_offices);
 		/* Offices, Inner Panel 1 End */
 		/* Offices, Inner Panel 2 Start */
 		JPanel panel_offices_inner2 = new JPanel();
@@ -509,6 +522,8 @@ public class HQ_Client {
 		panel_offices_inner2.add(btn_offices_inner2_add);
 		/* Offices, Inner Panel 2 End */
 		
+		
+		
 		// Sales Panels
 		// Panels
 		JPanel panel_sales = new JPanel();
@@ -520,6 +535,8 @@ public class HQ_Client {
 		JPanel panel_sales_inner1 = new JPanel();
 		/* Label */
 		JLabel txt_sales_inner1 = new JLabel();
+		/* Refresh Button */
+		JButton btn_sales_inner1_refreshPg = new JButton("Refresh");
 		/* Scroll Pane */
 		JScrollPane scrollPane_sales = new JScrollPane();
 		/* Table Start */
@@ -529,7 +546,7 @@ public class HQ_Client {
 		JTable table_sales = new JTable();
 		/* Table End */
 		// Runs Function to Design and Render it
-		Make_tablePanel(frame, panel_sales, panel_sales_inner1, txt_sales_inner1, panel_sales_name, table_sales_tableName, scrollPane_sales, tableModel_sales, table_sales);
+		Make_tablePanel(frame, panel_sales, panel_sales_inner1, txt_sales_inner1, btn_sales_inner1_refreshPg, panel_sales_name, table_sales_tableName, scrollPane_sales, tableModel_sales, table_sales);
 		/* Sales, Inner Panel 1 End */
 		/* Sales, Inner Panel 2 Start */
 		JPanel panel_sales_inner2 = new JPanel();
@@ -546,12 +563,12 @@ public class HQ_Client {
 		DefaultCategoryDataset dataSet_sales_inner2 = new DefaultCategoryDataset();
 		// Bar Chart Values
 		String[] distCols_sales_StoreNum = selectQuery("SELECT DISTINCT store_number FROM sales");
-		String[] dataValues;
+		String[] dataValues_sales_StoreNum;
 		Double totalAmount_sales = 0.0;
 		// Sets the Dataset Container with the Total Amount (Total Profits) Made From Each Store in Sales
 		for(int i=0; i<distCols_sales_StoreNum.length; i++) {
-			dataValues = selectQuery("SELECT Amount FROM sales WHERE Store_Number = '" + distCols_sales_StoreNum[i] + "'");
-			for(String j : dataValues) {
+			dataValues_sales_StoreNum = selectQuery("SELECT Amount FROM sales WHERE Store_Number = '" + distCols_sales_StoreNum[i] + "'");
+			for(String j : dataValues_sales_StoreNum) {
 				totalAmount_sales += Double.parseDouble(j);
 			}
 			dataSet_sales_inner2.setValue(totalAmount_sales, "Total Amount", "Store " + distCols_sales_StoreNum[i]);
@@ -585,7 +602,7 @@ public class HQ_Client {
 							String sql = "INSERT INTO book_ctlg (ISBN, Name, Author) VALUES ('" + ISBN + "', '" + Name + "', '" + Author + "')";
 							
 							// Runs Insert Query into Table Book_Ctlg
-							updateTable(sql, table_bookCtlg_tableName, tableModel_bookCtlg);
+							updateTable_SQL(sql, table_bookCtlg_tableName, tableModel_bookCtlg);
 							// Updates Drop Menu
 							updateDropMenu(table_bookCtlg_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookCtlgISBN, false);
 							
@@ -622,7 +639,7 @@ public class HQ_Client {
 							String sql = "UPDATE " + table_bookStock_tableName + " SET stock = " + stock + " WHERE (ISBN = " + ISBN + " AND store_number = " + storeNumber + ")";
 							
 							// Runs UPDATE Query and Updates Book Stock Table
-							updateTable(sql, table_bookStock_tableName, tableModel_bookStock);
+							updateTable_SQL(sql, table_bookStock_tableName, tableModel_bookStock);
 							
 							// Clear Text Fields
 							txtEnt_bookStock_inner2_stock.setText("");
@@ -657,7 +674,7 @@ public class HQ_Client {
 						String sql = "DELETE FROM " + table_bookStock_tableName + " WHERE ISBN = " + ISBN + " AND store_number = " + storeNumber;
 						
 						// Runs DELETE Query and Updates Table
-						updateTable(sql, table_bookStock_tableName, tableModel_bookStock);
+						updateTable_SQL(sql, table_bookStock_tableName, tableModel_bookStock);
 						// Updates Drop Down Menus
 						updateDropMenu(table_bookStock_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookStockISBN, true);
 						updateDropMenu(table_bookStock_tableName, "store_number", drpMenuModel_bookStock_inner2_bookStockStoreNum, true);
@@ -692,7 +709,7 @@ public class HQ_Client {
 						String sql = "INSERT INTO " + table_bookStock_tableName + " (ISBN, Store_Number, Stock, Price) VALUES (" + ISBN + ", " + storeNumber + ", 0, 0)";
 						
 						// Runs INSERT Query
-						updateTable(sql, table_bookStock_tableName, tableModel_bookStock);
+						updateTable_SQL(sql, table_bookStock_tableName, tableModel_bookStock);
 						// Updates Drop Down Menus
 						updateDropMenu(table_bookStock_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookStockISBN, true);
 						updateDropMenu(table_bookStock_tableName, "store_number", drpMenuModel_bookStock_inner2_bookStockStoreNum, true);
@@ -737,7 +754,7 @@ public class HQ_Client {
 						}
 						
 						if(flag) {
-							updateTable(sql, table_employees_tableName, tableModel_employees);
+							updateTable_SQL(sql, table_employees_tableName, tableModel_employees);
 						} else {
 							txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Unsuccessful, Invalid Inputs in Text Fields");
 						}
@@ -766,7 +783,7 @@ public class HQ_Client {
 						String sql = "DELETE FROM " + table_employees_tableName + " WHERE ID = " + ID;
 						
 						// Runs DELETE Query
-						updateTable(sql, table_employees_tableName, tableModel_employees);
+						updateTable_SQL(sql, table_employees_tableName, tableModel_employees);
 						// Updates Drop Down Menu
 						updateDropMenu(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID, false);
 						
@@ -783,6 +800,7 @@ public class HQ_Client {
 		btn_employees_inner2_add.addActionListener(new ActionListener() {
 			public void  actionPerformed(ActionEvent e) {
 				try {
+					int storeNumber = Integer.parseInt((String) drpMenuModel_employees_inner2_officesStoreNum.getSelectedItem());
 					String Name = txtEnt_employees_inner2_name.getText();
 					String Password = txtEnt_employees_inner2_password.getText();
 					
@@ -792,7 +810,7 @@ public class HQ_Client {
 						String sql = "INSERT INTO " + table_employees_tableName + "(store_number, name, password) VALUES (0, '" + Name + "', '" + Password + "')";
 						
 						// Runs INSERT Query
-						updateTable(sql, table_employees_tableName, tableModel_employees);
+						updateTable_SQL(sql, table_employees_tableName, tableModel_employees);
 						// Updates Drop Down Menu
 						updateDropMenu(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID, false);
 						
@@ -823,9 +841,10 @@ public class HQ_Client {
 						String sql = "INSERT INTO " + table_offices_tableName + "(City, State, Postcode) VALUES ('" + City + "', '" + State + "', '" + Postcode + "')";
 						
 						// Runs INSERT Query
-						updateTable(sql, table_offices_tableName, tableModel_offices);
+						updateTable_SQL(sql, table_offices_tableName, tableModel_offices);
 						// Updates Drop Down Menu
 						updateDropMenu(table_offices_tableName, "store_number", drpMenuModel_bookStock_inner2_officesStoreNum, false);
+						updateDropMenu(table_offices_tableName, "store_number", drpMenuModel_employees_inner2_officesStoreNum, false);
 						
 						// Clears Text Fields
 						txtEnt_offices_inner2_city.setText("");
@@ -846,16 +865,45 @@ public class HQ_Client {
 		
 		/* Refresh Buttons, Start */
 		// Book Catalogue
-		
+		btn_bookCtlg_inner1_refreshPg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateTable(table_bookCtlg_tableName, tableModel_bookCtlg);
+				updateDropMenu(table_bookCtlg_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookCtlgISBN, false);
+			}
+		});
 		// Book Stock
-		
+		btn_bookStock_inner1_refreshPg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateTable(table_bookStock_tableName, tableModel_bookStock);
+				updateDropMenu(table_bookStock_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookStockISBN, true);
+				updateDropMenu(table_bookStock_tableName, "store_number", drpMenuModel_bookStock_inner2_bookStockStoreNum, true);
+				updateDropMenu(table_bookCtlg_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookCtlgISBN, false);
+				updateDropMenu(table_offices_tableName, "store_number", drpMenuModel_bookStock_inner2_officesStoreNum, false);
+			}
+		});
 		// Employees
-		
+		btn_employees_inner1_refreshPg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateTable(table_employees_tableName, tableModel_employees);
+				updateDropMenu(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID, false);
+				updateDropMenu(table_offices_tableName, "store_number", drpMenuModel_employees_inner2_officesStoreNum, false);
+			}
+		});
 		// Offices
-		
+		btn_offices_inner1_refreshPg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateTable(table_offices_tableName, tableModel_offices);
+				updateDropMenu(table_offices_tableName, "store_number", drpMenuModel_bookStock_inner2_officesStoreNum, false);
+				updateDropMenu(table_offices_tableName, "store_number", drpMenuModel_employees_inner2_officesStoreNum, false);
+			}
+		});
 		// Sales
-		
-		
+		btn_sales_inner1_refreshPg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateTable(table_sales_tableName, tableModel_sales);
+				updatesBarChart(table_sales_tableName, "Amount", "store_number", dataSet_sales_inner2);
+			}
+		});
 		/* Refresh Buttons, End */
 		
 		
@@ -935,6 +983,55 @@ public class HQ_Client {
 		}
 	}
 	
+	// Updates Bar Chart
+	public static void updatesBarChart(String tableName, String column, String distCol, DefaultCategoryDataset dataSet) {
+		try {
+			// Clears Dataset
+			dataSet.clear();
+
+			// Gets New Data Values from Table
+			String[] distinctColumn = selectQuery("SELECT DISTINCT " + distCol + " FROM " + tableName);
+			String[] dataValues;
+			Double totalAmount = 0.0;
+			
+			// Adds Data Values to Dataset Container
+			for(int i=0; i<distinctColumn.length; i++) {
+				dataValues = selectQuery("SELECT " + column + " FROM " + tableName + " WHERE " + distCol + " = '" + distinctColumn[i] + "'");
+				for(String j : dataValues) {
+					totalAmount += Double.parseDouble(j);
+				}
+				dataSet.setValue(totalAmount, "Total Amount", "Store " + distinctColumn[i]);
+				totalAmount = 0.0;
+			}
+			
+
+			
+//			/* Bar Chart */
+//			// The Bar Chart Data Set Container
+//			DefaultCategoryDataset dataSet_sales_inner2 = new DefaultCategoryDataset();
+//			// Bar Chart Values
+//			String[] distCols_sales_StoreNum = selectQuery("SELECT DISTINCT store_number FROM sales");
+//			String[] dataValues;
+//			Double totalAmount_sales = 0.0;
+//			// Sets the Dataset Container with the Total Amount (Total Profits) Made From Each Store in Sales
+//			for(int i=0; i<distCols_sales_StoreNum.length; i++) {
+//				dataValues = selectQuery("SELECT Amount FROM sales WHERE Store_Number = '" + distCols_sales_StoreNum[i] + "'");
+//				for(String j : dataValues) {
+//					totalAmount_sales += Double.parseDouble(j);
+//				}
+//				dataSet_sales_inner2.setValue(totalAmount_sales, "Total Amount", "Store " + distCols_sales_StoreNum[i]);
+//				totalAmount_sales = 0.0;
+//			}
+//			// The Bar Chart Object
+//			JFreeChart chart_sales_inner2 = ChartFactory.createBarChart("Profits from Stores", "Stores", "Profits", dataSet_sales_inner2, PlotOrientation.VERTICAL, false, true, false);
+//			chart_sales_inner2.getCategoryPlot().setRangeGridlinePaint(Color.BLACK);		// Set Gridlines of Graph to Black Colour
+			
+			
+		} catch(Exception error) {
+			System.out.println(error);
+		}
+	}
+	
 	// Update Drop Down Menu
 	public static void updateDropMenu(String tableName, String column, DefaultComboBoxModel dropMenuModel, Boolean distinctValues) {
 		String[] table_rowData = (distinctValues) ? selectQuery("SELECT DISTINCT " + column + " FROM " + tableName) : selectQuery("SELECT " + column + " FROM " + tableName);
@@ -946,8 +1043,8 @@ public class HQ_Client {
 		}
 	}
 	
-	// Updates Table
-	public static void updateTable(String sql, String tableName, DefaultTableModel table) {
+	// Updates Table and Runs SQL
+	public static void updateTable_SQL(String sql, String tableName, DefaultTableModel table) {
 		try {
 			// Runs Query Change/Affect Table
 			RMI_Server.updateQuery(sql);
@@ -966,20 +1063,26 @@ public class HQ_Client {
 			System.out.println(error);
 		}
 	}
-	//Column
-	// Make Bar Chart
-	public static void Make_barChart(String tableName, String column, String distCol, DefaultCategoryDataset dataSet, JFreeChart chart, ChartPanel panelChart, JPanel panel) {
+	
+	// Updates Table
+	public static void updateTable(String tableName, DefaultTableModel table) {
 		try {
+			// Gets New Data from Database
+			String[][] table_rowData = getTable_RowData(tableName);
 			
-			
-			
+			// Reset Table Value
+			table.setRowCount(0);
+			// Inserts New Data from Database
+			for(int i=0; i<table_rowData.length; i++) {
+				table.addRow(table_rowData[i]);
+			}
 		} catch(Exception error) {
 			System.out.println(error);
 		}
 	}
 	
 	// Create Table Panel Function
-	public static void Make_tablePanel(JFrame frame, JPanel panel, JPanel panel_inner, JLabel label, String panelName, String tableName, JScrollPane scrollPane, DefaultTableModel tableModel, JTable table) {
+	public static void Make_tablePanel(JFrame frame, JPanel panel, JPanel panel_inner, JLabel label, JButton button, String panelName, String tableName, JScrollPane scrollPane, DefaultTableModel tableModel, JTable table) {
 		try {
 			// The Inner Panel, Table Panel
 			panel_inner.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -991,6 +1094,10 @@ public class HQ_Client {
 			label.setLabelFor(frame);
 			label.setBounds(10, 20, 100, 25);
 			panel_inner.add(label);
+			
+			// Refresh Button
+			button.setBounds(120, 20, 90, 25);
+			panel_inner.add(button);
 			
 			// Scroll Pane
 			scrollPane.setBounds(20, 50, 1130, 190);

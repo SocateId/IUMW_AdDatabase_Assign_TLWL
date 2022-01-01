@@ -45,4 +45,11 @@ public class OldCode_Container {
 //	txtEnt_bookStock_inner2_ISBN.setBounds(110, 50, 200, 20);
 //	panel_bookStock_inner2.add(txtEnt_bookStock_inner2_ISBN);
 	
+	/*
+	// ID Text Field
+	JTextField txtEnt_employees_inner2_ID = new JTextField();
+	txtEnt_employees_inner2_ID.setColumns(4);
+	txtEnt_employees_inner2_ID.setBounds(400, 50, 150, 20);
+	panel_employees_inner2.add(txtEnt_employees_inner2_ID);
+	*/
 }
