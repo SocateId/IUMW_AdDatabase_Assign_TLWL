@@ -268,42 +268,22 @@ public class HQ_Client {
 		JLabel txt_bookStock_inner2_ISBN = new JLabel("ISBN");
 		txt_bookStock_inner2_ISBN.setBounds(20, 50, 80, 20);
 		panel_bookStock_inner2.add(txt_bookStock_inner2_ISBN);
-//		// ISBN Text Field
-//		JTextField txtEnt_bookStock_inner2_ISBN = new JTextField();
-//		txtEnt_bookStock_inner2_ISBN.setColumns(13);
-//		txtEnt_bookStock_inner2_ISBN.setBounds(110, 50, 200, 20);
-//		panel_bookStock_inner2.add(txtEnt_bookStock_inner2_ISBN);
-		
 		// ISBN Drop Menu
-		String[] arrayStr_bookStock_bookStockISBN = selectQuery("SELECT ISBN FROM book_stock");
+		String[] arrayStr_bookStock_bookStockISBN = selectQuery("SELECT DISTINCT ISBN FROM book_stock");
 		DefaultComboBoxModel drpMenuModel_bookStock_inner2_bookStockISBN = new DefaultComboBoxModel(arrayStr_bookStock_bookStockISBN);
 		JComboBox drpMenu_bookStock_inner2_bookStockISBN = new JComboBox(drpMenuModel_bookStock_inner2_bookStockISBN);
 		drpMenu_bookStock_inner2_bookStockISBN.setBounds(100, 50, 200, 20);
 		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_bookStockISBN);
-		
-//		String[] arrayStr_employees_emplIDs = selectQuery("SELECT ID FROM employees");
-//		DefaultComboBoxModel drpMenuModel_employees_inner2_ID = new DefaultComboBoxModel(arrayStr_employees_emplIDs);
-//		JComboBox drpMenu_employees_inner2_ID = new JComboBox(drpMenuModel_employees_inner2_ID);
-//		drpMenu_employees_inner2_ID.setBounds(100, 50, 60, 20);
-//		panel_employees_inner2.add(drpMenu_employees_inner2_ID);
-		
 		// Store Number Label
 		JLabel txt_bookStock_inner2_txtFieldStoreNum = new JLabel("Store Number");
 		txt_bookStock_inner2_txtFieldStoreNum.setBounds(20, 80, 80, 20);
 		panel_bookStock_inner2.add(txt_bookStock_inner2_txtFieldStoreNum);
-//		// Store Number Text Field
-//		JTextField txtEnt_bookStock_inner2_storeNum = new JTextField();
-//		txtEnt_bookStock_inner2_storeNum.setColumns(36);
-//		txtEnt_bookStock_inner2_storeNum.setBounds(110, 80, 200, 20);
-//		panel_bookStock_inner2.add(txtEnt_bookStock_inner2_storeNum);
-		
 		// Store Number Drop Menu
-		String[] arrayStr_bookStock_bookStockStoreNum = selectQuery("SELECT store_number FROM book_stock");
+		String[] arrayStr_bookStock_bookStockStoreNum = selectQuery("SELECT DISTINCT store_number FROM book_stock");
 		DefaultComboBoxModel drpMenuModel_bookStock_inner2_bookStockStoreNum = new DefaultComboBoxModel(arrayStr_bookStock_bookStockStoreNum);
 		JComboBox drpMenu_bookStock_inner2_bookStockStoreNum = new JComboBox(drpMenuModel_bookStock_inner2_bookStockStoreNum);
 		drpMenu_bookStock_inner2_bookStockStoreNum.setBounds(110, 80, 200, 20);
 		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_bookStockStoreNum);
-		
 		// Stock Label
 		JLabel txt_bookStock_inner2_textFieldStock = new JLabel("Stock");
 		txt_bookStock_inner2_textFieldStock.setBounds(20, 110, 80, 20);
@@ -323,7 +303,6 @@ public class HQ_Client {
 		JComboBox drpMenu_bookStock_inner2_bookCtlgISBN = new JComboBox(drpMenuModel_bookStock_inner2_bookCtlgISBN);
 		drpMenu_bookStock_inner2_bookCtlgISBN.setBounds(500, 50, 200, 20);
 		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_bookCtlgISBN);
-		
 		// Store Number from Offices Label
 		JLabel txt_bookStock_inner2_remFromTable = new JLabel("Offices, Store #");
 		txt_bookStock_inner2_remFromTable.setBounds(400, 80, 100, 20);
@@ -334,30 +313,29 @@ public class HQ_Client {
 		JComboBox drpMenu_bookStock_inner2_officesStoreNum = new JComboBox(drpMenuModel_bookStock_inner2_officesStoreNum);
 		drpMenu_bookStock_inner2_officesStoreNum.setBounds(500, 80, 200, 20);
 		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_officesStoreNum);
-		
 		/* Buttons */
 		// Error/Success in Inputs
-		JLabel txt_bookStock_inner2_changeErrTxt = new JLabel();				// Label Change Stock Success/Error
-		txt_bookStock_inner2_changeErrTxt.setForeground(Color.RED);
-		txt_bookStock_inner2_changeErrTxt.setBounds(20, 190, 200, 20);
-		panel_bookStock_inner2.add(txt_bookStock_inner2_changeErrTxt);
-		JLabel txt_bookStock_inner2_addRemErrTxt = new JLabel();				// Label Add/Remove Book from Stock Table Success/Error
-		txt_bookStock_inner2_addRemErrTxt.setForeground(Color.RED);
-		txt_bookStock_inner2_addRemErrTxt.setBounds(400, 190, 300, 20);
-		panel_bookStock_inner2.add(txt_bookStock_inner2_addRemErrTxt);
+		JLabel txt_bookStock_inner2_changeRemErrTxt = new JLabel();				// Label Change/Remove Stock Success/Error
+		txt_bookStock_inner2_changeRemErrTxt.setForeground(Color.RED);
+		txt_bookStock_inner2_changeRemErrTxt.setBounds(20, 190, 300, 20);
+		panel_bookStock_inner2.add(txt_bookStock_inner2_changeRemErrTxt);
+		JLabel txt_bookStock_inner2_addErrTxt = new JLabel();				// Label Add Book from Stock Table Success/Error
+		txt_bookStock_inner2_addErrTxt.setForeground(Color.RED);
+		txt_bookStock_inner2_addErrTxt.setBounds(400, 190, 300, 20);
+		panel_bookStock_inner2.add(txt_bookStock_inner2_addErrTxt);
 		// Buttons and Actions
 		// Change Stock Button
 		JButton btn_bookStock_inner2_change = new JButton("Change Stock");		
 		btn_bookStock_inner2_change.setBounds(20, 160, 120, 25);
 		panel_bookStock_inner2.add(btn_bookStock_inner2_change);
+		// Remove from Table Button
+		JButton btn_bookStock_inner2_remFromTable = new JButton("Remove");				
+		btn_bookStock_inner2_remFromTable.setBounds(160, 160, 100, 25);
+		panel_bookStock_inner2.add(btn_bookStock_inner2_remFromTable);
 		// Add to Table Button
 		JButton btn_bookStock_inner2_addToTable = new JButton("Add");					
 		btn_bookStock_inner2_addToTable.setBounds(400, 160, 80, 25);
 		panel_bookStock_inner2.add(btn_bookStock_inner2_addToTable);
-		// Remove from Table Button
-		JButton btn_bookStock_inner2_remFromTable = new JButton("Remove");				
-		btn_bookStock_inner2_remFromTable.setBounds(500, 160, 80, 25);
-		panel_bookStock_inner2.add(btn_bookStock_inner2_remFromTable);
 		/* Book Stock, Inner Panel 2 End */
 		
 		
@@ -608,6 +586,8 @@ public class HQ_Client {
 							
 							// Runs Insert Query into Table Book_Ctlg
 							updateTable(sql, table_bookCtlg_tableName, tableModel_bookCtlg);
+							// Updates Drop Menu
+							updateDropMenu(table_bookCtlg_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookCtlgISBN, false);
 							
 							// Clears Text Fields
 							txtEnt_bookCtlg_inner2_ISBN.setText("");
@@ -630,14 +610,12 @@ public class HQ_Client {
 		btn_bookStock_inner2_change.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					//long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
-					long ISBN = (long) drpMenuModel_bookStock_inner2_bookStockISBN.getSelectedItem();
-					//int storeNumber = Integer.parseInt(txtEnt_bookStock_inner2_storeNum.getText());
-					int storeNumber = (int) drpMenuModel_bookStock_inner2_bookStockStoreNum.getSelectedItem();
+					long ISBN = Long.parseLong((String) drpMenuModel_bookStock_inner2_bookStockISBN.getSelectedItem());
+					int storeNumber = Integer.parseInt((String) drpMenuModel_bookStock_inner2_bookStockStoreNum.getSelectedItem());
 					int stock = Integer.parseInt(txtEnt_bookStock_inner2_stock.getText());
 					
 					if(String.valueOf(ISBN).equals("") || String.valueOf(storeNumber).equals("") || String.valueOf(stock).equals("")) {
-						txt_bookStock_inner2_changeErrTxt.setText("Invalid Inputs in Text Fields");
+						txt_bookStock_inner2_changeRemErrTxt.setText("Invalid Inputs in Text Fields");
 					} else {
 						if(String.valueOf(ISBN).chars().count() == 13 && checkTable_compEntry(tableModel_bookStock, String.valueOf(ISBN), String.valueOf(storeNumber), 0, 1)) {
 							//txt_bookStock_inner2_changeErrTxt.setText("Inputs Valid");
@@ -652,15 +630,15 @@ public class HQ_Client {
 							// Testing
 							System.out.println(sql);
 							
-							txt_bookStock_inner2_changeErrTxt.setText("Change Successful");
+							txt_bookStock_inner2_changeRemErrTxt.setText("Change Successful");
 						} else {
-							txt_bookStock_inner2_changeErrTxt.setText("Invalid Inputs in Text Fields");
+							txt_bookStock_inner2_changeRemErrTxt.setText("Invalid Inputs in Text Fields");
 						}
 						System.out.println("Btn Pressed");
 					}
 					
 				} catch(Exception error) {
-					txt_bookStock_inner2_changeErrTxt.setText("Invalid Inputs in Text Fields");
+					txt_bookStock_inner2_changeRemErrTxt.setText("Invalid Inputs in Text Fields");
 					System.out.println(error);
 				}
 			}
@@ -670,19 +648,19 @@ public class HQ_Client {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					//long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
-					long ISBN = (long) drpMenuModel_bookStock_inner2_bookStockISBN.getSelectedItem();
-					int storeNumber = (int) drpMenuModel_bookStock_inner2_bookStockStoreNum.getSelectedItem();
+					long ISBN = Long.parseLong((String) drpMenuModel_bookStock_inner2_bookStockISBN.getSelectedItem());
+					int storeNumber = Integer.parseInt((String) drpMenuModel_bookStock_inner2_bookStockStoreNum.getSelectedItem());
 					
-					if(String.valueOf(ISBN).equals("") || String.valueOf(storeNumber).equals("")) {
-						txt_bookStock_inner2_addRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
+					if(String.valueOf(ISBN).equals("") || String.valueOf(storeNumber).equals("") || !(checkTable_compEntry(tableModel_bookStock, String.valueOf(ISBN), String.valueOf(storeNumber), 0, 1))) {
+						txt_bookStock_inner2_changeRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
 					} else {
-						String sql = "DELETE FROM " + table_bookStock_tableName + " WHERE ISBN = " + ISBN;
+						String sql = "DELETE FROM " + table_bookStock_tableName + " WHERE ISBN = " + ISBN + " AND store_number = " + storeNumber;
 						
 						// Runs DELETE Query and Updates Table
 						updateTable(sql, table_bookStock_tableName, tableModel_bookStock);
 						// Updates Drop Down Menus
-						updateDropMenu(table_bookStock_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookStockISBN);
-						updateDropMenu(table_bookStock_tableName, "store_number", drpMenuModel_bookStock_inner2_bookStockStoreNum);
+						updateDropMenu(table_bookStock_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookStockISBN, true);
+						updateDropMenu(table_bookStock_tableName, "store_number", drpMenuModel_bookStock_inner2_bookStockStoreNum, true);
 						
 						// Clear Text Fields
 						txtEnt_bookStock_inner2_stock.setText("");
@@ -691,11 +669,11 @@ public class HQ_Client {
 						System.out.println(sql);
 						System.out.println("ISBN Pos: " + checkTable_Entry(tableModel_bookStock, String.valueOf(ISBN), 0));
 						
-						txt_bookStock_inner2_addRemErrTxt.setText("Remove Successful");
+						txt_bookStock_inner2_changeRemErrTxt.setText("Remove Successful");
 					}
 					
 				} catch(Exception error) {
-					txt_bookStock_inner2_addRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
+					txt_bookStock_inner2_changeRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
 					System.out.println(error);
 				}
 			}
@@ -704,28 +682,31 @@ public class HQ_Client {
 		btn_bookStock_inner2_addToTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
+					//long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
+					long ISBN = Long.parseLong((String) drpMenuModel_bookStock_inner2_bookCtlgISBN.getSelectedItem());
+					int storeNumber = Integer.parseInt((String) drpMenuModel_bookStock_inner2_officesStoreNum.getSelectedItem());
 					
-					if(String.valueOf(ISBN).equals("") || String.valueOf(ISBN).chars().count() != 13 || checkTable_Entry(tableModel_bookCtlg, String.valueOf(ISBN), 0) < 0 || checkTable_Entry(tableModel_bookStock, String.valueOf(ISBN), 0) >= 0) {	
-						txt_bookStock_inner2_addRemErrTxt.setText("Add Unsuccessful, Invalid Input in ISBN");
+					if(String.valueOf(ISBN).equals("") || String.valueOf(storeNumber).equals("") || checkTable_compEntry(tableModel_bookStock, String.valueOf(ISBN), String.valueOf(storeNumber), 0, 1)) {	
+						txt_bookStock_inner2_addErrTxt.setText("Add Unsuccessful, Invalid Input in ISBN");
 					} else {
-						String sql = "INSERT INTO " + table_bookStock_tableName + " (ISBN, Store_Number, Stock, Price) VALUES (" + ISBN + ", 0, 0, 0)";
+						String sql = "INSERT INTO " + table_bookStock_tableName + " (ISBN, Store_Number, Stock, Price) VALUES (" + ISBN + ", " + storeNumber + ", 0, 0)";
 						
 						// Runs INSERT Query
 						updateTable(sql, table_bookStock_tableName, tableModel_bookStock);
+						// Updates Drop Down Menus
+						updateDropMenu(table_bookStock_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookStockISBN, true);
+						updateDropMenu(table_bookStock_tableName, "store_number", drpMenuModel_bookStock_inner2_bookStockStoreNum, true);
 						
 						// Clear Text Fields
-						txtEnt_bookStock_inner2_ISBN.setText("");
-						txtEnt_bookStock_inner2_storeNum.setText("");
 						txtEnt_bookStock_inner2_stock.setText("");
 						
 						// Testing
 						System.out.println(sql);
 						
-						txt_bookStock_inner2_addRemErrTxt.setText("Add Successful");
+						txt_bookStock_inner2_addErrTxt.setText("Add Successful");
 					}
 				} catch(Exception error) {
-					txt_bookStock_inner2_addRemErrTxt.setText("Add Unsuccessful, Invalid Input in ISBN");
+					txt_bookStock_inner2_addErrTxt.setText("Add Unsuccessful, Invalid Input in ISBN");
 					System.out.println(error);
 				}
 			}
@@ -787,7 +768,7 @@ public class HQ_Client {
 						// Runs DELETE Query
 						updateTable(sql, table_employees_tableName, tableModel_employees);
 						// Updates Drop Down Menu
-						updateDropMenu(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID);
+						updateDropMenu(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID, false);
 						
 						txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Remove Successful");
 					}
@@ -813,7 +794,7 @@ public class HQ_Client {
 						// Runs INSERT Query
 						updateTable(sql, table_employees_tableName, tableModel_employees);
 						// Updates Drop Down Menu
-						updateDropMenu(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID);
+						updateDropMenu(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID, false);
 						
 						// Clear Text Fields
 						txtEnt_employees_inner2_name.setText("");
@@ -843,6 +824,8 @@ public class HQ_Client {
 						
 						// Runs INSERT Query
 						updateTable(sql, table_offices_tableName, tableModel_offices);
+						// Updates Drop Down Menu
+						updateDropMenu(table_offices_tableName, "store_number", drpMenuModel_bookStock_inner2_officesStoreNum, false);
 						
 						// Clears Text Fields
 						txtEnt_offices_inner2_city.setText("");
@@ -953,8 +936,8 @@ public class HQ_Client {
 	}
 	
 	// Update Drop Down Menu
-	public static void updateDropMenu(String tableName, String column, DefaultComboBoxModel dropMenuModel) {
-		String[] table_rowData = selectQuery("SELECT " + column + " FROM " + tableName);
+	public static void updateDropMenu(String tableName, String column, DefaultComboBoxModel dropMenuModel, Boolean distinctValues) {
+		String[] table_rowData = (distinctValues) ? selectQuery("SELECT DISTINCT " + column + " FROM " + tableName) : selectQuery("SELECT " + column + " FROM " + tableName);
 		
 		dropMenuModel.removeAllElements();
 		

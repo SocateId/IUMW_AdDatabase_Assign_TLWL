@@ -25,5 +25,24 @@ public class OldCode_Container {
 	//	DefaultTableModel tableModel_bookCtlg = new DefaultTableModel(table_bookCtlg_rowData, table_bookCtlg_colNames);
 	//	scrollPane_bookCtlg.setViewportView(new JTable(tableModel_bookCtlg));
 	//	/* Table End */
+	
+//	// Store Number Text Field
+//	JTextField txtEnt_bookStock_inner2_storeNum = new JTextField();
+//	txtEnt_bookStock_inner2_storeNum.setColumns(36);
+//	txtEnt_bookStock_inner2_storeNum.setBounds(110, 80, 200, 20);
+//	panel_bookStock_inner2.add(txtEnt_bookStock_inner2_storeNum);
+	
 
+//	String[] arrayStr_employees_emplIDs = selectQuery("SELECT ID FROM employees");
+//	DefaultComboBoxModel drpMenuModel_employees_inner2_ID = new DefaultComboBoxModel(arrayStr_employees_emplIDs);
+//	JComboBox drpMenu_employees_inner2_ID = new JComboBox(drpMenuModel_employees_inner2_ID);
+//	drpMenu_employees_inner2_ID.setBounds(100, 50, 60, 20);
+//	panel_employees_inner2.add(drpMenu_employees_inner2_ID);
+	
+	// ISBN Text Field
+//	JTextField txtEnt_bookStock_inner2_ISBN = new JTextField();
+//	txtEnt_bookStock_inner2_ISBN.setColumns(13);
+//	txtEnt_bookStock_inner2_ISBN.setBounds(110, 50, 200, 20);
+//	panel_bookStock_inner2.add(txtEnt_bookStock_inner2_ISBN);
+	
 }

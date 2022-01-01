@@ -226,7 +226,7 @@ public class GUI_WinBuildTest {
 		panel2_inner2.add(textField_table2_stock);
 		
 		JButton btn_table2_changeStock = new JButton("Change Stock");
-		btn_table2_changeStock.setBounds(20, 160, 100, 25);
+		btn_table2_changeStock.setBounds(20, 160, 120, 25);
 		panel2_inner2.add(btn_table2_changeStock);
 		
 		JLabel lblNewLabel_1 = new JLabel("Invalid Inputs in Text Fields");
@@ -247,7 +247,7 @@ public class GUI_WinBuildTest {
 		panel2_inner2.add(btn_table2_addBookStock);
 		
 		JButton btn_table2_remBookStock = new JButton("Remove");
-		btn_table2_remBookStock.setBounds(140, 160, 100, 25);
+		btn_table2_remBookStock.setBounds(160, 160, 100, 25);
 		panel2_inner2.add(btn_table2_remBookStock);
 		
 		JLabel txt_table2_drpDownErrSucc = new JLabel("Add Succesfull");
