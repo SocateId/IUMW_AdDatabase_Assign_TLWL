@@ -45,6 +45,9 @@ public class GUI_WinBuildTest {
 	private JTextField textField_table4_inner2_postcode;
 	private JTable table4;
 	private JTable table5;
+	private JComboBox textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -452,7 +455,7 @@ public class GUI_WinBuildTest {
 		pane4_inner2.add(lblNewLabel_1_1_1);
 		
 		JPanel panel_5 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_5, null);
+		tabbedPane.addTab("Tab 5", null, panel_5, null);
 		panel_5.setLayout(new BoxLayout(panel_5, BoxLayout.Y_AXIS));
 		
 		JPanel panel5_inner1 = new JPanel();
@@ -483,13 +486,56 @@ public class GUI_WinBuildTest {
 		table5.setEnabled(false);
 		scrollPane_table5.setViewportView(table5);
 		
-		JPanel panel5_inner2_1 = new JPanel();
-		panel5_inner2_1.setLayout(null);
-		panel5_inner2_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_5.add(panel5_inner2_1);
+		JPanel panel5_inner2 = new JPanel();
+		panel5_inner2.setLayout(null);
+		panel5_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_5.add(panel5_inner2);
 		
-		JLabel txt_table5_inner2_barChart = new JLabel("Bar Chart, Profits to Store");
-		txt_table5_inner2_barChart.setBounds(20, 20, 300, 25);
-		panel5_inner2_1.add(txt_table5_inner2_barChart);
+		JLabel txt_table5_inner2_addHead = new JLabel("Add Sales");
+		txt_table5_inner2_addHead.setBounds(20, 20, 350, 25);
+		panel5_inner2.add(txt_table5_inner2_addHead);
+		
+		JLabel txt_table3_inner2_IDDrpDown_2 = new JLabel("Date");
+		txt_table3_inner2_IDDrpDown_2.setBounds(20, 50, 80, 20);
+		panel5_inner2.add(txt_table3_inner2_IDDrpDown_2);
+		
+		JLabel txt_table3_inner2_name_1 = new JLabel("Month");
+		txt_table3_inner2_name_1.setBounds(20, 80, 80, 20);
+		panel5_inner2.add(txt_table3_inner2_name_1);
+		
+		JLabel txt_table3_inner2_password_1 = new JLabel("Year");
+		txt_table3_inner2_password_1.setBounds(20, 110, 80, 20);
+		panel5_inner2.add(txt_table3_inner2_password_1);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBounds(100, 50, 200, 20);
+		panel5_inner2.add(comboBox_2);
+		
+		textField = new JComboBox();
+		textField.setBounds(100, 80, 200, 20);
+		panel5_inner2.add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(36);
+		textField_1.setBounds(100, 110, 200, 20);
+		panel5_inner2.add(textField_1);
+		
+		JButton btn_table3_inner2_changeNmPwd_1 = new JButton("Add");
+		btn_table3_inner2_changeNmPwd_1.setBounds(20, 190, 90, 25);
+		panel5_inner2.add(btn_table3_inner2_changeNmPwd_1);
+		
+		JLabel lblNewLabel_1_1_2 = new JLabel("Invalid Inputs in Text Fields");
+		lblNewLabel_1_1_2.setForeground(Color.RED);
+		lblNewLabel_1_1_2.setBounds(20, 220, 300, 20);
+		panel5_inner2.add(lblNewLabel_1_1_2);
+		
+		JLabel txt_table3_inner2_password_1_1 = new JLabel("Year");
+		txt_table3_inner2_password_1_1.setBounds(20, 140, 80, 20);
+		panel5_inner2.add(txt_table3_inner2_password_1_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(36);
+		textField_2.setBounds(100, 140, 200, 20);
+		panel5_inner2.add(textField_2);
 	}
 }

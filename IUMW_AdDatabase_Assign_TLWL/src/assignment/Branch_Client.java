@@ -203,7 +203,7 @@ public class Branch_Client {
 		panel_bookStock_inner2.setLayout(null);
 		/* Labels and Text Fields */
 		// Headers
-		JLabel txt_bookStock_inner2 = new JLabel("Change/Remove Book Stock");									// Change/Remove Book Stock Header
+		JLabel txt_bookStock_inner2 = new JLabel("Change/Remove Book Stock and or Price");				// Change/Remove Book Stock Header
 		txt_bookStock_inner2.setBounds(20, 20, 200, 25);
 		panel_bookStock_inner2.add(txt_bookStock_inner2);
 		JLabel txt_bookStock_inner2_addRemToHQ = new JLabel("Add Books from Book Catalogue to Table");	// Add Books from Book Catalogue to Stock of HQ Header
@@ -240,6 +240,15 @@ public class Branch_Client {
 		txtEnt_bookStock_inner2_stock.setColumns(36);
 		txtEnt_bookStock_inner2_stock.setBounds(110, 80, 200, 20);
 		panel_bookStock_inner2.add(txtEnt_bookStock_inner2_stock);
+		// Price Label
+		JLabel txt_bookStock_inner2_price = new JLabel("Price");
+		txt_bookStock_inner2_price.setBounds(20, 110, 80, 20);
+		panel_bookStock_inner2.add(txt_bookStock_inner2_price);
+		// Price Text Field
+		JTextField txtEnt_bookStock_inner2_price = new JTextField();
+		txtEnt_bookStock_inner2_price.setColumns(36);
+		txtEnt_bookStock_inner2_price.setBounds(110, 110, 200, 20);
+		panel_bookStock_inner2.add(txtEnt_bookStock_inner2_price);
 		// ISBN from Book Catalogue Label
 		JLabel txt_bookStock_inner2_addToTable = new JLabel("Book Ctlg, ISBN");
 		txt_bookStock_inner2_addToTable.setBounds(400, 50, 100, 20);
@@ -376,7 +385,7 @@ public class Branch_Client {
 		txt_employees_inner2_addNewEmplErrTxt.setForeground(Color.RED);
 		txt_employees_inner2_addNewEmplErrTxt.setBounds(400, 190, 300, 20);
 		panel_employees_inner2.add(txt_employees_inner2_addNewEmplErrTxt);
-		// Buttons and Actions
+		// The Buttons
 		// Change Name and or Password in Employee Table
 		JButton btn_employees_inner2_change = new JButton("Change");					
 		btn_employees_inner2_change.setBounds(20, 160, 90, 25);
@@ -420,8 +429,382 @@ public class Branch_Client {
 		
 		
 		
+		// Sales Panels
+		// Panels
+		JPanel panel_sales = new JPanel();
+		String panel_sales_name = "Sales";													// Panel Name
+		tabbedPane.addTab(panel_sales_name, null, panel_sales, null);						// Add to Tabs
+		panel_sales.setLayout(new BoxLayout(panel_sales, BoxLayout.Y_AXIS));				// Sets Panel Layout
+		/* Sales, Inner Panel 1 Start */
+		/* Inner Panel Object */
+		JPanel panel_sales_inner1 = new JPanel();
+		/* Label */
+		JLabel txt_sales_inner1 = new JLabel();
+		/* Refresh Button */
+		JButton btn_sales_inner1_refreshPg = new JButton("Refresh");
+		/* Scroll Pane */
+		JScrollPane scrollPane_sales = new JScrollPane();
+		/* Table Start */
+		String table_sales_tableName = "sales";												// Table Name
+		// The Table Object
+		DefaultTableModel tableModel_sales = new  DefaultTableModel();
+		JTable table_sales = new JTable();
+		/* Table End */
+		// Runs Function to Design and Render it
+		Make_tablePanel_Branch(frame, panel_sales, panel_sales_inner1, txt_sales_inner1, btn_sales_inner1_refreshPg, panel_sales_name, table_sales_tableName, scrollPane_sales, tableModel_sales, table_sales, branchStore_number);
+		/* Sales, Inner Panel 1 End */
+		/* Sales, Inner Panel 2 Start */
+		JPanel panel_sales_inner2 = new JPanel();
+		panel_sales_inner2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_sales.add(panel_sales_inner2);
+		panel_sales_inner2.setLayout(null);
+		/* Labels and Text Fields */
+		// Headers
+		JLabel txt_sales_inner2_headAddSales = new JLabel("Add Sales");			// Add Sale to Sales Table Header
+		txt_sales_inner2_headAddSales.setBounds(20, 20, 300, 25);
+		panel_sales_inner2.add(txt_sales_inner2_headAddSales);
+		/* Sales, Inner Panel 2 End */
+		// Date Label
+		JLabel txt_sales_inner2_date = new JLabel("Date");
+		txt_sales_inner2_date.setBounds(20, 50, 80, 20);
+		panel_sales_inner2.add(txt_sales_inner2_date);
+		// Date Drop Menu
+		String[] arrayStr_sales_date = new String[31];
+		for(int i=1; i<=arrayStr_sales_date.length; i++) {
+			arrayStr_sales_date[i-1] = String.valueOf(i);
+		}
+		DefaultComboBoxModel drpMenuModel_sales_inner2_date = new DefaultComboBoxModel(arrayStr_sales_date);
+		JComboBox drpMenu_sales_inner2_date = new JComboBox(drpMenuModel_sales_inner2_date);
+		drpMenu_sales_inner2_date.setBounds(100, 50, 200, 20);
+		panel_sales_inner2.add(drpMenu_sales_inner2_date);
+		// Month Label
+		JLabel txt_sales_inner2_month = new JLabel("Month");
+		txt_sales_inner2_month.setBounds(20, 80, 80, 20);
+		panel_sales_inner2.add(txt_sales_inner2_month);
+		// Month Drop Menu
+		String[] arrayStr_sales_month = new String[12];
+		for(int i=1; i<=arrayStr_sales_month.length; i++) {
+			arrayStr_sales_month[i-1] = String.valueOf(i);
+		}
+		DefaultComboBoxModel drpMenuModel_sales_inner2_month = new DefaultComboBoxModel(arrayStr_sales_month);
+		JComboBox drpMenu_sales_inner2_month = new JComboBox(drpMenuModel_sales_inner2_month);
+		drpMenu_sales_inner2_month.setBounds(100, 80, 200, 20);
+		panel_sales_inner2.add(drpMenu_sales_inner2_month);
+		// Year Label
+		JLabel txt_sales_inner2_year = new JLabel("Year");
+		txt_sales_inner2_year.setBounds(20, 110, 80, 20);
+		panel_sales_inner2.add(txt_sales_inner2_year);
+		// Year Text Field
+		JTextField txtEnt_sales_inner2_year = new JTextField();
+		txtEnt_sales_inner2_year.setColumns(4);
+		txtEnt_sales_inner2_year.setBounds(100, 110, 200, 20);
+		panel_sales_inner2.add(txtEnt_sales_inner2_year);
+		// Amount Label
+		JLabel txt_sales_inner2_amount = new JLabel("Amount");
+		txt_sales_inner2_amount.setBounds(20, 140, 80, 20);
+		panel_sales_inner2.add(txt_sales_inner2_amount);
+		// Amount Text Field
+		JTextField txtEnt_sales_inner2_amount = new JTextField();
+		txtEnt_sales_inner2_amount.setColumns(36);
+		txtEnt_sales_inner2_amount.setBounds(100, 140, 200, 20);
+		panel_sales_inner2.add(txtEnt_sales_inner2_amount);
+		/* Buttons */
+		// Error/Success in Inputs
+		JLabel txt_sales_inner2_addErrTxt = new JLabel();				// Add Sales Success/Error
+		txt_sales_inner2_addErrTxt.setForeground(Color.RED);
+		txt_sales_inner2_addErrTxt.setBounds(20, 220, 300, 20);
+		panel_sales_inner2.add(txt_sales_inner2_addErrTxt);
+		// The Buttons
+		// Add New Sales to Table
+		JButton btn_sales_inner2_add = new JButton("Add");					
+		btn_sales_inner2_add.setBounds(20, 190, 90, 25);
+		panel_sales_inner2.add(btn_sales_inner2_add);
 		
 		
+		
+		/* Button Actions, Start */
+		// Book Stock
+		// Book Stock, Change the Stock of the Books
+		btn_bookStock_inner2_change.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					long ISBN = Long.parseLong((String) drpMenuModel_bookStock_inner2_bookStockISBN.getSelectedItem());
+					//int storeNumber = Integer.parseInt((String) drpMenuModel_bookStock_inner2_bookStockStoreNum.getSelectedItem());
+					String stock = txtEnt_bookStock_inner2_stock.getText();
+					String price = txtEnt_bookStock_inner2_price.getText();
+					
+					if(String.valueOf(ISBN).equals("") || (stock.equals("") && price.equals(""))) {
+						txt_bookStock_inner2_changeRemErrTxt.setText("Invalid Inputs in Text Fields");
+					} else {
+						String sql = "";
+						Boolean flag = false;
+						if(!(String.valueOf(stock).equals("")) && !(String.valueOf(price).equals(""))) {
+							sql = "UPDATE " + table_bookStock_tableName + " SET stock = '" + stock + "', price = '" + price + "' WHERE (ISBN = '" + ISBN + "' AND store_number = '" + branchStore_number + "')";
+							flag = true;
+						} else if(!(String.valueOf(stock).equals(""))) {
+							sql = "UPDATE " + table_bookStock_tableName + " SET stock = '" + stock + "' WHERE (ISBN = '" + ISBN  + "' AND store_number = '" + branchStore_number + "')";
+							flag = true;
+						} else if(!(String.valueOf(price).equals(""))) {
+							sql = "UPDATE " + table_bookStock_tableName + " SET price = '" + price + "' WHERE (ISBN = '" + ISBN + "' AND store_number = '" + branchStore_number + "')";
+							flag = true;
+						}
+						
+						if(flag) {
+							// Runs UPDATE Query and Updates Book Stock Table
+							updateTable_SQL_Branch(sql, table_bookStock_tableName, tableModel_bookStock, branchStore_number);
+							
+							// Clear Text Fields
+							txtEnt_bookStock_inner2_stock.setText("");
+							txtEnt_bookStock_inner2_price.setText("");
+							
+							txt_bookStock_inner2_changeRemErrTxt.setText("Change Successful");
+						} else {
+							txt_bookStock_inner2_changeRemErrTxt.setText("Invalid Inputs in Text Fields");
+						}
+					}
+					
+				} catch(Exception error) {
+					txt_bookStock_inner2_changeRemErrTxt.setText("Invalid Inputs in Text Fields");
+					System.out.println("Button, Change Stock Error: " + error);
+				}
+			}
+		});
+		// Book Stock, Remove a Row from Table
+		btn_bookStock_inner2_remFromTable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					//long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
+					long ISBN = Long.parseLong((String) drpMenuModel_bookStock_inner2_bookStockISBN.getSelectedItem());
+					
+					if(String.valueOf(ISBN).equals("") || !(checkTable_compEntry(tableModel_bookStock, String.valueOf(ISBN), String.valueOf(branchStore_number), 0, 1))) {
+						txt_bookStock_inner2_changeRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
+					} else {
+						String sql = "DELETE FROM " + table_bookStock_tableName + " WHERE ISBN = " + ISBN + " AND store_number = " + branchStore_number;
+						
+						// Runs DELETE Query and Updates Table
+						updateTable_SQL_Branch(sql, table_bookStock_tableName, tableModel_bookStock, branchStore_number);
+						// Updates Drop Down Menus
+						updateDropMenu_Branch(table_bookStock_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookStockISBN, true, branchStore_number);
+						
+						// Clear Text Fields
+						txtEnt_bookStock_inner2_stock.setText("");
+						txtEnt_bookStock_inner2_price.setText("");
+						
+						// Testing
+						System.out.println(sql);
+						System.out.println("ISBN Pos: " + checkTable_Entry(tableModel_bookStock, String.valueOf(ISBN), 0));
+						
+						txt_bookStock_inner2_changeRemErrTxt.setText("Remove Successful");
+					}
+					
+				} catch(Exception error) {
+					txt_bookStock_inner2_changeRemErrTxt.setText("Remove Unsuccessful, Invalid Input in ISBN");
+					System.out.println(error);
+				}
+			}
+		});
+		// Book Stock, Add a New Row to Table
+		btn_bookStock_inner2_addToTable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					//long ISBN = Long.parseLong(txtEnt_bookStock_inner2_ISBN.getText());
+					long ISBN = Long.parseLong((String) drpMenuModel_bookStock_inner2_bookCtlgISBN.getSelectedItem());
+					
+					if(String.valueOf(ISBN).equals("") || checkTable_compEntry(tableModel_bookStock, String.valueOf(ISBN), String.valueOf(branchStore_number), 0, 1)) {	
+						txt_bookStock_inner2_addErrTxt.setText("Add Unsuccessful, Invalid Input in ISBN");
+					} else {
+						String sql = "INSERT INTO " + table_bookStock_tableName + " (ISBN, Store_Number, Stock, Price) VALUES (" + ISBN + ", " + branchStore_number + ", 0, 0)";
+						
+						// Runs INSERT Query
+						updateTable_SQL_Branch(sql, table_bookStock_tableName, tableModel_bookStock, branchStore_number);
+						// Updates Drop Down Menus
+						updateDropMenu_Branch(table_bookStock_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookStockISBN, true, branchStore_number);
+						
+						// Clear Text Fields
+						txtEnt_bookStock_inner2_stock.setText("");
+						txtEnt_bookStock_inner2_price.setText("");
+						
+						// Testing
+						System.out.println(sql);
+						
+						txt_bookStock_inner2_addErrTxt.setText("Add Successful");
+					}
+				} catch(Exception error) {
+					txt_bookStock_inner2_addErrTxt.setText("Add Unsuccessful, Invalid Input in ISBN");
+					System.out.println(error);
+				}
+			}
+		});
+		// Employees
+		// Employees, Change Name and or Password in Employee Table
+		btn_employees_inner2_change.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int ID = Integer.parseInt((String) drpMenuModel_employees_inner2_ID.getSelectedItem());
+					String Name = txtEnt_employees_inner2_name.getText();
+					String Password = txtEnt_employees_inner2_password.getText();
+					
+					if(String.valueOf(ID).equals("") || (Name.equals("") && Password.equals(""))) {
+						txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Unsuccessful, Invalid Inputs in Text Fields");
+					} else {
+						String sql = "";
+						Boolean flag = false;
+						if(!(Name.equals("")) && !(Password.equals(""))) {
+							sql = "UPDATE " + table_employees_tableName + " SET name = '" + Name + "', password = '" + Password + "' WHERE ID = " + ID;
+							flag = true;
+						} else if(!(Name.equals(""))) {
+							sql = "UPDATE " + table_employees_tableName + " SET name = '" + Name + "' WHERE ID = " + ID;
+							flag = true;
+						} else if(!(Password.equals(""))) {
+							sql = "UPDATE " + table_employees_tableName + " SET password = '" + Password + "' WHERE ID = " + ID;
+							flag = true;
+						}
+						
+						if(flag) {
+							// Runs UPDATE Query and Updates the Employees Table
+							updateTable_SQL_Branch(sql, table_employees_tableName, tableModel_employees, branchStore_number);
+							
+							// Clear Text Fields
+							txtEnt_employees_inner2_name.setText("");
+							txtEnt_employees_inner2_password.setText("");
+							
+							txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Successful");
+						} else {
+							txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Unsuccessful, Invalid Inputs in Text Fields");
+						}
+					}
+				} catch(Exception error) {
+					txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Unsuccessful, Invalid Inputs in Text Fields");
+					System.out.println(error);
+				}
+			}
+		});
+		// Employees, Remove Employee Data/Row in Employee Table
+		btn_employees_inner2_remove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int ID = Integer.parseInt((String) drpMenuModel_employees_inner2_ID.getSelectedItem());
+					
+					if(String.valueOf(ID).equals("") || checkTable_Entry(tableModel_employees, String.valueOf(ID), 0) < 0) {
+						txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Remove Unsuccessful, Invalid Selection in ID Drop Menu");
+					} else {
+						String sql = "DELETE FROM " + table_employees_tableName + " WHERE ID = " + ID + " AND store_number = " + branchStore_number;
+						
+						// Runs DELETE Query and Updates Employees Table
+						updateTable_SQL_Branch(sql, table_employees_tableName, tableModel_employees, branchStore_number);
+						// Updates Drop Down Menu
+						updateDropMenu_Branch(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID, false, branchStore_number);
+						
+						// Clear Text Fields
+						txtEnt_employees_inner2_name.setText("");
+						txtEnt_employees_inner2_password.setText("");
+						
+						txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Remove Successful");
+					}
+					
+				} catch(Exception error) {
+					txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Remove Unsuccessful, Invalid Selection in ID Drop Menu");
+					System.out.println(error);
+				}
+			}
+		});
+		// Employees, Add Employee to Table
+		btn_employees_inner2_add.addActionListener(new ActionListener() {
+			public void  actionPerformed(ActionEvent e) {
+				try {
+					String Name = txtEnt_employees_inner2_name.getText();
+					String Password = txtEnt_employees_inner2_password.getText();
+					
+					if(Name.equals("") || Password.contentEquals("")) {
+						txt_employees_inner2_addNewEmplErrTxt.setText("Add Unsuccesfull, Invalid Inputs in Fields");
+					} else {
+						String sql = "INSERT INTO " + table_employees_tableName + " (store_number, name, password) VALUES ('" + branchStore_number + "', '" + Name + "', '" + Password + "')";
+						
+						// Runs INSERT Query and Updates Employees Table
+						updateTable_SQL_Branch(sql, table_employees_tableName, tableModel_employees, branchStore_number);
+						// Updates Drop Down Menu
+						updateDropMenu_Branch(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID, false, branchStore_number);
+						
+						// Clear Text Fields
+						txtEnt_employees_inner2_name.setText("");
+						txtEnt_employees_inner2_password.setText("");
+						
+						txt_employees_inner2_addNewEmplErrTxt.setText("Add Succesfull");
+					}
+				} catch(Exception error) {
+					txt_employees_inner2_addNewEmplErrTxt.setText("Add Unsuccesfull, Invalid Inputs in Fields");
+					System.out.println(error);
+				}
+			}
+		});
+		// Sales
+		// Sales, Add Sales to Table
+		btn_sales_inner2_add.addActionListener(new ActionListener() {
+			public void  actionPerformed(ActionEvent e) {
+				try {
+					int Date = Integer.parseInt((String) drpMenuModel_sales_inner2_date.getSelectedItem());
+					int Month = Integer.parseInt((String) drpMenuModel_sales_inner2_month.getSelectedItem());
+					String Year = txtEnt_sales_inner2_year.getText();
+					double Amount = Double.parseDouble(txtEnt_sales_inner2_amount.getText());
+					
+					if(String.valueOf(Date).equals("") || String.valueOf(Month).equals("") || Year.equals("") || Year.chars().count() != 4 || String.valueOf(Amount).equals("")) {
+						txt_sales_inner2_addErrTxt.setText("Add Unsuccesfull, Invalid Inputs in Fields");
+					} else {
+						String sql = "INSERT INTO " + table_sales_tableName + " (store_number, date, month, year, amount) VALUES ('" + branchStore_number + "', '" + Date + "', '" + Month + "', '" + Year + "', '" + Amount + "')";
+						
+						// Runs INSERT QUERY and Updates Sales Table
+						updateTable_SQL_Branch(sql, table_sales_tableName, tableModel_sales, branchStore_number);
+						
+						// Clear Text Fields
+						txtEnt_sales_inner2_year.setText("");
+						txtEnt_sales_inner2_amount.setText("");
+						
+						txt_sales_inner2_addErrTxt.setText("Add Succesfull");
+					}
+				} catch(Exception error) {
+					txt_sales_inner2_addErrTxt.setText("Add Unsuccesfull, Invalid Inputs in Fields");
+					System.out.println("Button Sales Add Error: " + error);
+				}
+			}
+		});
+		/* Button Actions, End */
+		
+		/* Refresh Buttons, Start */
+		// Book Catalogue
+		btn_bookCtlg_inner1_refreshPg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateTable(table_bookCtlg_tableName, tableModel_bookCtlg);
+				updateDropMenu(table_bookCtlg_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookCtlgISBN, false);
+			}
+		});
+		// Book Stock
+		btn_bookStock_inner1_refreshPg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateTable_Branch(table_bookStock_tableName, tableModel_bookStock, branchStore_number);
+				updateDropMenu_Branch(table_bookStock_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookStockISBN, true, branchStore_number);
+				updateDropMenu(table_bookCtlg_tableName, "ISBN", drpMenuModel_bookStock_inner2_bookCtlgISBN, false);
+			}
+		});
+		// Employees
+		btn_employees_inner1_refreshPg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateTable_Branch(table_employees_tableName, tableModel_employees, branchStore_number);
+				updateDropMenu_Branch(table_employees_tableName, "ID", drpMenuModel_employees_inner2_ID, false, branchStore_number);
+			}
+		});
+		// Offices
+		btn_offices_inner1_refreshPg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateTable(table_offices_tableName, tableModel_offices);
+			}
+		});
+		// Sales
+		btn_sales_inner1_refreshPg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateTable_Branch(table_sales_tableName, tableModel_sales, branchStore_number);
+			}
+		});
+		/* Refresh Buttons, End */
 		
 		// Display Window
 		frame.pack();											// Combine Window Elements, and Resize Them if Window Too Small
@@ -538,6 +921,17 @@ public class Branch_Client {
 		}
 	}
 	
+	// Update Drop Down Menu Specific to Branch
+	public static void updateDropMenu_Branch(String tableName, String column, DefaultComboBoxModel dropMenuModel, Boolean distinctValues, int storeNumber) {
+		String[] table_rowData = (distinctValues) ? selectQuery("SELECT DISTINCT " + column + " FROM " + tableName + " WHERE store_number = '" + storeNumber + "'") : selectQuery("SELECT " + column + " FROM " + tableName + " WHERE store_number = '" + storeNumber + "'");
+		
+		dropMenuModel.removeAllElements();
+		
+		for(String i : table_rowData) {
+			dropMenuModel.addElement(i);;
+		}
+	}
+	
 	// Update Drop Down Menu
 	public static void updateDropMenu(String tableName, String column, DefaultComboBoxModel dropMenuModel, Boolean distinctValues) {
 		String[] table_rowData = (distinctValues) ? selectQuery("SELECT DISTINCT " + column + " FROM " + tableName) : selectQuery("SELECT " + column + " FROM " + tableName);
@@ -546,6 +940,27 @@ public class Branch_Client {
 		
 		for(String i : table_rowData) {
 			dropMenuModel.addElement(i);;
+		}
+	}
+	
+	// Updates Table of Branch and Runs SQL
+	public static void updateTable_SQL_Branch(String sql, String tableName, DefaultTableModel table, int storeNumber) {
+		try {
+			// Runs Query Change/Affect Table
+			RMI_Server.updateQuery(sql);
+			
+			// Gets New Data from Database
+			String[][] table_rowData = getTable_RowData_Branch(tableName, storeNumber);
+			
+			// Reset Table Value
+			table.setRowCount(0);
+			// Inserts New Data from Database
+			for(int i=0; i<table_rowData.length; i++) {
+				table.addRow(table_rowData[i]);
+			}
+			
+		} catch(Exception error) {
+			System.out.println(error);
 		}
 	}
 	
@@ -570,6 +985,23 @@ public class Branch_Client {
 		}
 	}
 	
+	// Updates Table of Branch
+	public static void updateTable_Branch(String tableName, DefaultTableModel table, int storeNumber) {
+		try {
+			// Gets New Data from Database
+			String[][] table_rowData = getTable_RowData_Branch(tableName, storeNumber);
+			
+			// Reset Table Value
+			table.setRowCount(0);
+			// Inserts New Data from Database
+			for(int i=0; i<table_rowData.length; i++) {
+				table.addRow(table_rowData[i]);
+			}
+		} catch(Exception error) {
+			System.out.println(error);
+		}
+	}
+	
 	// Updates Table
 	public static void updateTable(String tableName, DefaultTableModel table) {
 		try {
@@ -587,7 +1019,6 @@ public class Branch_Client {
 		}
 	}
 	
-	//selectQuery_allRows_Branch(String table, int storeNumber)
 	// Create Table Panel Function, specific to Branch Office
 	public static void Make_tablePanel_Branch(JFrame frame, JPanel panel, JPanel panel_inner, JLabel label, JButton button, String panelName, String tableName, JScrollPane scrollPane, DefaultTableModel tableModel, JTable table, int storeNumber) {
 		try {

@@ -742,10 +742,10 @@ public class HQ_Client {
 					} else {
 						String sql = "";
 						Boolean flag = false;
-						if(!(Name.contentEquals("")) && !(Password.equals(""))) {
+						if(!(Name.equals("")) && !(Password.equals(""))) {
 							sql = "UPDATE " + table_employees_tableName + " SET name = '" + Name + "', password = '" + Password + "' WHERE ID = " + ID;
 							flag = true;
-						} else if(!(Name.contentEquals(""))) {
+						} else if(!(Name.equals(""))) {
 							sql = "UPDATE " + table_employees_tableName + " SET name = '" + Name + "' WHERE ID = " + ID;
 							flag = true;
 						} else if(!(Password.equals(""))) {
@@ -754,16 +754,17 @@ public class HQ_Client {
 						}
 						
 						if(flag) {
+							// Runs UPDATE Query and Updates the Employees Table
 							updateTable_SQL(sql, table_employees_tableName, tableModel_employees);
+							
+							// Clear Text Fields
+							txtEnt_employees_inner2_name.setText("");
+							txtEnt_employees_inner2_password.setText("");
+							
+							txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Successful");
 						} else {
 							txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Unsuccessful, Invalid Inputs in Text Fields");
 						}
-						
-						// Clear Text Fields
-						txtEnt_employees_inner2_name.setText("");
-						txtEnt_employees_inner2_password.setText("");
-						
-						txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Successful");
 					}
 				} catch(Exception error) {
 					txt_employees_inner2_changeOrRemoveEmplErrTxt.setText("Change Unsuccessful, Invalid Inputs in Text Fields");
@@ -807,7 +808,7 @@ public class HQ_Client {
 					if(Name.equals("") || Password.contentEquals("")) {
 						txt_employees_inner2_addNewEmplErrTxt.setText("Add Unsuccesfull, Invalid Inputs in Fields");
 					} else {
-						String sql = "INSERT INTO " + table_employees_tableName + "(store_number, name, password) VALUES (0, '" + Name + "', '" + Password + "')";
+						String sql = "INSERT INTO " + table_employees_tableName + "(store_number, name, password) VALUES ('" + storeNumber + "', '" + Name + "', '" + Password + "')";
 						
 						// Runs INSERT Query
 						updateTable_SQL(sql, table_employees_tableName, tableModel_employees);
