@@ -42,17 +42,18 @@ public class HQ_Client {
 	// Connect to RMI Server
 	static Interface_Remote RMI_Server;
 	
+	// Store Number
+	int hqStore_number = 0;
+	
 	public static void main(String[] args) throws Exception {
 		RMI_Server = (Interface_Remote) Naming.lookup("//localhost/UptownBooks_Server");
 		
 		// Testing
 		System.out.println(RMI_Server.getMessage());
 		
-		
 		LoginPage();
 	}
 	
-	//static JFrame frame;
 	
 	// The Login Page
 	public static void LoginPage() {
@@ -103,10 +104,10 @@ public class HQ_Client {
 					List<String> emplyRows = RMI_Server.selectQuery("SELECT count(*) FROM employees");
 					int tableRows = Integer.parseInt(emplyRows.get(0));
 					// Database, the Usernames and Passwords of Employees
-					List<String> DB_Usernames = RMI_Server.selectQuery("SELECT ID FROM employees WHERE store_number = '0'");
-					//System.out.println(DB_Usernames);
-					List<String> DB_Passwords = RMI_Server.selectQuery("SELECT password FROM employees WHERE store_number = '0'");
-					//System.out.println(DB_Passwords);
+					List<String> DB_Usernames = RMI_Server.selectQuery("SELECT ID FROM employees WHERE store_number = '0' ORDER BY ID");
+					System.out.println(DB_Usernames);
+					List<String> DB_Passwords = RMI_Server.selectQuery("SELECT password FROM employees WHERE store_number = '0' ORDER BY ID");
+					System.out.println(DB_Passwords);
 					
 					Boolean flag = true;
 					String username = loginPg_txtEnt_user.getText();
@@ -267,7 +268,7 @@ public class HQ_Client {
 		JLabel txt_bookStock_inner2 = new JLabel("Change/Remove Book Stock");									// Change/Remove Book Stock Header
 		txt_bookStock_inner2.setBounds(20, 20, 200, 25);
 		panel_bookStock_inner2.add(txt_bookStock_inner2);
-		JLabel txt_bookStock_inner2_addRemToHQ = new JLabel("Add Books from Book Catalogue to Stock of HQ");	// Add Books from Book Catalogue to Stock of HQ Header
+		JLabel txt_bookStock_inner2_addRemToHQ = new JLabel("Add Books from Book Catalogue to Table");	// Add Books from Book Catalogue to Stock of HQ Header
 		txt_bookStock_inner2_addRemToHQ.setBounds(400, 20, 300, 25);
 		panel_bookStock_inner2.add(txt_bookStock_inner2_addRemToHQ);
 		// ISBN Label
@@ -278,7 +279,7 @@ public class HQ_Client {
 		String[] arrayStr_bookStock_bookStockISBN = selectQuery("SELECT DISTINCT ISBN FROM book_stock");
 		DefaultComboBoxModel drpMenuModel_bookStock_inner2_bookStockISBN = new DefaultComboBoxModel(arrayStr_bookStock_bookStockISBN);
 		JComboBox drpMenu_bookStock_inner2_bookStockISBN = new JComboBox(drpMenuModel_bookStock_inner2_bookStockISBN);
-		drpMenu_bookStock_inner2_bookStockISBN.setBounds(100, 50, 200, 20);
+		drpMenu_bookStock_inner2_bookStockISBN.setBounds(110, 50, 200, 20);
 		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_bookStockISBN);
 		// Store Number Label
 		JLabel txt_bookStock_inner2_txtFieldStoreNum = new JLabel("Store Number");
@@ -380,7 +381,7 @@ public class HQ_Client {
 		JLabel txt_employess_inner2_changeOrRemoveEmpl = new JLabel("Change Name and or Password, or Remove Employee");		// Change Name and or Password, or Remove Employee
 		txt_employess_inner2_changeOrRemoveEmpl.setBounds(20, 20, 350, 25);
 		panel_employees_inner2.add(txt_employess_inner2_changeOrRemoveEmpl);
-		JLabel txt_employees_inner2_addNewEmpl = new JLabel("Add New Employee to HQ");										// Add New Employee
+		JLabel txt_employees_inner2_addNewEmpl = new JLabel("Add New Employee");											// Add New Employee
 		txt_employees_inner2_addNewEmpl.setBounds(400, 20, 250, 25);
 		panel_employees_inner2.add(txt_employees_inner2_addNewEmpl);
 		// ID Label
@@ -907,7 +908,6 @@ public class HQ_Client {
 		/* Refresh Buttons, End */
 		
 		
-		
 		// Display Window
 		frame.pack();											// Combine Window Elements, and Resize Them if Window Too Small
 		frame.setVisible(true);									// Renders Window
@@ -1003,30 +1003,6 @@ public class HQ_Client {
 				dataSet.setValue(totalAmount, "Total Amount", "Store " + distinctColumn[i]);
 				totalAmount = 0.0;
 			}
-			
-
-			
-//			/* Bar Chart */
-//			// The Bar Chart Data Set Container
-//			DefaultCategoryDataset dataSet_sales_inner2 = new DefaultCategoryDataset();
-//			// Bar Chart Values
-//			String[] distCols_sales_StoreNum = selectQuery("SELECT DISTINCT store_number FROM sales");
-//			String[] dataValues;
-//			Double totalAmount_sales = 0.0;
-//			// Sets the Dataset Container with the Total Amount (Total Profits) Made From Each Store in Sales
-//			for(int i=0; i<distCols_sales_StoreNum.length; i++) {
-//				dataValues = selectQuery("SELECT Amount FROM sales WHERE Store_Number = '" + distCols_sales_StoreNum[i] + "'");
-//				for(String j : dataValues) {
-//					totalAmount_sales += Double.parseDouble(j);
-//				}
-//				dataSet_sales_inner2.setValue(totalAmount_sales, "Total Amount", "Store " + distCols_sales_StoreNum[i]);
-//				totalAmount_sales = 0.0;
-//			}
-//			// The Bar Chart Object
-//			JFreeChart chart_sales_inner2 = ChartFactory.createBarChart("Profits from Stores", "Stores", "Profits", dataSet_sales_inner2, PlotOrientation.VERTICAL, false, true, false);
-//			chart_sales_inner2.getCategoryPlot().setRangeGridlinePaint(Color.BLACK);		// Set Gridlines of Graph to Black Colour
-			
-			
 		} catch(Exception error) {
 			System.out.println(error);
 		}
@@ -1118,37 +1094,6 @@ public class HQ_Client {
 			table.setModel(tableModel);
 			table.setEnabled(false);
 			scrollPane.setViewportView(table);
-
-//			// Number of Rows of the Table
-//			List<String> tableRowNums = RMI_Server.selectQuery("SELECT count(*) FROM " + tableName);
-//			int rowNums = Integer.parseInt(tableRowNums.get(0));
-//			// Column Names of the Table
-//			List<String> tableCols = RMI_Server.selectQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'uptown_books' AND TABLE_NAME = '" + tableName + "'");
-//			// Row Values of the Table
-//			List<List<String>> tableRows = RMI_Server.selectQuery_allRows(tableName);
-//			
-//			//System.out.print(tableCols);
-//			//System.out.print(tableRows);
-//			
-//			// Convert List to Array
-//			String[] columns = tableCols.toArray(new String[0]);
-//			String[][] rows = tableRows.stream().map(l -> l.stream().toArray(String[]::new)).toArray(String[][]::new);
-//			
-//			// The JTable Object
-//			JTable table = new JTable(rows, columns);
-//			//table.setBounds(20, 50, 1000, 30+(30*rowNums));
-//			//table.getTableHeader().setBounds(20, 50, 1200, 15);
-//			table.setBounds(20, 60, 1200, 15*rowNums);
-//			//panel.add(table.getTableHeader());
-//			panel.add(table);
-//			/*
-//			JScrollPane scrollPane = new JScrollPane(table);
-//			table.setFillsViewportHeight(true);
-//			scrollPane.setSize(1200, 30+(30*rowNums));
-//			panel.add(scrollPane);
-//			//panel.add(table.getTableHeader(), BorderLayout.PAGE_START);		// Add to JPanel
-//			//panel.add(table, BorderLayout.CENTER);
-//			*/
 		} catch(Exception error) {
 			System.out.println(error);
 		}

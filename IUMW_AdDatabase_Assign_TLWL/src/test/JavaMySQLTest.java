@@ -26,6 +26,14 @@ public class JavaMySQLTest {
 			// Query to be sent
 			String sql;
 			
+			sql = "SELECT ID FROM employees WHERE store_number = '0' OR store_number = '1' ORDER BY ID";
+			test = query.executeQuery(sql);
+			List<String> myList = new ArrayList<String>();
+			while(test.next()) {
+				myList.add(test.getString(1));
+			}
+			System.out.println(myList);
+			
 			/*
 			sql = "SELECT DISTINCT Store_Number FROM sales";
 			test = query.executeQuery(sql);
@@ -36,7 +44,7 @@ public class JavaMySQLTest {
 			System.out.println(myList);
 			*/
 			
-			
+			/*
 			sql = "SELECT Amount FROM sales WHERE Store_Number = '1'";
 			test = query.executeQuery(sql);
 			List<String> myList = new ArrayList<String>();
@@ -49,7 +57,7 @@ public class JavaMySQLTest {
 				total += Double.parseDouble(myList.get(i));
 			}
 			System.out.println("Total = " + total);
-			
+			*/
 			
 			/*
 			sql = "SELECT ID FROM employees";

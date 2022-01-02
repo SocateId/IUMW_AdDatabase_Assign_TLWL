@@ -52,4 +52,57 @@ public class OldCode_Container {
 	txtEnt_employees_inner2_ID.setBounds(400, 50, 150, 20);
 	panel_employees_inner2.add(txtEnt_employees_inner2_ID);
 	*/
+	
+
+	
+//	/* Bar Chart */
+//	// The Bar Chart Data Set Container
+//	DefaultCategoryDataset dataSet_sales_inner2 = new DefaultCategoryDataset();
+//	// Bar Chart Values
+//	String[] distCols_sales_StoreNum = selectQuery("SELECT DISTINCT store_number FROM sales");
+//	String[] dataValues;
+//	Double totalAmount_sales = 0.0;
+//	// Sets the Dataset Container with the Total Amount (Total Profits) Made From Each Store in Sales
+//	for(int i=0; i<distCols_sales_StoreNum.length; i++) {
+//		dataValues = selectQuery("SELECT Amount FROM sales WHERE Store_Number = '" + distCols_sales_StoreNum[i] + "'");
+//		for(String j : dataValues) {
+//			totalAmount_sales += Double.parseDouble(j);
+//		}
+//		dataSet_sales_inner2.setValue(totalAmount_sales, "Total Amount", "Store " + distCols_sales_StoreNum[i]);
+//		totalAmount_sales = 0.0;
+//	}
+//	// The Bar Chart Object
+//	JFreeChart chart_sales_inner2 = ChartFactory.createBarChart("Profits from Stores", "Stores", "Profits", dataSet_sales_inner2, PlotOrientation.VERTICAL, false, true, false);
+//	chart_sales_inner2.getCategoryPlot().setRangeGridlinePaint(Color.BLACK);		// Set Gridlines of Graph to Black Colour
+	
+//	// Number of Rows of the Table
+//	List<String> tableRowNums = RMI_Server.selectQuery("SELECT count(*) FROM " + tableName);
+//	int rowNums = Integer.parseInt(tableRowNums.get(0));
+//	// Column Names of the Table
+//	List<String> tableCols = RMI_Server.selectQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'uptown_books' AND TABLE_NAME = '" + tableName + "'");
+//	// Row Values of the Table
+//	List<List<String>> tableRows = RMI_Server.selectQuery_allRows(tableName);
+//	
+//	//System.out.print(tableCols);
+//	//System.out.print(tableRows);
+//	
+//	// Convert List to Array
+//	String[] columns = tableCols.toArray(new String[0]);
+//	String[][] rows = tableRows.stream().map(l -> l.stream().toArray(String[]::new)).toArray(String[][]::new);
+//	
+//	// The JTable Object
+//	JTable table = new JTable(rows, columns);
+//	//table.setBounds(20, 50, 1000, 30+(30*rowNums));
+//	//table.getTableHeader().setBounds(20, 50, 1200, 15);
+//	table.setBounds(20, 60, 1200, 15*rowNums);
+//	//panel.add(table.getTableHeader());
+//	panel.add(table);
+//	/*
+//	JScrollPane scrollPane = new JScrollPane(table);
+//	table.setFillsViewportHeight(true);
+//	scrollPane.setSize(1200, 30+(30*rowNums));
+//	panel.add(scrollPane);
+//	//panel.add(table.getTableHeader(), BorderLayout.PAGE_START);		// Add to JPanel
+//	//panel.add(table, BorderLayout.CENTER);
+//	*/
 }
