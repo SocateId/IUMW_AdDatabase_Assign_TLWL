@@ -17,6 +17,9 @@ public interface Interface_Remote extends Remote {
 	// Select Query to Database, returns all Rows of a Table
 	List<List<String>> selectQuery_allRows(String table) throws RemoteException;
 	
+	// Select Query to Database, returns all Rows of a Table, Specific to a Branch
+	List<List<String>> selectQuery_allRows_Branch(String table, int storeNumber) throws RemoteException;
+	
 	// Update Query (CREATE, DROP, INSERT, UPDATE, DELETE) to Database, returns the Row Count or 0 for no return Statements
 	int updateQuery(String sql) throws RemoteException;
 	

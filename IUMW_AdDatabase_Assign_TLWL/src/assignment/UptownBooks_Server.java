@@ -92,6 +92,36 @@ public class UptownBooks_Server extends UnicastRemoteObject implements Interface
 	}
 	
 	@Override
+	public List<List<String>> selectQuery_allRows_Branch(String table, int storeNumber) throws RemoteException {
+		try {
+			// Column Names
+			List<String> colNames = selectQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'uptown_books' AND TABLE_NAME = '" + table + "'");
+			
+			// Execute Query
+			Statement query = connect.createStatement();
+			ResultSet queryResult = query.executeQuery("SELECT * FROM " + table + " WHERE store_number = '" + storeNumber + "'");
+			System.out.println("!Select All Rows Branch Query Successful! " + queryResult);
+			
+			// Row Values
+			List<List<String>> rowValues = new ArrayList<List<String>>();
+			List<String> tempList = new ArrayList<String>();
+			while(queryResult.next()) {
+				for(int i=0; i<colNames.size(); i++) {
+					tempList.add(queryResult.getString(colNames.get(i)));
+				}
+				rowValues.add(tempList);
+				tempList = new ArrayList<String>();
+			}
+			return rowValues;
+			
+		} catch(SQLException e) {
+			System.out.println("!Select All Rows Branch Query Error!");
+			e.printStackTrace();
+			return null;
+		}	
+	}
+	
+	@Override
 	public int updateQuery(String sql) throws RemoteException {
 		try {
 			Statement query = connect.createStatement();

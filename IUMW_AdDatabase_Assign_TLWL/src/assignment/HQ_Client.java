@@ -105,9 +105,9 @@ public class HQ_Client {
 					int tableRows = Integer.parseInt(emplyRows.get(0));
 					// Database, the Usernames and Passwords of Employees
 					List<String> DB_Usernames = RMI_Server.selectQuery("SELECT ID FROM employees WHERE store_number = '0' ORDER BY ID");
-					System.out.println(DB_Usernames);
+					//System.out.println(DB_Usernames);
 					List<String> DB_Passwords = RMI_Server.selectQuery("SELECT password FROM employees WHERE store_number = '0' ORDER BY ID");
-					System.out.println(DB_Passwords);
+					//System.out.println(DB_Passwords);
 					
 					Boolean flag = true;
 					String username = loginPg_txtEnt_user.getText();
@@ -153,7 +153,6 @@ public class HQ_Client {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	// When Window closed, program exited
 		frame.setTitle("Uptown Books Database HQ");				// Window Title
 		frame.setMinimumSize(new Dimension(1200, 600));			// Minimum Window Size
-		//frame.setLayout(new GridLayout(5, 1));
 
 		// Frame Tabbed Panel Layout
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
