@@ -219,18 +219,6 @@ public class Branch_Client {
 		JComboBox drpMenu_bookStock_inner2_bookStockISBN = new JComboBox(drpMenuModel_bookStock_inner2_bookStockISBN);
 		drpMenu_bookStock_inner2_bookStockISBN.setBounds(110, 50, 200, 20);
 		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_bookStockISBN);
-		/*
-		// Store Number Label
-		JLabel txt_bookStock_inner2_txtFieldStoreNum = new JLabel("Store Number");
-		txt_bookStock_inner2_txtFieldStoreNum.setBounds(20, 80, 80, 20);
-		panel_bookStock_inner2.add(txt_bookStock_inner2_txtFieldStoreNum);
-		// Store Number Drop Menu
-		String[] arrayStr_bookStock_bookStockStoreNum = selectQuery("SELECT DISTINCT store_number FROM book_stock");
-		DefaultComboBoxModel drpMenuModel_bookStock_inner2_bookStockStoreNum = new DefaultComboBoxModel(arrayStr_bookStock_bookStockStoreNum);
-		JComboBox drpMenu_bookStock_inner2_bookStockStoreNum = new JComboBox(drpMenuModel_bookStock_inner2_bookStockStoreNum);
-		drpMenu_bookStock_inner2_bookStockStoreNum.setBounds(110, 80, 200, 20);
-		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_bookStockStoreNum);
-		*/
 		// Stock Label
 		JLabel txt_bookStock_inner2_textFieldStock = new JLabel("Stock");
 		txt_bookStock_inner2_textFieldStock.setBounds(20, 80, 80, 20);
@@ -259,18 +247,6 @@ public class Branch_Client {
 		JComboBox drpMenu_bookStock_inner2_bookCtlgISBN = new JComboBox(drpMenuModel_bookStock_inner2_bookCtlgISBN);
 		drpMenu_bookStock_inner2_bookCtlgISBN.setBounds(500, 50, 200, 20);
 		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_bookCtlgISBN);
-		/*
-		// Store Number from Offices Label
-		JLabel txt_bookStock_inner2_remFromTable = new JLabel("Offices, Store #");
-		txt_bookStock_inner2_remFromTable.setBounds(400, 80, 100, 20);
-		panel_bookStock_inner2.add(txt_bookStock_inner2_remFromTable);
-		// Store Number from Offices Drop Menu
-		String[] arrayStr_bookStock_officesStoreNum = selectQuery("SELECT store_number FROM offices");
-		DefaultComboBoxModel drpMenuModel_bookStock_inner2_officesStoreNum = new DefaultComboBoxModel(arrayStr_bookStock_officesStoreNum);
-		JComboBox drpMenu_bookStock_inner2_officesStoreNum = new JComboBox(drpMenuModel_bookStock_inner2_officesStoreNum);
-		drpMenu_bookStock_inner2_officesStoreNum.setBounds(500, 80, 200, 20);
-		panel_bookStock_inner2.add(drpMenu_bookStock_inner2_officesStoreNum);
-		*/
 		/* Buttons */
 		// Error/Success in Inputs
 		JLabel txt_bookStock_inner2_changeRemErrTxt = new JLabel();				// Label Change/Remove Stock Success/Error
